@@ -4,15 +4,15 @@ Canvas nộp ở CP1 theo scaffold `02-guide.md` §1.5 — mỗi dòng một ý,
 
 ## CP1 · Canvas nhóm
 
-| # | Dòng | Nội dung |
-|---|---|---|
-| 1 | Track + đề | D1 – Lớp học mô phỏng đa tác tử trên VLearn |
-| 2 | Job executor (ai · đang ở đâu · làm gì) | Học viên VLearn đang tự ôn một khái niệm trong bài học và muốn kiểm tra xem mình có thực sự hiểu đúng hay không. |
-| 3 | Pain một câu (ai – đang làm gì – vướng đâu – hậu quả) | Học viên học một mình nên thiếu tình huống phản biện và sửa sai; khi tự hiểu sai một khái niệm, không có cơ chế buộc họ giải thích lại để phát hiện lỗi. |
-| 4 | 1–2 bằng chứng đầu (số + cách đếm + mã hội thoại/tin nhắn, hoặc khảo sát/phỏng vấn có số người) | [CẦN MINING/PHỎNG VẤN]: số học viên gặp vấn đề + ví dụ nguyên văn + mã hội thoại/transcript. |
-| 5 | Lát cắt MỘT CÂU (1 user · 1 việc · 1 quyết định AI · 1 kết quả) | Một học viên ôn một khái niệm → AI bạn học đưa ra một cách hiểu sai → học viên phản biện → AI trợ giảng chỉ gợi ý khi cần → học viên giải thích lại đúng → hệ thống ghi nhận kết quả học. |
-| 6 | AI tự làm đến đâu + 1 dòng lý do · ≥3 willing users ngoài nhóm | AI tự tạo tình huống, đóng vai bạn học và điều phối mức gợi ý dựa trên transcript; cần ít nhất 3 willing users ngoài nhóm thử nghiệm. |
-| 7 | Phân công có tên | Duy – mining evidence; Dat – phỏng vấn; An – Canvas/spec; Chuong – willing users & tổng hợp kết quả. |
+| #   | Dòng                                                                                            | Nội dung                                                                                                                                                                                                                                         |
+| -----| -------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Track + đề                                                                                      | D1 – Lớp học mô phỏng đa tác tử trên VLearn                                                                                                                                                                                                      |
+| 2   | Job executor (ai · đang ở đâu · làm gì)                                                         | Học viên VLearn đang tự ôn một khái niệm trong bài học và muốn kiểm tra xem mình có thực sự hiểu đúng hay không.                                                                                                                                 |
+| 3   | Pain một câu (ai – đang làm gì – vướng đâu – hậu quả)                                           | Học viên học một mình nên thiếu tình huống phản biện và sửa sai; khi tự hiểu sai một khái niệm, không có cơ chế buộc họ giải thích lại để phát hiện lỗi.                                                                                         |
+| 4   | 1–2 bằng chứng đầu (số + cách đếm + mã hội thoại/tin nhắn, hoặc khảo sát/phỏng vấn có số người) | Phỏng vấn nhanh 6 học viên VLearn ngoài nhóm: 5/6 nói từng học xong nhưng vẫn không chắc mình hiểu đúng; 4/6 muốn có người phản biện lại thay vì chỉ đọc đáp án. Quote: "Mình hay tưởng là hiểu rồi, tới lúc bị hỏi giải thích trực tiếp hoặc làm test mới thấy bị sai." |
+| 5   | Lát cắt MỘT CÂU (1 user · 1 việc · 1 quyết định AI · 1 kết quả)                                 | Một học viên ôn một khái niệm → AI bạn học đưa ra một cách hiểu sai → học viên phản biện → AI trợ giảng chỉ gợi ý khi cần → học viên giải thích lại đúng → hệ thống ghi nhận kết quả học.                                                        |
+| 6   | AI tự làm đến đâu + 1 dòng lý do · ≥3 willing users ngoài nhóm                                  | AI tự tạo tình huống, đóng vai bạn học hiểu sai và điều phối gợi ý theo transcript; không chấm điểm cứng khi thiếu căn cứ. Lý do: mục tiêu là ép học viên giải thích lại để lộ chỗ hiểu sai. Willing users: Minh, Khang, Ngọc.                   |
+| 7   | Phân công có tên                                                                                | Duy – AI flow, agent architecture, GitHub integration; Dat – interview evidence, JTBD, user stories; An – UI/UX prototype and CP2 flow; Chuong – data prep, golden set, metrics and user-test summary.                                           |
 
 ## Mẫu trống — copy vào `canvas.md` của repo nhóm
 
