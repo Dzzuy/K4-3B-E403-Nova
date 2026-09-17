@@ -8,10 +8,10 @@
 
 | Họ và Tên         | Mã Học Viên | Vai trò chính | Phần việc đảm nhiệm trong dự án |
 | -------------------| -------------| ---------------| ---------------------------------|
-| Phạm Đình Duy     | 2A202602913 |               |                                 |
-| Phạm Quốc Đạt     | 2A202602384 |               |                                 |
-| Võ Trường An      | 2A20262656  |               |                                 |
-| Nguyễn Hữu Chương | 2A202602601 |               |                                 |
+| Phạm Đình Duy | 2A202602913 | Leader, AI Engineer | Team lead and technical architecture<br>Define product flow and AI agent architecture<br>Implement core AI/LLM logic and orchestration<br>Integrate backend/API with other components<br>Coordinate GitHub and final system integration<br>Review technical quality and prepare demo flow |
+| Phạm Quốc Đạt | 2A202602384 | Business Analyst | Define target user, pain point, JTBD and use cases<br>Conduct user interviews and willing-user validation<br>Collect evidence for CP1/spec.md<br>Define requirements, user stories and success criteria<br>Help build evaluation scenarios / golden test cases<br>Record user feedback and validation results |
+| Võ Trường An | 2A20262656 | Front-end Engineer | Design and implement web UI/UX<br>Build the interactive prototype user flow<br>Connect frontend to backend/AI APIs<br>Implement loading, error, result states and responsive layout<br>Prepare demo-ready flow for CP2 and final demo |
+| Nguyễn Hữu Chương | 2A202602601 | AI Engineer, Data | Prepare and preprocess allowed project data<br>Design data schema / knowledge representation if needed<br>Implement supporting AI/data pipeline components<br>Build evaluation dataset / golden set<br>Run experiments and evaluation<br>Calculate and document metrics for CP3/CP4<br>Work with Duy on AI pipeline integration and debugging |
 
 > Nhóm copy nguyên file README này về repo của mình, rồi điền bảng trên. Cột **Phần việc đảm nhiệm** ghi càng cụ thể càng tốt.
 
