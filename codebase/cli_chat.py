@@ -15,14 +15,13 @@ if str(Path(__file__).parent) not in sys.path:
     sys.path.insert(0, str(Path(__file__).parent))
 
 from codebase.env_loader import load_lab_env
+load_lab_env(Path(__file__).parent)
+
 from codebase.data_loader.rag_retriever import get_relevant_transcript_context, get_rag_retriever
 from codebase.graph.builder import classroom_app
 from codebase.agents.instructor_agent import instructor_conclusion_node
 from codebase.agents.evaluator_agent import evaluator_node
 from codebase.agents.ta_agent import ta_socratic_node
-
-load_lab_env(Path(__file__).parent)
-
 
 def print_banner():
     print("\n" + "=" * 75)

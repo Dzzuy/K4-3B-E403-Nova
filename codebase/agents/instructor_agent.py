@@ -37,8 +37,8 @@ Tóm tắt diễn biến:
 
 Nhiệm vụ:
 1. Nhận xét ngắn gọn, khích lệ quá trình trao đổi của cả Alex, TA và Học viên.
-2. Chốt lại định nghĩa/kiến thức chuẩn xác nhất theo bài giảng.
-3. BẮT BUỘC chỉ rõ trích dẫn nằm ở mã đoạn [Txx-NNN] có trong tài liệu RAG phía trên làm bằng chứng minh bạch.
+2. Tổng hợp và chốt lại định nghĩa/kiến thức chuẩn xác nhất dựa trên nội dung bài giảng trích xuất phía trên (trả lời trực tiếp vào vấn đề).
+3. BẮT BUỘC chỉ rõ và trích dẫn trực tiếp mã trích dẫn [Txx-NNN] (ví dụ: [T01-019], [T01-027]) từ tài liệu RAG phía trên để làm bằng chứng cụ thể cho kết luận.
 """
     res = llm.invoke(prompt)
     msgs = list(state.get("messages", []))

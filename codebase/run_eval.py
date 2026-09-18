@@ -15,19 +15,22 @@ from pathlib import Path
 from typing import Dict, List, Any, Optional
 
 # Ensure project root is in python path
-ROOT = Path(__file__).parent
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+CODEBASE_DIR = Path(__file__).parent
+PROJECT_ROOT = CODEBASE_DIR.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+if str(CODEBASE_DIR) not in sys.path:
+    sys.path.insert(0, str(CODEBASE_DIR))
 
 from codebase.env_loader import load_lab_env
 from codebase.providers import make_provider
 from codebase.data_loader.rag_retriever import get_relevant_transcript_context
 
 # Load environment variables from codebase/.env
-load_lab_env(ROOT)
+load_lab_env(CODEBASE_DIR)
 
-GOLDEN_SET_PATH = ROOT / "eval" / "golden_set.json"
-RUNS_DIR = ROOT / "runs"
+GOLDEN_SET_PATH = CODEBASE_DIR / "eval" / "golden_set.json"
+RUNS_DIR = CODEBASE_DIR / "runs"
 
 
 def load_golden_set(filepath: Path = GOLDEN_SET_PATH) -> Dict[str, Any]:

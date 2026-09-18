@@ -24,7 +24,7 @@ def btn1_ta_guide_node(state: ClassroomState) -> Dict[str, Any]:
 
 Học viên đang hỏi (Bài {lesson_id}): "{state['user_prompt']}"
 
-Nhiệm vụ: Không cho đáp án trực tiếp! Đưa ra 1-2 câu gợi mở hướng suy nghĩ theo tinh thần Socratic để học viên tự suy nghĩ và thử trả lời dựa trên manh mối bài học.
+Nhiệm vụ: Không cho đáp án trực tiếp! Đưa ra 1-2 câu gợi mở hướng suy nghĩ theo tinh thần Socratic để học viên tự suy nghĩ và thử trả lời. Bạn BẮT BUỘC phải dựa vào nội dung trong tài liệu RAG phía trên để đặt câu hỏi gợi mở đi vào trọng tâm, và NHỚ ghi kèm mã trích dẫn [Txx-NNN] của đoạn tài liệu đó (ví dụ: "Bạn hãy nhớ lại đoạn [T01-019] có đề cập đến..., vậy thì theo bạn...").
 """
     res = llm.invoke(prompt)
     msgs = list(state.get("messages", []))
@@ -45,7 +45,7 @@ def ta_socratic_node(state: ClassroomState) -> Dict[str, Any]:
 Alex phát biểu sai: "{state.get('peer_statement', '')}"
 User vừa giải thích chưa trúng: "{state.get('user_response', '')}"
 
-Hãy đóng vai Trợ giảng (TA): Đưa 1 câu gợi mở hướng suy nghĩ Socratic trỏ về chi tiết trong bài giảng trên để User tư duy và điều chỉnh lại.
+Hãy đóng vai Trợ giảng (TA): Đưa 1 vài câu gợi mở hướng suy nghĩ Socratic để User tư duy và điều chỉnh lại. Bạn BẮT BUỘC phải đặt câu hỏi dựa vào thông tin cụ thể trong tài liệu RAG phía trên").
 """
     res = llm.invoke(prompt)
     msgs = list(state.get("messages", []))

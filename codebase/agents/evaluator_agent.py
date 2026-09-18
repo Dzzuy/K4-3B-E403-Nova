@@ -48,5 +48,12 @@ Chỉ trả về 1 từ duy nhất: CORRECT hoặc INCORRECT.
         res = llm.invoke(prompt)
         raw_status = res.content if hasattr(res, "content") else str(res)
 
-    status = "CORRECT" if "CORRECT" in str(raw_status).upper() else "INCORRECT"
+    raw_upper = str(raw_status).strip().upper()
+    if "INCORRECT" in raw_upper:
+        status = "INCORRECT"
+    elif "CORRECT" in raw_upper:
+        status = "CORRECT"
+    else:
+        status = "INCORRECT"
+
     return {"eval_status": status}
