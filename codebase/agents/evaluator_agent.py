@@ -27,14 +27,18 @@ def evaluator_node(state: ClassroomState) -> Dict[str, Any]:
 {context}
 
 Vấn đề ôn tập: {state['user_prompt']}
-Alex phát biểu sai: {state.get('peer_statement', '')}
+Alex phát biểu sai hoặc hiểu nhầm: {state.get('peer_statement', '')}
 User vừa giảng lại: {state.get('user_response', '')}
 
-Nhiệm vụ: Hãy đánh giá lời giảng lại của User.
-- Trả về 'CORRECT' nếu User chỉ ra đúng chỗ sai của Alex và giải thích chuẩn xác theo tài liệu RAG.
-- Trả về 'INCORRECT' nếu User giải thích sai thêm, bị lẫn lộn hoặc chưa thỏa đáng.
+Nhiệm vụ: Bạn là một giám khảo cực kỳ KHẮT KHE. Hãy đánh giá lời giảng lại của User. 
+Tiêu chí đánh giá:
+1. Trả về 'CORRECT' CHỈ KHI User vạch ra được chỗ sai của Alex, ĐỒNG THỜI giải thích ĐẦY ĐỦ, CHUẨN XÁC, đi đúng vào trọng tâm của tài liệu RAG.
+2. BẮT BUỘC trả về 'INCORRECT' trong các trường hợp sau:
+   - User chỉ nói cụt lủn (ví dụ: "sai rồi", "đúng", "không phải") mà không giải thích vì sao.
+   - User giải thích sai kiến thức, hoặc giải thích chung chung, lảng tránh, thiếu từ khóa cốt lõi của bài học.
+   - User đòi hỏi đáp án hoặc thuận theo ý kiến sai của Alex.
 
-Chỉ trả về 1 từ duy nhất: CORRECT hoặc INCORRECT.
+Chỉ trả về 1 từ duy nhất: CORRECT hoặc INCORRECT. Không giải thích thêm.
 """
     try:
         if hasattr(llm, "with_structured_output"):

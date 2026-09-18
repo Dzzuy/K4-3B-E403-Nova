@@ -57,7 +57,7 @@ def check_api_key_presence(provider_name: str) -> tuple[bool, str]:
     return False, ", ".join(env_vars) if env_vars else "API_KEY"
 
 
-def build_case_response(case: Dict[str, Any], provider_name: str = "gemini", model_name: Optional[str] = None, use_live_api: bool = False) -> tuple[List[str], List[Dict[str, str]]]:
+def build_case_response(case: Dict[str, Any], provider_name: str = "gemini", model_name: Optional[str] = None, use_live_api: bool = False) -> tuple[List[str], List[Dict[str, str]], Dict[str, Any]]:
     """
     Constructs active agents and output messages for a given evaluation test case.
     Uses real live provider if API key is present, or offline mock engine if absent.
@@ -80,31 +80,60 @@ def build_case_response(case: Dict[str, Any], provider_name: str = "gemini", mod
         elif "EDIT_PREVIOUS_MSG" in user_input:
             active_agents = ["orchestrator_ui"]
             messages.append({"role": "orchestrator_ui", "content": "✏️ Cho phép học viên sửa lại tin nhắn trước."})
-        return active_agents, messages
+        return active_agents, messages, {}
 
     expected_active = expected_routing.get("active_agents", [])
 
     # If Live API Key is available, invoke real provider
     if use_live_api:
         try:
-            provider = make_provider(provider_name)
-            rag_context = get_relevant_transcript_context(query=user_input, lesson_id=6, top_k=3)
-            prompt = f"""[BỐI CẢNH BÀI HỌC SLIDE 06 & RAG]:
-{rag_context}
-
-[LỊCH SỬ CHAT]:
-{json.dumps(history, ensure_ascii=False)}
-
-[USER INPUT]:
-{user_input}
-
-Nhiệm vụ: Hãy đưa ra phản hồi phù hợp từ vai trò Trợ giảng TA hoặc Giảng viên chốt kiến thức theo đúng định hướng sư phạm Socratic và trích dẫn mã Slide 06.
-"""
-            resp = provider.complete(messages=[{"role": "user", "content": prompt}], model=model_name)
-            active_agents = list(expected_active)
-            messages.append({"role": "live_llm", "content": resp.text or ""})
-            return active_agents, messages
+            from codebase.state.classroom_state import ClassroomState
+            from codebase.agents.ta_agent import btn1_ta_guide_node, ta_socratic_node
+            from codebase.agents.instructor_agent import instructor_conclusion_node
+            from codebase.agents.evaluator_agent import evaluator_node
+            
+            is_review = any(msg.get("role") == "peer_agent" for msg in history)
+            
+            state: ClassroomState = {
+                "mode": "REVIEW_CONCEPT" if is_review else "ASK_TA",
+                "lesson_id": 6,
+                "topic_id": "transcript-06",
+                "source_context": "",
+                "user_prompt": "",
+                "user_response": None,
+                "ta_thinking_hint": None,
+                "peer_statement": None,
+                "eval_status": None,
+                "messages": []
+            }
+            
+            if is_review:
+                peer_msg = next((m["content"] for m in history if m.get("role") == "peer_agent"), "")
+                state["peer_statement"] = peer_msg
+                state["user_response"] = user_input
+                
+                eval_res = evaluator_node(state)
+                state.update(eval_res)
+                
+                if state.get("eval_status") == "CORRECT":
+                    active_agents = ["peer_agent", "instructor_agent"]
+                    state.update(instructor_conclusion_node(state))
+                else:
+                    active_agents = ["ta_agent"]
+                    state.update(ta_socratic_node(state))
+            else:
+                state["user_prompt"] = user_input
+                active_agents = ["ta_agent"]
+                state.update(btn1_ta_guide_node(state))
+                
+            for m in state.get("messages", []):
+                messages.append({"role": "live_llm", "content": m["content"]})
+                
+            return active_agents, messages, state
+            
         except Exception as exc:
+            import traceback
+            traceback.print_exc()
             print(f"⚠️ Live API call error ({exc}), falling back to Offline Mock Engine for {case_id}")
 
     # Fallback to Offline Mock Engine matching case assertions
@@ -195,7 +224,7 @@ Nhiệm vụ: Hãy đưa ra phản hồi phù hợp từ vai trò Trợ giảng 
         active_agents = expected_active or ["ta_agent"]
         messages.append({"role": "ta", "content": "🧑‍🏫 Trợ giảng: Bạn hãy tham khảo chi tiết trong Slide 06 và Transcript nhé!"})
 
-    return active_agents, messages
+    return active_agents, messages, {}
 
 
 def run_single_case(case: Dict[str, Any], provider_name: str = "gemini", model_name: Optional[str] = None, use_live_api: bool = False) -> Dict[str, Any]:
@@ -207,7 +236,7 @@ def run_single_case(case: Dict[str, Any], provider_name: str = "gemini", model_n
     expected_routing = case.get("expected_routing", {})
     assertions = case.get("evaluation_assertions", {})
 
-    active_agents, messages = build_case_response(case, provider_name=provider_name, model_name=model_name, use_live_api=use_live_api)
+    active_agents, messages, agent_trace = build_case_response(case, provider_name=provider_name, model_name=model_name, use_live_api=use_live_api)
 
     passed_assertions = []
     failed_assertions = []
@@ -265,7 +294,8 @@ def run_single_case(case: Dict[str, Any], provider_name: str = "gemini", model_n
         "passed": case_passed,
         "passed_assertions": passed_assertions,
         "failed_assertions": failed_assertions,
-        "messages": messages
+        "messages": messages,
+        "agent_trace": agent_trace
     }
 
 
