@@ -91,14 +91,29 @@ def build_case_response(case: Dict[str, Any], provider_name: str = "gemini", mod
             from codebase.agents.ta_agent import btn1_ta_guide_node, ta_socratic_node
             from codebase.agents.instructor_agent import instructor_conclusion_node
             from codebase.agents.evaluator_agent import evaluator_node
+            from codebase.agents.peer_agent import btn2_peer_misconception_node
             
-            is_review = any(msg.get("role") == "peer_agent" for msg in history)
+            case_mode = case.get("mode", "learn")
+            is_review = (case_mode == "review")
+            
+            # Extract lesson_num from "Lesson_06_Transformer"
+            lesson_str = case.get("lesson_id", "Lesson_06_Transformer")
+            import re
+            m = re.search(r"Lesson_(\d+)", lesson_str)
+            lesson_num = int(m.group(1)) if m else 6
+            topic_id = f"transcript-{lesson_num:02d}"
+            
+            query_for_rag = history[0].get("content", user_input) if history else user_input
+            try:
+                rag_context = get_relevant_transcript_context(query=query_for_rag, lesson_id=lesson_num, top_k=3)
+            except Exception:
+                rag_context = ""
             
             state: ClassroomState = {
                 "mode": "REVIEW_CONCEPT" if is_review else "ASK_TA",
-                "lesson_id": 6,
-                "topic_id": "transcript-06",
-                "source_context": "",
+                "lesson_id": lesson_num,
+                "topic_id": topic_id,
+                "source_context": rag_context,
                 "user_prompt": "",
                 "user_response": None,
                 "ta_thinking_hint": None,
@@ -108,23 +123,47 @@ def build_case_response(case: Dict[str, Any], provider_name: str = "gemini", mod
             }
             
             if is_review:
-                peer_msg = next((m["content"] for m in history if m.get("role") == "peer_agent"), "")
-                state["peer_statement"] = peer_msg
-                state["user_response"] = user_input
-                
-                eval_res = evaluator_node(state)
-                state.update(eval_res)
-                
-                if state.get("eval_status") == "CORRECT":
-                    active_agents = ["peer_agent", "instructor_agent"]
-                    state.update(instructor_conclusion_node(state))
+                if not history:
+                    # Initial peer review request
+                    state["user_prompt"] = user_input
+                    active_agents = ["peer_agent"]
+                    state.update(btn2_peer_misconception_node(state))
                 else:
-                    active_agents = ["ta_agent"]
-                    state.update(ta_socratic_node(state))
+                    peer_msg = next((m["content"] for m in history if m.get("role") == "peer_agent"), "")
+                    state["user_prompt"] = history[0]["content"] if history[0].get("role") == "user" else "Review Concept"
+                    state["peer_statement"] = peer_msg
+                    
+                    if len(history) <= 2:
+                        state["user_response"] = user_input
+                        eval_res = evaluator_node(state)
+                        state.update(eval_res)
+                        
+                        if state.get("eval_status") == "CORRECT":
+                            active_agents = ["peer_agent", "instructor_agent"]
+                            state.update(instructor_conclusion_node(state))
+                        else:
+                            active_agents = ["ta_agent"]
+                            state.update(ta_socratic_node(state))
+                    else:
+                        ta_msg = next((m["content"] for m in history if m.get("role") == "ta_agent"), "")
+                        state["ta_thinking_hint"] = ta_msg
+                        state["user_response"] = user_input
+                        state["eval_status"] = "INCORRECT"
+                        active_agents = ["instructor_agent"]
+                        state.update(instructor_conclusion_node(state))
             else:
-                state["user_prompt"] = user_input
-                active_agents = ["ta_agent"]
-                state.update(btn1_ta_guide_node(state))
+                if not history:
+                    state["user_prompt"] = user_input
+                    active_agents = ["ta_agent"]
+                    state.update(btn1_ta_guide_node(state))
+                else:
+                    state["user_prompt"] = history[0]["content"] if history[0].get("role") == "user" else user_input
+                    ta_msg = next((m["content"] for m in history if m.get("role") == "ta_agent"), "")
+                    state["ta_thinking_hint"] = ta_msg
+                    state["user_response"] = user_input
+                    
+                    active_agents = ["instructor_agent"]
+                    state.update(instructor_conclusion_node(state))
                 
             for m in state.get("messages", []):
                 messages.append({"role": "live_llm", "content": m["content"]})
@@ -303,6 +342,24 @@ def run_evaluation(provider_name: str = "gemini", model_name: Optional[str] = No
     """
     Runs the evaluation suite on all 22 golden set cases, logs full output, and prints summary table.
     """
+    RUNS_DIR.mkdir(parents=True, exist_ok=True)
+    timestamp_str = datetime.now().strftime("%Y%m%dT%H%M%S")
+    md_log_path = RUNS_DIR / f"eval_run_{provider_name}_{timestamp_str}.md"
+
+    class TeeLogger:
+        def __init__(self, filename):
+            self.terminal = sys.stdout
+            self.log = open(filename, "w", encoding="utf-8")
+        def write(self, message):
+            self.terminal.write(message)
+            self.log.write(message)
+        def flush(self):
+            self.terminal.flush()
+            self.log.flush()
+            
+    original_stdout = sys.stdout
+    sys.stdout = TeeLogger(md_log_path)
+
     has_api_key, var_names = check_api_key_presence(provider_name)
     mode_label = f"LIVE API ({var_names})" if has_api_key else "OFFLINE MOCK ENGINE"
 
@@ -383,8 +440,6 @@ def run_evaluation(provider_name: str = "gemini", model_name: Optional[str] = No
         rate = (st['passed'] / st['total'] * 100) if st['total'] > 0 else 0.0
         print(f"  - {cat:<24}: {st['passed']}/{st['total']} ({rate:.1f}%)")
 
-    RUNS_DIR.mkdir(parents=True, exist_ok=True)
-    timestamp_str = datetime.now().strftime("%Y%m%dT%H%M%S")
     log_filename = f"eval_run_{provider_name}_{timestamp_str}.json"
     log_path = RUNS_DIR / log_filename
 
@@ -409,7 +464,10 @@ def run_evaluation(provider_name: str = "gemini", model_name: Optional[str] = No
     with open(log_path, "w", encoding="utf-8") as f:
         json.dump(log_payload, f, ensure_ascii=False, indent=2)
 
-    print(f"\n💾 Log file saved to: {log_path}\n")
+    print(f"\n💾 JSON Log file saved to: {log_path}")
+    print(f"📄 Terminal Markdown Log saved to: {md_log_path}\n")
+    
+    sys.stdout = original_stdout
     return log_payload
 
 
