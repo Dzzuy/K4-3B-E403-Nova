@@ -362,9 +362,7 @@ Quality bar này được chốt trước tuning; các lượt đánh giá sau c
 
 ### Kế hoạch validation CP5
 
-Willing users đã xác nhận: **Lâm Quang Anh Quân** và **Trần Nam Anh**.
-
-Hiện mới có 2 người xác nhận; cần tuyển thêm 3 người cho CP5, không ghi thêm tên khi chưa xác nhận.
+Willing users đã xác nhận sẽ tham gia validation: **Lâm Quang Anh Quân** và **Trần Nam Anh**. Tuy nhiên, validation thực tế chưa thực hiện được nên chưa có feedback, quote hay outcome. Cần tuyển thêm 3 bạn cùng lớp để đủ 5 người cho CP5.
 
 - Tuyển ít nhất 5 bạn cùng lớp; mỗi người hoàn thành Attention learning slice.
 - Sau phiên, yêu cầu người thử tự giải thích misconception Attention bằng lời của mình.
