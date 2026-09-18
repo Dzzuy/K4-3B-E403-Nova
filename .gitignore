@@ -7,5 +7,10 @@ VibecodeKit/
 
 # Local CP3 configuration and generated traces
 codebase/.env
+codebase/.env copy.example
 frontend/.env.local
 codebase/logs/
+
+# Local demo captures and Next.js build output
+demo/
+frontend/.next/
