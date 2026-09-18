@@ -3,6 +3,9 @@ Evaluator Agent Node.
 Evaluates user explanation against RAG retrieved lesson context.
 """
 
+import json
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Dict, Any
 from pydantic import BaseModel, Field
 from codebase.state.classroom_state import ClassroomState
@@ -55,5 +58,20 @@ Chỉ trả về 1 từ duy nhất: CORRECT hoặc INCORRECT.
         status = "CORRECT"
     else:
         status = "INCORRECT"
+
+    trace_path = Path(__file__).resolve().parents[1] / "logs" / "ai_calls.jsonl"
+    trace_path.parent.mkdir(parents=True, exist_ok=True)
+    with trace_path.open("a", encoding="utf-8") as trace_file:
+        trace_file.write(json.dumps({
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "node": "evaluator",
+            "user_prompt": state.get("user_prompt", ""),
+            "peer_statement": state.get("peer_statement", ""),
+            "user_response": state.get("user_response", ""),
+            "raw_response": str(raw_status),
+            "eval_status": status,
+            "provider": getattr(llm, "provider", "openrouter"),
+            "model": getattr(llm, "model", "openai/gpt-4.1-mini"),
+        }, ensure_ascii=False) + "\n")
 
     return {"eval_status": status}
