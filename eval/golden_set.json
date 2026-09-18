@@ -5,8 +5,8 @@
     "total_cases": 22,
     "difficulty_distribution": {
       "easy": 7,
-      "medium": 9,
-      "hard": 6
+      "medium": 10,
+      "hard": 5
     },
     "taxonomy_distribution": {
       "1_nguon_su_that": 5,
@@ -14,8 +14,9 @@
       "3_ngoai_pham_vi": 5,
       "4_dac_thu_domain": 7
     },
-    "chatlog_mining_count": 14,
-    "synthetic_count": 8
+    "chatlog_mining_count": 16,
+    "synthetic_count": 6,
+    "provenance_status": "declared_by_case_authors_not_independently_verified"
   },
   "test_cases": [
     {

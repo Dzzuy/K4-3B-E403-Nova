@@ -1,84 +1,340 @@
-# Template AI Spec *(spec.md — commit trước hạn chốt spec: 21:00 18/9, tại CP4 · quality bar chốt từ thời điểm nộp)*
+# AI SPEC — Attention Peer Challenge · Nhóm Nova · E403
 
-> Cấu trúc phủ đúng "SPEC 8 phần" của chương trình: Bằng chứng (§1-§2) · Lát cắt (§4) · Canvas (đính kèm CP1) · Augment/Automate (§4) · 4 đường đi của trải nghiệm (§6) · Kiểu lỗi (§5) · Kiểm thử (§7) · Phân công (§8). Hướng dẫn viết từng mục: `02-guide.md`.
-
-```markdown
-# AI SPEC — [Tên lát cắt] · Nhóm [XX] · Zone [X]
-Hướng: [ ] A — VLearn  [ ] B — Trợ lý Học viên  [ ] C — Làn mở
-Loại: [ ] Tối ưu tính năng có sẵn  [ ] Tính năng mới
-
-## §1. User & Job
-- Job executor + workflow (đính kèm worksheet JTBD / ảnh sơ đồ):
-- Core JTBD (không tên sản phẩm/AI trong câu):
-- Problem statement (KHÔNG chữ AI):
-- Evidence (chuẩn A và/hoặc B — log đầy đủ trong repo):
-  - Số liệu mining / kết quả khảo sát (n = ?, % xác nhận):
-  - ≥5 quote/ví dụ nguyên văn + nguồn:
-
-## §2. Impact & quyết định chọn
-- Bảng impact ≥3 ứng viên (bao nhiêu người · tần suất · tốn gì mỗi lần · khả thi):
-- Ứng viên ĐÃ LOẠI + vì sao:
-- Ứng viên CHỌN + vì sao (bằng số):
-
-## §3. Giải pháp tương tự đã nghiên cứu
-- [Sản phẩm 1]: flow / đáng học / đáng né / mình khác gì
-- [Sản phẩm 2]: ...
-
-## §4. Thiết kế
-- Lát cắt MỘT CÂU (1 user · 1 việc · 1 quyết định AI · 1 kết quả):
-  Học viên chọn ôn khái niệm "Attention Mechanism" từ Slide 06 → AI Peer Agent đưa ra cách hiểu sai kinh điển → Học viên gửi lập luận phản biện → Hệ thống phân loại đúng/sai để điều phối (TA gợi ý Socratic nếu sai, Giảng viên chốt kiến thức có trích dẫn nếu đúng) → Học viên làm chủ khái niệm và hoàn thành phiên học.
-- Non-goals (≥3 thứ KHÔNG build):
-  1. Không xây dựng tính năng voice/audio call trực tiếp với agent (chỉ tập trung tương tác văn bản đa tác tử).
-  2. Không build hệ thống chấm điểm tự do ngoài phạm vi tài liệu bài giảng được nạp sẵn (`data/vlearn-pack/`).
-  3. Không tạo agent mạo danh danh tính giảng viên thật của trường; mọi agent đều có nhãn "AI Simulation".
-- Mức prototype nhắm tới: [ ] Sketch  [x] Mock  [ ] Working – phần nào mock, phần nào thật:
-  - Phần Mock: Toàn bộ phản hồi của Peer Agent, TA Agent và Giảng viên được giả lập (cố định kịch bản hội thoại chuẩn cho khái niệm Attention) để kiểm thử luồng tương tác và giao diện.
-  - Phần Thật: Cấu trúc chia luồng chat 3 bên, cơ chế hiển thị pop-up trích dẫn tài liệu gốc (Citation popup), khung nhập liệu và các nút thao tác điều khiển giao diện (Sửa câu, Xem căn cứ).
-- Automation: [ ] augment  [x] conditional  [ ] automate – lý do theo cost-of-error:
-  - Chi phí sai sót (Cost-of-error) trong giáo dục là rất cao: Nếu để Automate hoàn toàn, Peer Agent đưa ra thông tin sai quá thuyết phục hoặc TA Agent hallucinate sẽ khiến học viên tiếp thu sai lệch bản chất kiến thức (hậu quả lâu dài, sửa rất đắt).
-  - Chọn **Conditional**: AI chỉ tự động hóa đối thoại khi các phát biểu được neo chặt chẽ (grounded) vào Slide 06 và Transcript bài học. Khi học viên đi chệch phạm vi (out-of-scope) hoặc bế tắc liên tục, hệ thống chuyển sang chế độ khóa lượt nói hoặc kích hoạt tài liệu chuẩn của Giảng viên để đối chiếu.
-- §4b. Nguyên tắc đã áp dụng (≥4 – HAX/PAIR, xem guide):
-
-| Nguyên tắc | Áp cụ thể vào đâu trong prototype |
-| :--- | :--- |
-| **G10 (Bắt buộc) – Thu hẹp phạm vi khi nghi ngờ** | Áp dụng ở **Bước 15–16 (Nhánh 3)**: Khi học viên hỏi câu ngoài bài học hoặc yêu cầu "cho đáp án luôn", TA Agent từ chối trả lời lan man và chủ động thu hẹp ngữ cảnh: *"Chúng ta chỉ tập trung vào cơ chế Self-Attention trong Slide 06, bạn hãy nhận xét câu của bạn trước"*. |
-| **G11 – Giải thích vì sao** | Áp dụng ở **Bước 10 (Nhánh 1)**: Thông điệp chốt kiến thức của Giảng viên ảo luôn đi kèm nhãn/badge trích dẫn nguồn cụ thể. |
-| **G9 – Sửa dễ dàng** | Áp dụng ở **Bước 17–18 (Nhánh 4)**: Cung cấp nút thao tác nhanh trên giao diện cho phép học viên sửa lại câu phản biện vừa gõ nếu bị nhầm lẫn mà không bị tính là một lượt hiểu sai. |
-| **G8 – Gạt bỏ dễ dàng** | Áp dụng ở giao diện trò chuyện: Học viên có thể ấn nút "Bỏ qua gợi ý của Trợ giảng" để tiếp tục tự suy luận và đối chất trực tiếp với Peer Agent. |
+**Track:** D1 — Lớp học mô phỏng đa tác tử trên VLearn  
+**Topic MVP:** Attention Mechanism — Slide/Transcript 06  
+**Prototype hiện tại:** Working MVP cho CP3  
+**Ngày cập nhật:** 18/09/2026
 
 ---
 
-## §5. Kiểu lỗi — 4 lớp chỗ khó + kịch bản (≥8) [bảng theo guide §2.5]
+## §1. User & Job
+
+### Job executor
+
+Học viên VLearn đang tự ôn một khái niệm trong bài học và muốn kiểm tra xem mình có thực sự hiểu đúng hay không.
+
+### Core JTBD
+
+Khi tự ôn một khái niệm sau buổi học, học viên muốn có một tình huống buộc mình phải giải thích và phản biện lại kiến thức để phát hiện chỗ hiểu sai trước khi chuyển sang nội dung tiếp theo.
+
+### Problem statement
+
+Học viên học một mình nên thiếu tình huống phản biện và sửa sai; khi tự hiểu sai một khái niệm, không có cơ chế buộc họ giải thích lại để phát hiện lỗi.
+
+### Evidence ban đầu
+
+Evidence CP1 hiện được ghi trong `canvas.md`:
+
+- Phỏng vấn nhanh 6 học viên VLearn ngoài nhóm.
+- 5/6 nói từng học xong nhưng vẫn không chắc mình hiểu đúng.
+- 4/6 muốn có người phản biện lại thay vì chỉ đọc đáp án.
+- Quote được ghi nhận:
+
+> "Mình hay tưởng là hiểu rồi, tới lúc bị hỏi giải thích trực tiếp hoặc làm test mới thấy bị sai."
+
+**Lưu ý:** đây là evidence ban đầu từ CP1. Việc chuẩn hoá full interview/mining log tiếp tục ở CP4/CP5.
+
+---
+
+## §2. Impact & quyết định chọn
+
+Lát cắt được chọn cho hackathon là việc **kiểm tra mức hiểu thật bằng phản biện** thay vì chỉ đọc lại nội dung.
+
+Lý do chọn:
+
+1. Pain đã xuất hiện trong phỏng vấn CP1.
+2. Có thể demo trong một phiên rất ngắn.
+3. Có một quyết định AI trung tâm đo được: đánh giá lập luận của học viên là đúng hay chưa đạt.
+4. Có thể xây golden set để đo định lượng.
+5. Phù hợp với Track D1 — lớp học mô phỏng đa tác tử.
+
+Bảng impact ≥3 ứng viên và các ứng viên bị loại sẽ được hoàn thiện ở CP4. Không sử dụng dữ liệu chưa có để bổ sung giả vào CP3.
+
+---
+
+## §3. Giải pháp / hướng thiết kế tham khảo
+
+MVP dùng cách học qua:
+
+- Peer misconception: bạn học ảo đưa ra một cách hiểu sai.
+- Learner explanation: học viên phải phản biện bằng lời của mình.
+- Socratic support: TA chỉ gợi ý nếu học viên chưa giải thích đúng.
+- Instructor validation: khi học viên trả lời đạt, Instructor chốt lại kiến thức.
+
+Mục tiêu của MVP không phải tạo chatbot hỏi đáp tổng quát mà tạo **learning loop có phản biện và sửa sai**.
+
+Nghiên cứu competitor/product đầy đủ sẽ được bổ sung ở CP4.
+
+---
+
+## §4. Thiết kế
+
+### Lát cắt một câu
+
+Một học viên VLearn ôn **Attention Mechanism** → AI Peer đưa ra một cách hiểu sai → học viên phản biện → AI Evaluator đánh giá câu trả lời bằng model thật → nếu đúng thì Instructor chốt kiến thức, nếu chưa đúng thì TA đưa gợi ý Socratic → giao diện hiển thị kết quả cho học viên.
+
+### Flow CP3 đang chạy
+
+```text
+Start Attention session
+        ↓
+Peer Agent tạo misconception
+        ↓
+Học viên nhập phản biện
+        ↓
+REAL LLM Evaluator
+        ↓
+   CORRECT / INCORRECT
+      │          │
+      │          └──→ TA Socratic → IN_PROGRESS
+      │
+      └──→ Instructor → ACHIEVED
+```
+
+### Quyết định AI trung tâm
+
+Central decision hiện tại:
+
+```text
+student response
+→ evaluator_agent.py
+→ OpenRouter openai/gpt-4.1-mini
+→ CORRECT / INCORRECT
+```
+
+Đây là lời gọi AI thật, không phải keyword rule hoặc hard-coded result.
+
+### Non-goals
+
+1. Không voice/audio call.
+2. Không authentication/database production.
+3. Không build tutor tổng quát cho mọi môn.
+4. Không vector database ở CP3.
+5. Không animation/rigging nhân vật phức tạp.
+6. Không mạo danh giảng viên thật; agent chỉ là AI Simulation.
+
+### Mức prototype
+
+- [ ] Sketch
+- [ ] Mock
+- [x] Working MVP
+
+### Phần REAL hiện tại
+
+- Peer Agent gọi LLM thật.
+- Evaluator Agent gọi OpenRouter thật.
+- TA Agent gọi LLM thật.
+- Instructor Agent gọi LLM thật.
+- RAG/retriever lấy context bài học.
+- FastAPI backend nhận request từ frontend.
+- Next.js frontend gọi backend.
+- Evaluator ghi trace AI thực tế.
+- Demo correct/incorrect đã smoke-test end-to-end.
+
+### Phần còn giới hạn / chưa hoàn thiện
+
+- Evaluator CP3 hiện mới dùng hai nhãn `CORRECT` và `INCORRECT`.
+- Chưa có dedicated `OFF_SCOPE` route trong production MVP.
+- Chưa có full retry loop nhiều lượt trong LangGraph.
+- Một số secondary frontend route vẫn giữ local/static fallback của prototype cũ.
+- Một số UI action như source/edit chưa được dùng làm central AI decision.
+- LangGraph hiện xử lý phần agent flow nền; emergency FastAPI integration điều phối learner turn bằng evaluator + agent functions để kịp CP3.
+
+### Automation
+
+**Conditional automation.**
+
+AI được phép tự tạo phản hồi và đánh giá trong phạm vi bài Attention, nhưng sản phẩm không tự quyết định hành động ngoài phạm vi lớp học.
+
+Cost-of-error trong giáo dục cao: nếu Peer hoặc TA tạo kiến thức sai mà không được sửa, học viên có thể rời phiên với misconception.
+
+---
+
+## §4b. HAX / PAIR principles
+
+| Nguyên tắc | Áp dụng |
+|---|---|
+| G10 — Scope khi nghi ngờ | Có golden cases kiểm tra câu hỏi ngoài phạm vi; dedicated production route chưa hoàn thiện ở CP3 |
+| G11 — Explain why / evidence | Instructor prompt yêu cầu grounding/citation từ tài liệu RAG |
+| G9 — Easy correction | UI hỗ trợ học viên gửi lại câu giải thích; full edit workflow còn ở mức prototype |
+| G8 — Easy dismissal | Hint không khoá người dùng khỏi việc tiếp tục trả lời |
+
+---
+
+## §5. Kiểu lỗi — 4 lớp chỗ khó
+
+Golden set hiện dùng 4 taxonomy chính.
+
+| Lớp | Số case | Ví dụ |
+|---|---:|---|
+| 1. Nguồn sự thật | 5 | Citation giả, hiểu sai kiến thức trong source |
+| 2. Mơ hồ / thiếu thông tin | 5 | Chỉ nói "sai rồi", giải thích thiếu |
+| 3. Ngoài phạm vi / thẩm quyền | 5 | Hỏi deadline, thời tiết, jailbreak viết thơ |
+| 4. Đặc thù domain | 7 | Q/K/V, Softmax, Self-Attention, scaled dot-product |
+
+Ví dụ hard scenarios trong golden set:
+
+1. TC03 — trích dẫn giả "Slide 99".
+2. TC04 — kích thước Query/Key.
+3. TC06 — hiểu sai việc Attention bỏ từ.
+4. TC08 — mơ hồ, không chỉ ra trọng tâm.
+5. TC13 — câu hỏi thời tiết ngoài bài.
+6. TC15 — prompt injection viết thơ.
+7. TC17 — nhầm thứ tự Q/K/V.
+8. TC22 — chỉ nói "dùng Softmax" nhưng thiếu giải thích.
+
+File nguồn: `eval/golden_set.json`
+
+---
 
 ## §6. Bốn đường đi của trải nghiệm
-- Happy path:
-  - Peer Agent nêu hiểu sai: *"Attention là mô hình tự động bỏ qua toàn bộ các từ phụ trong câu?"* (Bước 5).
-  - Học viên phản biện đúng: *"Không đúng, Attention gán trọng số (weights) cho từng từ để tính độ liên quan chứ không hề loại bỏ từ nào"*.
-  - Peer Agent nhận sai: *"À mình hiểu rồi! Hóa ra là tính trọng số chứ không bỏ từ nào"* (Bước 8).
-  - Giảng viên ảo xuất hiện chốt chuẩn hóa kiến thức (kèm trích dẫn Slide 06), đặt 1 câu hỏi mở rộng tư duy và hệ thống ghi nhận Mastery (Bước 10–11).
-- Low-confidence (Chỗ khó / Cả hai cùng sai / Học viên bế tắc):
-  - Học viên đồng ý với cái sai của bạn học hoặc trả lời mơ hồ: *"Chắc là đúng rồi, bỏ từ đi cho nhẹ máy"*.
-  - Bộ điều phối (Orchestrator) lập tức **khóa lượt nói của Peer Agent** để tránh gây nhiễu thêm (Bước 12).
-  - TA Agent can thiệp bằng câu hỏi gợi mở Socratic: *"Nếu bỏ hẳn từ phụ, câu 'not bad' sẽ bị dịch thế nào? Bạn hãy xem lại công thức tính trọng số ở Slide 06 nhé"* (Bước 14) → Học viên đọc gợi ý để suy nghĩ lại.
-- Failure/không căn cứ (No-grounding) · Khi bị đòi ngoài phạm vi:
-  - Học viên gõ: *"Mai thi phòng nào?"* hoặc *"Cho luôn đáp án đi, lười nghĩ quá"*.
-  - Hệ thống kích hoạt bộ lọc phạm vi (G10); TA Agent phản hồi lịch sự từ chối và hướng sự tập trung quay lại phân tích câu nói của Peer Agent (Bước 16).
-- Correction (user sửa trực tiếp) · Case đặc thù domain:
-  - Học viên bấm nút *"Xem tài liệu gốc"* trên thanh công cụ hỗ trợ.
-  - Hệ thống mở pop-up hiển thị nguyên văn đoạn trích Slide 06 và Transcript bài giảng để học viên đọc đối chiếu trực tiếp trước khi gửi lại câu trả lời (Bước 17–18).
-  - Peer Agent buộc phải được sửa đúng trước khi phiên học đóng lại hoàn toàn, đảm bảo học viên không rời đi với kiến thức sai lệch.
+
+### 1. Happy path — đã chạy trong CP3
+
+Peer đưa misconception → học viên phản biện đúng → Evaluator trả `CORRECT` → Instructor chốt → session `ACHIEVED`.
+
+Smoke test:
+
+> Không đúng, Attention không xóa từ mà gán trọng số theo mức độ liên quan.
+
+Kết quả: PASS.
+
+### 2. Low-confidence / learner chưa hiểu — đã chạy trong CP3
+
+Peer đưa misconception → học viên đồng ý hoặc giải thích sai → Evaluator trả `INCORRECT` → TA Socratic → session vẫn `IN_PROGRESS`.
+
+Smoke test:
+
+> Đúng rồi, Attention bỏ hết các từ không quan trọng.
+
+Kết quả: PASS.
+
+### 3. Failure / ngoài phạm vi
+
+Golden set có các case TC11–TC15.
+
+MVP CP3 chưa có dedicated `OFF_SCOPE` branch production. Baseline cho thấy đây là nhóm lỗi yếu nhất: 0/5 case pass.
+
+Đây là failure đã được ghi nhận để cải thiện sau CP3, không che giấu.
+
+### 4. Correction
+
+Thiết kế cho phép học viên xem lại tài liệu và gửi lại câu giải thích.
+
+Golden set có UI-action cases như `VIEW_SOURCE` và `EDIT_PREVIOUS_MSG`.
+
+Full correction loop chưa phải central flow được hoàn thiện trong emergency CP3 MVP.
+
+---
 
 ## §7. Kiểm thử
-- Chiều chất lượng + định nghĩa kiểm chứng được:
-- Golden set (≥20 case theo cơ cấu trong guide §2.6, file trong eval/):
-- Quality bar (chốt từ hạn chốt spec của khoá, giữ nguyên sau đó): "Đạt khi ≥ ___% qua bộ, và ___"
-- Kết quả các lượt chạy (bảng % — cập nhật đến trước CP6):
 
-## §8. Phân công & kế hoạch
-- Phân công có tên: spec / evidence / prompt / code / demo
-- Willing users (≥2 tên) + kế hoạch vòng validation *(bonus, nếu làm)*:
-- Multi-prototype (nếu làm): trục khác biệt của ≥2 phương án + lý do chọn:
+### Golden set
+
+File: `eval/golden_set.json`
+
+Tổng: **22 cases**
+
+Phân bố taxonomy:
+
+| Category | Cases |
+|---|---:|
+| Nguồn sự thật | 5 |
+| Mơ hồ / thiếu thông tin | 5 |
+| Ngoài phạm vi | 5 |
+| Đặc thù domain | 7 |
+
+Phân bố difficulty thực tế:
+
+| Difficulty | Cases |
+|---|---:|
+| Easy | 7 |
+| Medium | 10 |
+| Hard | 5 |
+
+Case source theo field hiện tại:
+
+- `chatlog_mining`: 16
+- `synthetic`: 6
+
+Các provenance này là metadata do người viết case khai báo; chưa coi là independently verified nếu chưa có source log đối chiếu trong repo.
+
+### Định nghĩa một test case "ĐẠT"
+
+Một test case được tính là PASS khi:
+
+1. System thực hiện đúng behavior/routing mà golden case yêu cầu.
+2. Response chứa các concept/keyword bắt buộc của case.
+3. Response không chứa behavior/keyword bị cấm.
+4. Case cần grounding/citation thì phản hồi phải có evidence phù hợp.
+5. Case yêu cầu Socratic guidance thì TA không được biến thành direct-answer bot.
+
+### Run 1 — baseline
+
+Raw run: `codebase/runs/eval_run_openai_20260918T145054.json`
+
+| Metric | Result |
+|---|---:|
+| Total | 22 |
+| Passed | 7 |
+| Failed | 15 |
+| Pass rate | 31.82% |
+
+By taxonomy:
+
+| Category | Pass |
+|---|---:|
+| Nguồn sự thật | 3/5 |
+| Mơ hồ / thiếu thông tin | 2/5 |
+| Ngoài phạm vi | 0/5 |
+| Đặc thù domain | 2/7 |
+
+### Failure analysis
+
+1. Out-of-scope handling là điểm yếu lớn nhất: 0/5.
+2. Retrieval đôi khi lấy context thuộc Lesson 06 nhưng không đúng đoạn trọng tâm.
+3. Một số response thiếu keyword/citation mà golden case yêu cầu.
+4. Một số câu Attention trung bình/khó trả lời chưa đủ ý.
+5. Baseline runner thời điểm này chưa phải benchmark routing độc lập hoàn hảo; kết quả 7/22 được giữ như **first live baseline**, không quảng cáo thành routing accuracy.
+
+### Web MVP smoke test sau integration
+
+Provider: **OpenRouter**
+
+Model: `openai/gpt-4.1-mini`
+
+- Test A — correct rebuttal: PASS → Instructor → ACHIEVED.
+- Test B — incorrect answer: PASS → TA → IN_PROGRESS.
+- Evaluator trace: 4 real calls được ghi local trong `codebase/logs/ai_calls.jsonl`.
+
+### Quality bar
+
+Overall product quality bar sẽ được **lock tại CP4 trước vòng tuning tiếp theo**.
+
+Không đặt ngược một threshold sau khi đã nhìn thấy kết quả CP3.
+
+Run 1 là baseline measurement.
+
+---
+
+## §8. Phân công
+
+| Thành viên | Phần việc |
+|---|---|
+| Phạm Đình Duy | Team lead, system architecture, backend/API integration, LangGraph integration, frontend-backend integration, GitHub, demo |
+| Nguyễn Hữu Chương | AI agents, evaluator, RAG/data pipeline, baseline evaluation |
+| Phạm Quốc Đạt | Product flow/spec, user evidence, golden cases/evaluation scenarios |
+| Võ Trường An | Frontend UI/UX, visual classroom components and interaction |
+
+---
 
 ## §9. Changelog
-| Thời điểm | Đổi gì | Vì sao (trỏ về feedback/case nào) |
-```
+
+| Thời điểm | Thay đổi | Lý do |
+|---|---|---|
+| CP1 | Chọn D1 simulated classroom | Pain từ self-study + thiếu phản biện |
+| CP2 | Chốt Peer → learner rebuttal → TA/Instructor flow | Có flow bấm/demo được |
+| CP3 baseline | Tích hợp AI agents + 22-case golden set | Đo chất lượng bằng output thật |
+| CP3 integration | Kết nối frontend An với FastAPI backend | Có web demo end-to-end |
+| CP3 integration | Chuyển live provider sang OpenRouter `openai/gpt-4.1-mini` cho web MVP | Có central AI call thật |
+| CP3 measurement | Giữ baseline 7/22 thay vì chỉnh số | Báo cáo kết quả thật và failure thật |

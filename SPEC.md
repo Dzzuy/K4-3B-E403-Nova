@@ -1,3 +1,5 @@
+> Artifact kế hoạch. Emergency MVP CP3 thực tế đã được giản lược thành evaluator nhị phân `CORRECT` / `INCORRECT` được mô tả trong `spec.md` và `CP3_README.md`. Không coi các mục 3-route chưa triển khai bên dưới là tính năng đã hoàn thành.
+
 # CP3 Integration Specification — K4-3B-E403-Nova
 
 ## Purpose
