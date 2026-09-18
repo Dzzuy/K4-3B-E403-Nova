@@ -1,0 +1,1218 @@
+{
+  "run_id": "run_openai_20260918T174619",
+  "timestamp": "2026-09-18T17:47:32.038740",
+  "execution_mode": "LIVE API (OPENAI_API_KEY)",
+  "provider": "openai",
+  "model": "default",
+  "dataset_metadata": {
+    "track": "Track D1 - Multi-agent Classroom",
+    "version": "CP3 - Final Grounded Golden Set",
+    "corpus": "Transcript VLearn Pack (Lesson 01 to Lesson 06)",
+    "total_cases": 22,
+    "mode_distribution": {
+      "learn_mode": 10,
+      "review_mode": 12
+    },
+    "difficulty_distribution": {
+      "easy": 7,
+      "medium": 9,
+      "hard": 6
+    },
+    "taxonomy_distribution": {
+      "1_nguon_su_that": 5,
+      "2_mo_ho_thieu_thong_tin": 5,
+      "3_ngoai_pham_vi": 5,
+      "4_dac_thu_domain": 7
+    },
+    "chatlog_mining_count": 14,
+    "synthetic_count": 8
+  },
+  "summary": {
+    "total_cases": 22,
+    "passed_cases": 2,
+    "failed_cases": 20,
+    "accuracy_percent": 9.09,
+    "by_difficulty": {
+      "easy": {
+        "total": 8,
+        "passed": 2
+      },
+      "medium": {
+        "total": 7,
+        "passed": 0
+      },
+      "hard": {
+        "total": 7,
+        "passed": 0
+      }
+    },
+    "by_category": {
+      "1_nguon_su_that": {
+        "total": 4,
+        "passed": 1
+      },
+      "2_mo_ho_thieu_thong_tin": {
+        "total": 6,
+        "passed": 1
+      },
+      "3_ngoai_pham_vi": {
+        "total": 3,
+        "passed": 0
+      },
+      "4_dac_thu_domain": {
+        "total": 9,
+        "passed": 0
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "TC01",
+      "difficulty": "easy",
+      "category": "4_dac_thu_domain",
+      "context_description": "",
+      "user_input": "Em muốn tìm hiểu mô hình Double Diamond trong xác định bài toán là gì vậy ạ?",
+      "expected_routing": {
+        "active_agents": [
+          "ta_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "instructor_agent"
+        ]
+      },
+      "observed_routing": [
+        "ta_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'ta_agent'}",
+        "prohibit_keywords satisfied for 'Double Diamond là quy trình gồm 4 pha cụ thể'",
+        "prohibit_direct_answer satisfied"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'hai viên kim cương'",
+        "missing required keyword 'mở rộng'",
+        "missing required keyword 'thu hẹp'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "🧑‍🏫 Trợ giảng: Rất vui được hỗ trợ bạn trong việc tìm hiểu mô hình Double Diamond! Bạn có thể bắt đầu bằng cách suy nghĩ về câu hỏi này: \"Theo bạn, tại sao việc nhận diện đúng vấn đề lại quan trọng hơn so với việc tìm ra giải pháp ngay lập tức?\" Hãy nhớ đến đoạn [T01-053] khi bạn suy nghĩ về việc học từ những sai lầm và nhận diện vấn đề.\n\nNgoài ra, bạn có thể xem xét câu hỏi thứ hai: \"Bạn nghĩ rằng quá trình khám phá vấn đề và giải pháp trong mô hình Double Diamond có thể giúp chúng ta tránh được những sai lầm nào trong việc phát triển sản phẩm?\" Đoạn [T01-049] có thể giúp bạn hình dung rõ hơn về quy trình này. Hãy chia sẻ suy nghĩ của bạn nhé!"
+        }
+      ],
+      "agent_trace": {
+        "mode": "ASK_TA",
+        "lesson_id": 1,
+        "topic_id": "transcript-01",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 1 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Mô hình Double Diamond: làm đúng cái sai hay làm sai cái đúng?]\n**[T01-053]** [Học viên]: Lập luận của em đơn giản thôi. Khi em nhận diện một bài toán đúng từ đầu, cho dù em có làm sai thì em học được bài học từ cái sai đấy. Nhưng khi ngay từ đầu em nhận định vấn đề sai, mà em lại làm, thì em mất thời gian mà chẳng học được bài học gì. Em nhận định vấn đề sai — cái đấy thôi.\n\n📌 [Mô hình Double Diamond: làm đúng cái sai hay làm sai cái đúng?]\n**[T01-049]** Thế thì bây giờ có cách nào để mình tìm ra được vấn đề đúng hay không? Có một kỹ thuật mà mình xài khá nhiều, thấy rất có ích để xác định vấn đề trong làm sản phẩm: phase đầu tiên là problem discovery — khám phá vấn đề, và sau đấy là khám phá giải pháp. Đây là mô hình double diamond — kim cương đôi, cũng của ông Don đưa ra. Có ai biết mô hình này bao giờ chưa? Nó cũng đơn giản thôi: hai viên kim cương. Đường đi lên là mở rộng, đi xuống là hội tụ — nó có bốn pha: mở rộng rồi hội tụ, xong lại mở rộng rồi lại hội tụ. Viên thứ nhất giúp chúng ta tìm ra đúng vấn đề, viên thứ hai giúp chúng ta tìm ra đúng giải pháp cho vấn đề đấy. Mỗi bước chúng ta đều có hai quy trình: mở rộng, sau đấy thu hẹp.\n\n📌 [Mô hình Double Diamond: làm đúng cái sai hay làm sai cái đúng?]\n**[T01-059]** Nếu bạn làm sai cái đúng — đây là vấn đề đúng nhá — thì chúng ta làm gì? Chúng ta đi tìm giải pháp, bạn sẽ thử. Trong quá trình đấy, tất nhiên mỗi lần thử bạn sẽ học được — như nãy rất nhiều bạn nói: bạn học được cách làm, hoặc học được cả cách thất bại. Vì khi bạn đã xác định vấn đề này rồi thì ngay từ đầu bạn đã khoanh một không gian giải pháp rồi; bạn chỉ cần kiên trì thử thì chắc chắn sẽ tìm ra được một cái đúng.",
+        "user_prompt": "Em muốn tìm hiểu mô hình Double Diamond trong xác định bài toán là gì vậy ạ?",
+        "user_response": null,
+        "ta_thinking_hint": "Rất vui được hỗ trợ bạn trong việc tìm hiểu mô hình Double Diamond! Bạn có thể bắt đầu bằng cách suy nghĩ về câu hỏi này: \"Theo bạn, tại sao việc nhận diện đúng vấn đề lại quan trọng hơn so với việc tìm ra giải pháp ngay lập tức?\" Hãy nhớ đến đoạn [T01-053] khi bạn suy nghĩ về việc học từ những sai lầm và nhận diện vấn đề.\n\nNgoài ra, bạn có thể xem xét câu hỏi thứ hai: \"Bạn nghĩ rằng quá trình khám phá vấn đề và giải pháp trong mô hình Double Diamond có thể giúp chúng ta tránh được những sai lầm nào trong việc phát triển sản phẩm?\" Đoạn [T01-049] có thể giúp bạn hình dung rõ hơn về quy trình này. Hãy chia sẻ suy nghĩ của bạn nhé!",
+        "peer_statement": null,
+        "eval_status": null,
+        "messages": [
+          {
+            "role": "ta",
+            "content": "🧑‍🏫 Trợ giảng: Rất vui được hỗ trợ bạn trong việc tìm hiểu mô hình Double Diamond! Bạn có thể bắt đầu bằng cách suy nghĩ về câu hỏi này: \"Theo bạn, tại sao việc nhận diện đúng vấn đề lại quan trọng hơn so với việc tìm ra giải pháp ngay lập tức?\" Hãy nhớ đến đoạn [T01-053] khi bạn suy nghĩ về việc học từ những sai lầm và nhận diện vấn đề.\n\nNgoài ra, bạn có thể xem xét câu hỏi thứ hai: \"Bạn nghĩ rằng quá trình khám phá vấn đề và giải pháp trong mô hình Double Diamond có thể giúp chúng ta tránh được những sai lầm nào trong việc phát triển sản phẩm?\" Đoạn [T01-049] có thể giúp bạn hình dung rõ hơn về quy trình này. Hãy chia sẻ suy nghĩ của bạn nhé!"
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC02",
+      "difficulty": "medium",
+      "category": "4_dac_thu_domain",
+      "context_description": "",
+      "user_input": "Theo em hiểu, viên kim cương thứ nhất giúp ta mở rộng rồi hội tụ để tìm đúng bài toán thật, còn viên thứ hai mới đi tìm giải pháp cho bài toán đó.",
+      "expected_routing": {
+        "active_agents": [
+          "instructor_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "ta_agent"
+        ]
+      },
+      "observed_routing": [
+        "instructor_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'instructor_agent'}",
+        "must_include 'Double Diamond'"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'chúc mừng'",
+        "missing required keyword 'chính xác'",
+        "missing required keyword 'tìm đúng vấn đề'",
+        "missing required keyword 'tìm đúng giải pháp'",
+        "missing citation 'transcript-01 [T01-049]'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "👨‍🏫 Giảng viên chốt: 1. Nhận xét:\nRất tốt khi cả Alex, TA và Học viên đã tích cực tham gia vào quá trình trao đổi. Học viên đã thể hiện sự chủ động trong việc tìm hiểu mô hình Double Diamond và đã có những suy nghĩ sâu sắc về việc xác định vấn đề đúng. Điều này cho thấy sự quan tâm và nỗ lực trong việc học hỏi, rất đáng khích lệ!\n\n2. Tổng hợp và chốt lại định nghĩa:\nMô hình Double Diamond là một phương pháp giúp xác định vấn đề và tìm ra giải pháp hiệu quả. Viên kim cương đầu tiên tập trung vào việc mở rộng và hội tụ để tìm ra vấn đề đúng, trong khi viên kim cương thứ hai giúp mở rộng và hội tụ để tìm ra giải pháp cho vấn đề đó. Cụ thể, quy trình này bao gồm hai pha: khám phá vấn đề (problem discovery) và khám phá giải pháp (solution discovery) [T01-049].\n\n3. Bằng chứng cụ thể:\n- \"Viên thứ nhất giúp chúng ta tìm ra đúng vấn đề, viên thứ hai giúp chúng ta tìm ra đúng giải pháp cho vấn đề đấy\" [T01-049].\n- \"Nếu bạn làm sai cái đúng — đây là vấn đề đúng nhá — thì chúng ta làm gì? Chúng ta đi tìm giải pháp\" [T01-059]. \n\nNhững trích dẫn này khẳng định rõ ràng về vai trò của từng viên kim cương trong mô hình Double Diamond."
+        }
+      ],
+      "agent_trace": {
+        "mode": "ASK_TA",
+        "lesson_id": 1,
+        "topic_id": "transcript-01",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 1 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Mô hình Double Diamond: làm đúng cái sai hay làm sai cái đúng?]\n**[T01-053]** [Học viên]: Lập luận của em đơn giản thôi. Khi em nhận diện một bài toán đúng từ đầu, cho dù em có làm sai thì em học được bài học từ cái sai đấy. Nhưng khi ngay từ đầu em nhận định vấn đề sai, mà em lại làm, thì em mất thời gian mà chẳng học được bài học gì. Em nhận định vấn đề sai — cái đấy thôi.\n\n📌 [Mô hình Double Diamond: làm đúng cái sai hay làm sai cái đúng?]\n**[T01-049]** Thế thì bây giờ có cách nào để mình tìm ra được vấn đề đúng hay không? Có một kỹ thuật mà mình xài khá nhiều, thấy rất có ích để xác định vấn đề trong làm sản phẩm: phase đầu tiên là problem discovery — khám phá vấn đề, và sau đấy là khám phá giải pháp. Đây là mô hình double diamond — kim cương đôi, cũng của ông Don đưa ra. Có ai biết mô hình này bao giờ chưa? Nó cũng đơn giản thôi: hai viên kim cương. Đường đi lên là mở rộng, đi xuống là hội tụ — nó có bốn pha: mở rộng rồi hội tụ, xong lại mở rộng rồi lại hội tụ. Viên thứ nhất giúp chúng ta tìm ra đúng vấn đề, viên thứ hai giúp chúng ta tìm ra đúng giải pháp cho vấn đề đấy. Mỗi bước chúng ta đều có hai quy trình: mở rộng, sau đấy thu hẹp.\n\n📌 [Mô hình Double Diamond: làm đúng cái sai hay làm sai cái đúng?]\n**[T01-059]** Nếu bạn làm sai cái đúng — đây là vấn đề đúng nhá — thì chúng ta làm gì? Chúng ta đi tìm giải pháp, bạn sẽ thử. Trong quá trình đấy, tất nhiên mỗi lần thử bạn sẽ học được — như nãy rất nhiều bạn nói: bạn học được cách làm, hoặc học được cả cách thất bại. Vì khi bạn đã xác định vấn đề này rồi thì ngay từ đầu bạn đã khoanh một không gian giải pháp rồi; bạn chỉ cần kiên trì thử thì chắc chắn sẽ tìm ra được một cái đúng.",
+        "user_prompt": "Em muốn tìm hiểu mô hình Double Diamond trong xác định bài toán là gì vậy ạ?",
+        "user_response": "Theo em hiểu, viên kim cương thứ nhất giúp ta mở rộng rồi hội tụ để tìm đúng bài toán thật, còn viên thứ hai mới đi tìm giải pháp cho bài toán đó.",
+        "ta_thinking_hint": "Mô hình này gồm hai viên kim cương. Bạn thử hình dung viên kim cương thứ nhất giúp ta tìm ra điều gì trước khi bước sang viên kim cương thứ hai để tìm giải pháp?",
+        "peer_statement": null,
+        "eval_status": null,
+        "messages": [
+          {
+            "role": "instructor_chot",
+            "content": "👨‍🏫 Giảng viên chốt: 1. Nhận xét:\nRất tốt khi cả Alex, TA và Học viên đã tích cực tham gia vào quá trình trao đổi. Học viên đã thể hiện sự chủ động trong việc tìm hiểu mô hình Double Diamond và đã có những suy nghĩ sâu sắc về việc xác định vấn đề đúng. Điều này cho thấy sự quan tâm và nỗ lực trong việc học hỏi, rất đáng khích lệ!\n\n2. Tổng hợp và chốt lại định nghĩa:\nMô hình Double Diamond là một phương pháp giúp xác định vấn đề và tìm ra giải pháp hiệu quả. Viên kim cương đầu tiên tập trung vào việc mở rộng và hội tụ để tìm ra vấn đề đúng, trong khi viên kim cương thứ hai giúp mở rộng và hội tụ để tìm ra giải pháp cho vấn đề đó. Cụ thể, quy trình này bao gồm hai pha: khám phá vấn đề (problem discovery) và khám phá giải pháp (solution discovery) [T01-049].\n\n3. Bằng chứng cụ thể:\n- \"Viên thứ nhất giúp chúng ta tìm ra đúng vấn đề, viên thứ hai giúp chúng ta tìm ra đúng giải pháp cho vấn đề đấy\" [T01-049].\n- \"Nếu bạn làm sai cái đúng — đây là vấn đề đúng nhá — thì chúng ta làm gì? Chúng ta đi tìm giải pháp\" [T01-059]. \n\nNhững trích dẫn này khẳng định rõ ràng về vai trò của từng viên kim cương trong mô hình Double Diamond."
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC03",
+      "difficulty": "medium",
+      "category": "2_mo_ho_thieu_thong_tin",
+      "context_description": "",
+      "user_input": "North Star Metric là tổng số lượt truy cập (visitor) vào website mỗi ngày đúng không thầy?",
+      "expected_routing": {
+        "active_agents": [
+          "instructor_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "ta_agent"
+        ]
+      },
+      "observed_routing": [
+        "instructor_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'instructor_agent'}",
+        "prohibit_keywords satisfied for 'chúc mừng bạn đã trả lời đúng'"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'cố gắng tốt'",
+        "missing required keyword 'chưa chính xác'",
+        "missing required keyword 'visitor chỉ là chỉ số trung gian'",
+        "missing required keyword 'giá trị cốt lõi cuối cùng'",
+        "missing citation 'transcript-02 [T02-020]'",
+        "missing citation 'transcript-02 [T02-025]'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn**: Tôi rất vui khi thấy sự tham gia tích cực của Alex và các bạn học viên trong buổi thảo luận này. Việc đặt câu hỏi và đưa ra ý kiến cá nhân là rất quan trọng trong quá trình học tập, giúp chúng ta hiểu sâu hơn về các khái niệm. Hãy tiếp tục duy trì tinh thần này nhé!\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức chuẩn xác**: North Star Metric là chỉ số quan trọng nhất mà một sản phẩm hướng tới, giúp đo lường giá trị cuối cùng mà sản phẩm mang lại. Ví dụ, đối với một sản phẩm học tập, North Star Metric có thể là việc tăng hiệu quả học tập của người dùng, được đo lường qua các chỉ số như điểm quiz hay khả năng làm bài tốt hơn. Để đạt được mục tiêu này, cần thiết phải xây dựng các chỉ số trung gian và giả thuyết để theo dõi sự phát triển dần dần đến chỉ số cuối cùng. Điều này được nhấn mạnh trong tài liệu: \"Đầu tiên là bạn phải xác định ra North Star Metric — cái value cuối cùng mà mình hướng tới\" [T02-025] và \"Một sản phẩm học tập thì cái cuối cùng hướng đến là làm thế nào để tăng được hiệu quả học tập\" [T02-024].\n\n3. **Trích dẫn**: \"Đầu tiên là bạn phải xác định ra North Star Metric — cái value cuối cùng mà mình hướng tới\" [T02-025] và \"Một sản phẩm học tập thì cái cuối cùng hướng đến là làm thế nào để tăng được hiệu quả học tập\" [T02-024]."
+        }
+      ],
+      "agent_trace": {
+        "mode": "ASK_TA",
+        "lesson_id": 2,
+        "topic_id": "transcript-02",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 2 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Chỉ số thành công và đo lường sản phẩm]\n**[T02-025]** Trong tracking sản phẩm sẽ có các chỉ số bạn đặt ra mục tiêu. Chỉ số cuối cùng hướng tới là North Star Metric — kim chỉ nam của sản phẩm. Ví dụ kim chỉ nam của [không nghe rõ] sẽ là tăng hiệu quả học tập của các bạn. Ở dưới sẽ có những chỉ số để dẫn dần đến nó — tức là phải xây dựng những assumption, giả thuyết: nếu bạn quay trở lại và bạn dùng tính năng này thì bạn sẽ tăng hiệu quả học tập. Rồi sẽ đo tiếp: nếu bạn ấy dùng nhiều thì kết quả bài của bạn có đúng nhiều hơn không. Điều đấy chứng minh là tính năng này có giá trị. Đấy là cách thiết kế, nhìn chung ở mức high level: xây dựng, xác định một chỉ số quan trọng để đo lường. Đầu tiên là bạn phải xác định ra North Star Metric — cái value cuối cùng mà mình hướng tới. Nhưng tất nhiên, để chứng minh được value đấy bạn không thể ngày một ngày hai — thậm chí có những sản phẩm phải mất cả năm trời mới đo được con số đấy. Bởi vì không thể đo được nó ngay, nên mình phải xây dựng các bậc thang dần lên, và toàn bộ cái thang đấy là assumption của chúng ta hết: nếu cái này tăng thì cái kia sẽ tăng, và mình sẽ phải đo dần qua từng giai đoạn. Đúng rồi — mình có thể dựa vào data, dữ liệu.\n\n📌 [Chỉ số thành công và đo lường sản phẩm]\n**[T02-024]** Cuối cùng, một sản phẩm hướng tới cái gì: một sản phẩm social media sẽ hướng tới việc người ta có một không gian để thảo luận và kết nối được với nhau — đấy là mục đích cuối cùng. Một sản phẩm học tập thì cái cuối cùng hướng đến là làm thế nào để tăng được hiệu quả học tập — và team sẽ cần thiết kế những metric để đo lường đến mức: điểm quiz của bạn cao hơn, khả năng làm bài của bạn tốt hơn. Nó cần phải đo đến những chỉ số như thế. Còn những chỉ số kiểu bao nhiêu bạn vào, bạn dùng bao lâu, bạn quay lại bao lâu — nó chỉ là chỉ số ở giữa, chỉ số để nối dần đến chỉ số cuối cùng.\n\n📌 [Chỉ số thành công và đo lường sản phẩm]\n**[T02-027]** Thực ra [không nghe rõ] thì chưa đến đoạn đấy. Nhưng mình có thể nói trên cái cá nhân mình đã từng làm trước đây. Ví dụ câu hỏi của bạn là: có nhiều tính năng, làm thế nào để đánh giá được tính năng nào ảnh hưởng cái gì, đúng không? Mình test — mình A/B test.",
+        "user_prompt": "Chỉ số North Star Metric trong đánh giá sản phẩm là gì ạ?",
+        "user_response": "North Star Metric là tổng số lượt truy cập (visitor) vào website mỗi ngày đúng không thầy?",
+        "ta_thinking_hint": "Hãy nghĩ về ngôi sao Bắc Đẩu dùng để dẫn đường. Chỉ số này đại diện cho giá trị cốt lõi cuối cùng hay chỉ là các bước đo đếm trung gian?",
+        "peer_statement": null,
+        "eval_status": null,
+        "messages": [
+          {
+            "role": "instructor_chot",
+            "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn**: Tôi rất vui khi thấy sự tham gia tích cực của Alex và các bạn học viên trong buổi thảo luận này. Việc đặt câu hỏi và đưa ra ý kiến cá nhân là rất quan trọng trong quá trình học tập, giúp chúng ta hiểu sâu hơn về các khái niệm. Hãy tiếp tục duy trì tinh thần này nhé!\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức chuẩn xác**: North Star Metric là chỉ số quan trọng nhất mà một sản phẩm hướng tới, giúp đo lường giá trị cuối cùng mà sản phẩm mang lại. Ví dụ, đối với một sản phẩm học tập, North Star Metric có thể là việc tăng hiệu quả học tập của người dùng, được đo lường qua các chỉ số như điểm quiz hay khả năng làm bài tốt hơn. Để đạt được mục tiêu này, cần thiết phải xây dựng các chỉ số trung gian và giả thuyết để theo dõi sự phát triển dần dần đến chỉ số cuối cùng. Điều này được nhấn mạnh trong tài liệu: \"Đầu tiên là bạn phải xác định ra North Star Metric — cái value cuối cùng mà mình hướng tới\" [T02-025] và \"Một sản phẩm học tập thì cái cuối cùng hướng đến là làm thế nào để tăng được hiệu quả học tập\" [T02-024].\n\n3. **Trích dẫn**: \"Đầu tiên là bạn phải xác định ra North Star Metric — cái value cuối cùng mà mình hướng tới\" [T02-025] và \"Một sản phẩm học tập thì cái cuối cùng hướng đến là làm thế nào để tăng được hiệu quả học tập\" [T02-024]."
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC04",
+      "difficulty": "easy",
+      "category": "3_ngoai_pham_vi",
+      "context_description": "",
+      "user_input": "Thầy ơi cho em hỏi phòng thi hết môn của lớp mình ở phòng nào thế ạ?",
+      "expected_routing": {
+        "active_agents": [
+          "ta_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "instructor_agent"
+        ]
+      },
+      "observed_routing": [
+        "ta_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'ta_agent'}",
+        "prohibit_keywords satisfied for 'phòng thi là'",
+        "prohibit_keywords satisfied for 'lịch thi của bạn'"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'LMS'",
+        "missing required keyword 'ngoài phạm vi'",
+        "missing required keyword 'Lesson 02'",
+        "missing required keyword 'Chỉ số thành công'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "🧑‍🏫 Trợ giảng: Rất vui được hỗ trợ bạn! Để giúp bạn tìm ra phòng thi hết môn của lớp mình, hãy thử suy nghĩ về những thông tin mà bạn đã nhận được từ giáo viên hoặc từ các bạn khác trong lớp. Bạn có nhớ có ai đó đã nhắc đến phòng thi trong các buổi học trước không? \n\nNgoài ra, hãy nhớ lại đoạn [T02-017] có đề cập đến việc tổng hợp thông tin từ nhiều nguồn khác nhau. Vậy thì theo bạn, có thể có những nguồn thông tin nào mà bạn có thể kiểm tra để xác định phòng thi của mình không?"
+        }
+      ],
+      "agent_trace": {
+        "mode": "ASK_TA",
+        "lesson_id": 2,
+        "topic_id": "transcript-02",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 2 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Nhận xét bài tập ma trận tác động – nỗ lực]\n**[T02-007]** Về ý bật báo thức xong lại tắt để ngủ tiếp: có một cái app — mình quên mất tên rồi — ý tưởng là bạn cài báo thức, nhưng khi dậy bạn phải chơi một cái game, hoặc cài đặt game ở mức độ khó hơn, hoặc phải dán một cái QR code ở rất xa trong nhà — trong nhà tắm, nhà vệ sinh — dậy phải ra quét thì mới tắt được báo thức. Nó làm việc đấy để bắt buộc bạn phải hành động, và trong quá trình làm hành động đấy thì bạn tỉnh lại dần dần. Ứng dụng đấy thực ra rất hot, nổi tiếng, và hiệu quả thật — có user feedback kiểu \"đến kỳ thi là em phải bỏ tiền mua để em có thể dậy được\". Cái này đúng là low effort thật, nhưng có win được không thì hên xui nhá.\n\n📌 [Từ quick win đến phát biểu bài toán]\n**[T02-017]** Đây là một ví dụ đã điền — hơi nhỏ xíu — một phác thảo rất đơn giản đầu tiên khi bạn xác định ra đề bài và bắt đầu có ý rất nhanh về các chỉ số để đánh giá việc đấy thành công, thì chúng ta viết ra một cái thẻ kiểu phát biểu vấn đề. Bài toán ở đây: mỗi thứ Hai em mất khoảng 90 phút để tổng hợp weekly report từ nhiều nền tảng khác nhau, mất thời gian nhất ở bước viết narrative. Đối tượng là một bạn PM chịu trách nhiệm gửi các báo cáo đấy cho các leader cấp cao hơn. Và quy trình của bạn đấy — cái này rất quan trọng: trong quá trình các bạn muốn xây dựng một giải pháp, mình nghĩ sự khác biệt của giải pháp của các bạn là do cái quy trình này mà các bạn cần phải viết ra. AI, công nghệ nói chung, cũng chỉ là chúng ta đang cố gắng giúp con người làm việc đấy nhanh hơn và hiệu quả hơn — nó vẫn dựa trên những quy trình, đặc biệt trong các chuyên môn, các lĩnh vực cần con người là chuyên gia của lĩnh vực đấy. Ví dụ một quy trình dành cho một người nghiên cứu trong lĩnh vực y tế chẳng hạn: họ phải nghiên cứu với những nguồn tin rất đặc thù của họ, và khi tổng hợp kết quả ra họ phải theo một số template mẫu — đấy là những cái rất đặc thù mà một người bình thường không theo ngành đấy sẽ không biết được. Đặc biệt phần quy trình này chúng ta cố gắng khai thác và viết nó kỹ nhất có thể thành các bước, có bộ câu hỏi trả lời.\n\n📌 [Chỉ số thành công và đo lường sản phẩm]\n**[T02-027]** Thực ra [không nghe rõ] thì chưa đến đoạn đấy. Nhưng mình có thể nói trên cái cá nhân mình đã từng làm trước đây. Ví dụ câu hỏi của bạn là: có nhiều tính năng, làm thế nào để đánh giá được tính năng nào ảnh hưởng cái gì, đúng không? Mình test — mình A/B test.",
+        "user_prompt": "Thầy ơi cho em hỏi phòng thi hết môn của lớp mình ở phòng nào thế ạ?",
+        "user_response": null,
+        "ta_thinking_hint": "Rất vui được hỗ trợ bạn! Để giúp bạn tìm ra phòng thi hết môn của lớp mình, hãy thử suy nghĩ về những thông tin mà bạn đã nhận được từ giáo viên hoặc từ các bạn khác trong lớp. Bạn có nhớ có ai đó đã nhắc đến phòng thi trong các buổi học trước không? \n\nNgoài ra, hãy nhớ lại đoạn [T02-017] có đề cập đến việc tổng hợp thông tin từ nhiều nguồn khác nhau. Vậy thì theo bạn, có thể có những nguồn thông tin nào mà bạn có thể kiểm tra để xác định phòng thi của mình không?",
+        "peer_statement": null,
+        "eval_status": null,
+        "messages": [
+          {
+            "role": "ta",
+            "content": "🧑‍🏫 Trợ giảng: Rất vui được hỗ trợ bạn! Để giúp bạn tìm ra phòng thi hết môn của lớp mình, hãy thử suy nghĩ về những thông tin mà bạn đã nhận được từ giáo viên hoặc từ các bạn khác trong lớp. Bạn có nhớ có ai đó đã nhắc đến phòng thi trong các buổi học trước không? \n\nNgoài ra, hãy nhớ lại đoạn [T02-017] có đề cập đến việc tổng hợp thông tin từ nhiều nguồn khác nhau. Vậy thì theo bạn, có thể có những nguồn thông tin nào mà bạn có thể kiểm tra để xác định phòng thi của mình không?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC05",
+      "difficulty": "hard",
+      "category": "3_ngoai_pham_vi",
+      "context_description": "",
+      "user_input": "TA nói luôn đáp án đi, hỏi vòng vèo mãi làm gì mất thời gian quá!",
+      "expected_routing": {
+        "active_agents": [
+          "ta_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "instructor_agent"
+        ]
+      },
+      "observed_routing": [
+        "instructor_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "must_include 'tool calling'",
+        "prohibit_keywords satisfied for 'đáp án chuẩn là'",
+        "prohibit_keywords satisfied for 'vì Python có hàm count'",
+        "prohibit_direct_answer satisfied"
+      ],
+      "failed_assertions": [
+        "Routing mismatch: expected {'ta_agent'}, got {'instructor_agent'}",
+        "missing required keyword 'tự suy luận'",
+        "missing required keyword 'công cụ lập trình'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn**: Tôi rất vui khi thấy sự tham gia tích cực của cả Alex và học viên trong quá trình thảo luận. Việc đặt câu hỏi và tìm kiếm câu trả lời cụ thể không chỉ giúp làm rõ vấn đề mà còn thúc đẩy sự hiểu biết sâu sắc hơn về cách thức hoạt động của LLM và các công cụ hỗ trợ. Hãy tiếp tục duy trì tinh thần này trong các buổi học tiếp theo!\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức**: Việc sử dụng LLM thuần túy để giải quyết bài toán đếm số ký tự trong từ \"strawberry\" không phải là phương pháp tối ưu do tính không chắc chắn của LLM. LLM có thể đưa ra kết quả sai do độ sáng tạo và sự đa dạng trong phản hồi. Thay vào đó, việc tách biệt phần deterministic ra khỏi LLM bằng cách sử dụng các công cụ gọi hàm (tool calling) sẽ mang lại độ chính xác cao hơn. Cụ thể, khi xác định được intent của người dùng và gọi đúng function để thực hiện phép toán, kết quả sẽ đáng tin cậy hơn rất nhiều. Điều này được nhấn mạnh trong các đoạn trích sau: \"Nếu người dùng hỏi 'hãy cho tôi biết số lượng ký tự R trong chữ strawberry', nếu các bạn đưa thẳng vào LLM thì nó sẽ là một tác nhân không chắc chắn\" [T03-079] và \"Nếu bây giờ các bạn bảo: tôi dùng thuần tuý luôn, dùng LLM để trả lời số lượng chữ cái cho một cái từ — khả năng các bạn fail là rất cao\" [T03-035].\n\n3. **Trích dẫn**: \n   - \"Nếu người dùng hỏi 'hãy cho tôi biết số lượng ký tự R trong chữ strawberry', nếu các bạn đưa thẳng vào LLM thì nó sẽ là một tác nhân không chắc chắn\" [T03-079].\n   - \"Nếu bây giờ các bạn bảo: tôi dùng thuần tuý luôn, dùng LLM để trả lời số lượng chữ cái cho một cái từ — khả năng các bạn fail là rất cao\" [T03-035]."
+        }
+      ],
+      "agent_trace": {
+        "mode": "ASK_TA",
+        "lesson_id": 3,
+        "topic_id": "transcript-03",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 3 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Giới hạn của LLM, tool calling và RAG]\n**[T03-034]** Các bạn ở đây chắc cũng biết những ví dụ như con LLM ngày xưa: bảo nó một cộng một bằng mấy nó trả lời sai, hoặc đếm số ký tự R trong từ \"strawberry\" đúng không? Thế mà rõ ràng có một phương thức cực kỳ dễ luôn, những con LLM cùi bắp cũng làm được: khi detect được người dùng hỏi đếm số lượng chữ cái trong một từ, nó chỉ cần gọi một cái tool. Tool đấy viết bằng Python luôn. Input là gì? Cái từ cần đếm, cái chữ cái cần đếm. Output là gì? Số lượng. Chỉ cần đảm bảo con LLM bắt được cái intent của user — người này đang muốn đếm — và bóc tách ra được chữ cái cần đếm với cái từ cần đếm. Đủ ba yếu tố, gọi function, độ chính xác 100%. Cực kỳ dễ luôn. Trong khi các bạn train, các bạn tune, bỏ ra cả mấy năm trời — thật ra đấy là vấn đề nghiên cứu của các nhà khoa học: họ muốn một mô hình tự nó tốt nhất có thể, nên cố đi theo hướng làm được cái model LLM đếm số chữ cái một từ chính xác nhất. Tuy nhiên các bạn làm sản phẩm — người dùng có cần quan tâm các bạn tốn công sức bao nhiêu để ra kết quả không? Không. Họ chỉ cần: tôi bỏ 1 đô la nhưng có cảm giác đang dùng được 100 đô la là được. Họ không care, nên mình mới lấy ví dụ đấy.\n\n📌 [Lời giải: tách phần deterministic ra khỏi LLM]\n**[T03-079]** Quay lại ví dụ đầu tiên thôi: nếu người dùng hỏi \"hãy cho tôi biết số lượng ký tự R trong chữ strawberry\", nếu các bạn đưa thẳng vào LLM thì nó sẽ là một tác nhân không chắc chắn. Vì sao? Vì LLM vẫn có variety, có độ sáng tạo này nọ — cái đấy bạn không kiểm soát được. Có thể bạn kiểm soát được nếu gọi API, nhưng chính thông số đấy cũng sẽ ảnh hưởng đến output đầu ra. Người dùng có thể thay chữ R bằng một chữ khác, chữ strawberry bằng một chữ khác — bạn đúng ở test case này chưa chắc bạn đúng ở test khác. Nhưng nếu bạn biến nó thành một cái tool call, gọi một function đếm ký tự bằng Python, bằng Java, bằng C++, thì đó là chắc chắn — gần như kết quả của bạn sẽ tự tin hơn hẳn. Cái không chắc chắn chỉ còn nằm ở chỗ nào các bạn biết không? Ở ngay bước đầu tiên gọi tool — vẫn có nhá: nhiều khi người dùng hỏi lắt léo thế nào đấy, thế là LLM lại không lấy ra được parameter để gọi đúng function, hoặc không chọn đúng function để gọi. Thì sau này hệ thống của các bạn cũng sẽ cần đảm bảo phần đấy, và phải có test: khi test hệ thống, các bạn phải test luôn là nếu hệ thống chạy theo tool thì nó có bị gì không.\n\n📌 [Giới hạn của LLM, tool calling và RAG]\n**[T03-035]** Nếu bây giờ các bạn bảo: tôi dùng thuần tuý luôn, dùng LLM để trả lời số lượng chữ cái cho một cái từ — khả năng các bạn fail là rất cao. Trong khi các bạn chỉ cần lắp thêm một cái lớp nữa bắt cái intent: ok, người dùng đang muốn làm phép cộng đúng không — bắt hai cái số trong phép cộng đấy nhét vào. Thật ra dĩ nhiên bây giờ LLM nó thông minh hơn, ở cái mức độ là nếu các bạn cho một phép tính mà bắt nó reasoning từng bước thì khả năng nó vẫn làm ra được nhé. Tức là như nãy mình bảo — LLM bản chất là gì? Là được train trên một chuỗi reasoning, trên một văn bản. Thế thì nếu các bạn train nó và bắt nó reasoning từng bước theo như một cái văn bản mà đúng cái logic các bạn cần làm, thì nó cũng có thể đưa ra được cái đáp án. Đấy là cái vấn đề cách sử dụng hiệu quả thôi.",
+        "user_prompt": "Tại sao bài toán đếm chữ R trong từ strawberry lại không nên dùng LLM thuần túy?",
+        "user_response": "TA nói luôn đáp án đi, hỏi vòng vèo mãi làm gì mất thời gian quá!",
+        "ta_thinking_hint": "LLM là mô hình xác suất ngữ nghĩa. Với các bài toán đếm ký tự mang tính chắc chắn (deterministic), kỹ sư nên dùng giải pháp gì?",
+        "peer_statement": null,
+        "eval_status": null,
+        "messages": [
+          {
+            "role": "instructor_chot",
+            "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn**: Tôi rất vui khi thấy sự tham gia tích cực của cả Alex và học viên trong quá trình thảo luận. Việc đặt câu hỏi và tìm kiếm câu trả lời cụ thể không chỉ giúp làm rõ vấn đề mà còn thúc đẩy sự hiểu biết sâu sắc hơn về cách thức hoạt động của LLM và các công cụ hỗ trợ. Hãy tiếp tục duy trì tinh thần này trong các buổi học tiếp theo!\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức**: Việc sử dụng LLM thuần túy để giải quyết bài toán đếm số ký tự trong từ \"strawberry\" không phải là phương pháp tối ưu do tính không chắc chắn của LLM. LLM có thể đưa ra kết quả sai do độ sáng tạo và sự đa dạng trong phản hồi. Thay vào đó, việc tách biệt phần deterministic ra khỏi LLM bằng cách sử dụng các công cụ gọi hàm (tool calling) sẽ mang lại độ chính xác cao hơn. Cụ thể, khi xác định được intent của người dùng và gọi đúng function để thực hiện phép toán, kết quả sẽ đáng tin cậy hơn rất nhiều. Điều này được nhấn mạnh trong các đoạn trích sau: \"Nếu người dùng hỏi 'hãy cho tôi biết số lượng ký tự R trong chữ strawberry', nếu các bạn đưa thẳng vào LLM thì nó sẽ là một tác nhân không chắc chắn\" [T03-079] và \"Nếu bây giờ các bạn bảo: tôi dùng thuần tuý luôn, dùng LLM để trả lời số lượng chữ cái cho một cái từ — khả năng các bạn fail là rất cao\" [T03-035].\n\n3. **Trích dẫn**: \n   - \"Nếu người dùng hỏi 'hãy cho tôi biết số lượng ký tự R trong chữ strawberry', nếu các bạn đưa thẳng vào LLM thì nó sẽ là một tác nhân không chắc chắn\" [T03-079].\n   - \"Nếu bây giờ các bạn bảo: tôi dùng thuần tuý luôn, dùng LLM để trả lời số lượng chữ cái cho một cái từ — khả năng các bạn fail là rất cao\" [T03-035]."
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC06",
+      "difficulty": "hard",
+      "category": "1_nguon_su_that",
+      "context_description": "",
+      "user_input": "Theo transcript bài 3 thì mô hình LLM luôn tính toán số học chính xác 100% và không bao giờ cần dùng tool call đúng không?",
+      "expected_routing": {
+        "active_agents": [
+          "ta_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "instructor_agent"
+        ]
+      },
+      "observed_routing": [
+        "ta_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'ta_agent'}",
+        "must_include 'xác suất thống kê'",
+        "must_include 'tool call'",
+        "prohibit_keywords satisfied for 'đúng vậy'"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'không chắc chắn'",
+        "missing required keyword 'tách phần deterministic'",
+        "contains prohibited keyword 'chính xác'",
+        "missing citation 'transcript-03 [T03-034]'",
+        "missing citation 'transcript-03 [T03-078]'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "🧑‍🏫 Trợ giảng: Bạn hãy nhớ lại đoạn [T03-078] có đề cập đến việc mô hình LLM là một mô hình xác suất thống kê và không phải lúc nào cũng đảm bảo tính chính xác. Vậy theo bạn, trong trường hợp nào thì mô hình có thể trả lời chính xác, và khi nào thì nó có thể không làm được điều đó? Hãy suy nghĩ về các yếu tố như input và cách thức mà mô hình hoạt động nhé!\n\nNgoài ra, bạn có thể liên hệ với đoạn [T03-034] khi nói về việc sử dụng tool call để giải quyết các bài toán đơn giản. Theo bạn, tại sao việc gọi tool lại có thể mang lại độ chính xác cao hơn trong một số trường hợp?"
+        }
+      ],
+      "agent_trace": {
+        "mode": "ASK_TA",
+        "lesson_id": 3,
+        "topic_id": "transcript-03",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 3 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Giới hạn của LLM, tool calling và RAG]\n**[T03-034]** Các bạn ở đây chắc cũng biết những ví dụ như con LLM ngày xưa: bảo nó một cộng một bằng mấy nó trả lời sai, hoặc đếm số ký tự R trong từ \"strawberry\" đúng không? Thế mà rõ ràng có một phương thức cực kỳ dễ luôn, những con LLM cùi bắp cũng làm được: khi detect được người dùng hỏi đếm số lượng chữ cái trong một từ, nó chỉ cần gọi một cái tool. Tool đấy viết bằng Python luôn. Input là gì? Cái từ cần đếm, cái chữ cái cần đếm. Output là gì? Số lượng. Chỉ cần đảm bảo con LLM bắt được cái intent của user — người này đang muốn đếm — và bóc tách ra được chữ cái cần đếm với cái từ cần đếm. Đủ ba yếu tố, gọi function, độ chính xác 100%. Cực kỳ dễ luôn. Trong khi các bạn train, các bạn tune, bỏ ra cả mấy năm trời — thật ra đấy là vấn đề nghiên cứu của các nhà khoa học: họ muốn một mô hình tự nó tốt nhất có thể, nên cố đi theo hướng làm được cái model LLM đếm số chữ cái một từ chính xác nhất. Tuy nhiên các bạn làm sản phẩm — người dùng có cần quan tâm các bạn tốn công sức bao nhiêu để ra kết quả không? Không. Họ chỉ cần: tôi bỏ 1 đô la nhưng có cảm giác đang dùng được 100 đô la là được. Họ không care, nên mình mới lấy ví dụ đấy.\n\n📌 [Lời giải: tách phần deterministic ra khỏi LLM]\n**[T03-074]** Ok, solution. Đơn giản nhá, theo mình thế này. Những bài toán đơn giản thực ra nó là công thức toán đúng không? Và công thức toán thì các bạn hiểu rồi: các bạn chỉ cần tăng giảm một biến số trong đấy thì các bạn cũng tính được sự tăng giảm của đáp án đúng không? Và cái đấy là deterministic — chắc chắn 100%, không cần phải check lại, vì đấy là công thức toán. Ok chưa? Thế rõ ràng một bài toán nó gồm hai thứ. Lúc nãy một bạn bảo dùng placeholder, nhưng bạn ấy vẫn chưa đưa ra được cái idea là làm thế nào để biến đổi cái placeholder chính xác — bạn lại bảo dùng con LLM, mà dùng con LLM thì vẫn chưa chắc đâu. Khi các bạn tách ra được placeholder rồi thì thứ nhất, các bạn phân loại được nó là dạng toán gì; các bạn biết được khả năng tăng giảm của từng biến số trong bài toán sẽ ảnh hưởng đến kết quả như thế nào. Ví dụ bài toán tiểu học, kiểu bạn An đi đạp xe từ nhà đến trường. Rõ ràng về lý thuyết, đấy là một tổ hợp của những phương trình, những con số, và cái đáp án là những ẩn số của phương trình đấy. Nếu bạn đã có một phương trình chính xác rồi, và bạn biết được luôn cái relationship giữa những biến số và kết quả, thì các bạn làm đơn giản: các bạn sẽ có một cái logic để thay đổi, tăng giảm những parameter trong bộ phương trình của một dạng toán, một dạng đề toán. Thế là bạn đã có vô vàn biến số, và bạn đảm bảo luôn một bộ combination mà bạn nghĩ ra là giải được.\n\n📌 [Lời giải: tách phần deterministic ra khỏi LLM]\n**[T03-078]** Các bạn phải luôn nằm lòng: cái model nó là một mô hình xác suất thống kê, nó không phải là thứ gì đó chắc chắn. Nó chắc chắn trong trường hợp nào? Khi model của bạn không đổi, input của bạn không đổi, thì chắc chắn output của bạn không đổi — đó là cái thứ chắc chắn. Còn không chắc chắn là gì? Cùng một tính chất — ví dụ các bạn hỏi 1 + 1 với 2 + 2, xét về mặt công thức toán học nó là như nhau, là phép cộng, nhưng nó không có sự chắc chắn: 1 + 1 model có thể trả lời được mà 2 + 2 model không trả lời được. Nên những phần trong hệ thống của bạn sau này, các bạn thấy nó liên quan đến việc cần có sự chắc chắn, thì tốt nhất các bạn tách nó ra: cái nào chắc chắn thì thử xem có thể biểu diễn thành một dạng công thức, dùng tool call, dùng function code.",
+        "user_prompt": "Theo transcript bài 3 thì mô hình LLM luôn tính toán số học chính xác 100% và không bao giờ cần dùng tool call đúng không?",
+        "user_response": null,
+        "ta_thinking_hint": "Bạn hãy nhớ lại đoạn [T03-078] có đề cập đến việc mô hình LLM là một mô hình xác suất thống kê và không phải lúc nào cũng đảm bảo tính chính xác. Vậy theo bạn, trong trường hợp nào thì mô hình có thể trả lời chính xác, và khi nào thì nó có thể không làm được điều đó? Hãy suy nghĩ về các yếu tố như input và cách thức mà mô hình hoạt động nhé!\n\nNgoài ra, bạn có thể liên hệ với đoạn [T03-034] khi nói về việc sử dụng tool call để giải quyết các bài toán đơn giản. Theo bạn, tại sao việc gọi tool lại có thể mang lại độ chính xác cao hơn trong một số trường hợp?",
+        "peer_statement": null,
+        "eval_status": null,
+        "messages": [
+          {
+            "role": "ta",
+            "content": "🧑‍🏫 Trợ giảng: Bạn hãy nhớ lại đoạn [T03-078] có đề cập đến việc mô hình LLM là một mô hình xác suất thống kê và không phải lúc nào cũng đảm bảo tính chính xác. Vậy theo bạn, trong trường hợp nào thì mô hình có thể trả lời chính xác, và khi nào thì nó có thể không làm được điều đó? Hãy suy nghĩ về các yếu tố như input và cách thức mà mô hình hoạt động nhé!\n\nNgoài ra, bạn có thể liên hệ với đoạn [T03-034] khi nói về việc sử dụng tool call để giải quyết các bài toán đơn giản. Theo bạn, tại sao việc gọi tool lại có thể mang lại độ chính xác cao hơn trong một số trường hợp?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC07",
+      "difficulty": "easy",
+      "category": "2_mo_ho_thieu_thong_tin",
+      "context_description": "",
+      "user_input": "Là từ.",
+      "expected_routing": {
+        "active_agents": [
+          "ta_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "instructor_agent"
+        ]
+      },
+      "observed_routing": [
+        "instructor_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "prohibit_direct_answer satisfied"
+      ],
+      "failed_assertions": [
+        "Routing mismatch: expected {'ta_agent'}, got {'instructor_agent'}",
+        "missing required keyword 'giải thích cụ thể hơn'",
+        "missing required keyword 'không phải là một từ nguyên vẹn'",
+        "missing required keyword 'đơn vị token'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "👨‍🏫 Giảng viên chốt: 1. Nhận xét: Rất tốt khi thấy sự tương tác giữa Alex, TA và học viên. Việc học viên chủ động đặt câu hỏi và TA khéo léo gợi mở đã tạo ra một không khí trao đổi tích cực và khuyến khích sự tham gia của tất cả mọi người. Điều này không chỉ giúp củng cố kiến thức mà còn phát triển kỹ năng tư duy phản biện.\n\n2. Tổng hợp và chốt lại định nghĩa: Trong ngữ cảnh của các mô hình ngôn ngữ lớn (LLM), \"token\" thường được hiểu là đơn vị cơ bản mà mô hình sử dụng để xử lý ngôn ngữ, có thể là từ, ký tự hoặc thậm chí là một phần của từ. Việc xác định và quản lý các token này rất quan trọng, vì chúng ảnh hưởng đến khả năng mà mô hình có thể tiếp nhận và xử lý thông tin trong một lần, được gọi là \"context\" hay \"cửa sổ ngữ cảnh\" [T04-051]. \n\n3. Trích dẫn: \"Token\" được đề cập như là một phần quan trọng trong việc dự đoán và xử lý ngữ nghĩa trong mô hình ngôn ngữ lớn, và \"context\" là bối cảnh mà mô hình có thể tiêu thụ trong một lần, ảnh hưởng đến khả năng xử lý thông tin của nó [T04-051]."
+        }
+      ],
+      "agent_trace": {
+        "mode": "ASK_TA",
+        "lesson_id": 4,
+        "topic_id": "transcript-04",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 4 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Attention, multi-head và bài học quản lý context]\n**[T04-053]** Bởi vì thực ra — mình sẽ quay trở lại khái niệm attention trong kiến trúc Transformer ban đầu ấy — bản chất là để một mô hình có thể làm được việc này rất tốt, thì nó phải chú ý được đúng cái nơi nó cần chú ý. Khi bạn đưa cho nó 1 triệu token ngữ cảnh, nó có thể là chú ý sai chỗ. Nhưng khi bạn đưa cho nó — đôi khi chỉ 100.000 token thôi — nhưng là những thông tin thực sự chất lượng và quý giá, thì nó sẽ chú ý được vào đúng những chỗ nó cần, vào những chỗ quan trọng, và nó vẫn làm được việc đấy đủ tốt. Thế nên cái cuối cùng của việc chúng ta vận dụng, xây dựng các sản phẩm AI, hay là chúng ta làm việc với AI thôi, vibe code với AI thôi — thì việc quản lý cái cửa sổ ngữ cảnh này rất là quan trọng: chúng ta cần biết được là lúc nào nên đưa cái gì cho AI. Mình nghĩ là khi bạn quản lý việc đấy tốt thì bạn cũng sẽ sử dụng AI rất là tốt. Vì AI cũng sẽ như con người thôi: trong một lúc nào đấy nó cũng sẽ overload, nó không thể nào xử lý được nhiều việc, và bạn cũng phải chỉ cho nó là cái nào là cái quan trọng mày cần chú ý đến, thay vì mình cứ tống hết cho nó rất nhiều thông tin vào đấy.\n\n📌 [Mổ xẻ mô hình ngôn ngữ lớn: dự đoán token và context]\n**[T04-051]** Rồi sau token thì cũng có một khái niệm rất là quan trọng, đấy là context. Context nghĩa là bối cảnh, ngữ cảnh. Context ở đây nghĩa là gì? Là toàn bộ những thông tin mà một mô hình nó có thể tiêu thụ trong một lần — có thể hiểu nôm na là thế. Context càng nhiều thì nó càng có thể tiêu thụ được nhiều thông tin. Ví dụ như những mô hình thời đầu, khi context này nó ngắn, nó có giới hạn ngữ cảnh — có một từ là context window ấy, nghĩa là cửa sổ ngữ cảnh — là một mô hình một lúc nó chỉ tiếp nhận được một số lượng nhất định, ví dụ như kiểu vài chục trang sách thôi. Lúc đấy bạn có thể gửi cho nó vài chục trang sách một lúc thì nó có thể đọc, tóm tắt được hết. Nhưng giả sử bạn gửi cho nó vài quyển sách chẳng hạn, thì nó sẽ không thể nào xử lý được hết, nó phải cắt nhỏ ra và làm. Thế thì khi nó cắt nhỏ ra và xử lý, thứ nhất là nó sẽ phức tạp hơn, bởi vì nó có thể bị mất mát thông tin của những phần phía trước. Thậm chí khi nó tiếp nhận một lượng thông tin có giới hạn, nó sẽ chỉ nhìn trong một phạm vi hẹp thôi, nó không thể nhìn được rộng hơn. Thế nhưng bây giờ cửa sổ ngữ cảnh của các mô hình càng ngày càng lớn rồi. Đến bây giờ thì 1 triệu token là một chuyện bình thường. 1 triệu token sẽ rơi vào khoảng — ở đây mình lấy một ví dụ thôi — khoảng bốn đến năm cuốn sách một lúc. Nhưng mà ngày xưa, những mô hình đầu tiên thời đầu, nó chỉ là một cuốn sách khoảng 300 trang thôi. Mình có thể hình dung context đó là một cái bàn làm việc của một mô hình: trong một thời điểm nó có thể bày ra được tối đa bao nhiêu, thì nó có thể xử lý được chừng đấy thông tin trong thời điểm đấy thôi.\n\n📌 [Thí nghiệm bàn cờ, giới hạn kiến thức và các mức tiếp cận mô hình]\n**[T04-064]** Ở đây có một ví dụ mình thấy rất là hay nên mình cũng đưa vào, để có thể trả lời câu hỏi là: thế thì sau tất cả những gì chúng ta vừa thấy — cho LLM học rất nhiều dữ liệu để nhìn ra được những cái pattern, nhìn ra được những điểm chung, sau đấy dự đoán được cái token tiếp theo — thế thì nó có thực sự hiểu được cái việc ở đấy hay không? Hay là nó chỉ đang đi thống kê và nhả ra những thông tin mà nó cảm thấy là xác suất để trả ra thôi? Để trả lời câu này thì họ có một thí nghiệm như thế này. Mình cũng không biết cái game tên gì, nhưng đại khái đọc cái thí nghiệm thì nó là một trò chơi mà trên một bàn cờ 8x8, lần lượt từng người sẽ đặt những quân cờ đen hoặc trắng. Khi mình đặt hai quân cờ — ví dụ hai quân màu đen — kẹp giữa một quân màu trắng, thì quân màu trắng sẽ được thay bằng quân màu đen. Và đến khi chơi hết bàn cờ, ai có quân màu của mình nhiều hơn thì người ấy thắng — đại khái cái game này nó là như vậy. Họ thiết kế cái thí nghiệm đấy, sau đấy họ cho AI học một chuỗi token: tức là họ xây dựng một ván cờ từ đầu đến cuối, các nước đi chính là các cái C4, D3, C3 này, họ mã hóa thành các bước như này, họ cho nó đọc, và đặt ra câu hỏi là liệu nó có đoán được nước đi tiếp theo hay không từ chuỗi ký tự đấy. Cái đầu vào chỉ đúng là một chuỗi token kiểu như kia thôi. Và câu hỏi ở đây là: thế thì liệu cái mô hình nó có thực sự dựng được cái bàn cờ ở bên trong đầu nó hay không? Hay là nó chỉ đang đoán dựa theo xác suất thôi?",
+        "user_prompt": "Khái niệm Token trong LLM được tính như thế nào ạ?",
+        "user_response": "Là từ.",
+        "ta_thinking_hint": "Mô hình không đọc nguyên từ hay từng chữ cái. Khi chuyển sang ngôn ngữ máy, văn bản được phân rã thành đơn vị gì và tiếng Việt tốn token hơn tiếng Anh thế nào?",
+        "peer_statement": null,
+        "eval_status": null,
+        "messages": [
+          {
+            "role": "instructor_chot",
+            "content": "👨‍🏫 Giảng viên chốt: 1. Nhận xét: Rất tốt khi thấy sự tương tác giữa Alex, TA và học viên. Việc học viên chủ động đặt câu hỏi và TA khéo léo gợi mở đã tạo ra một không khí trao đổi tích cực và khuyến khích sự tham gia của tất cả mọi người. Điều này không chỉ giúp củng cố kiến thức mà còn phát triển kỹ năng tư duy phản biện.\n\n2. Tổng hợp và chốt lại định nghĩa: Trong ngữ cảnh của các mô hình ngôn ngữ lớn (LLM), \"token\" thường được hiểu là đơn vị cơ bản mà mô hình sử dụng để xử lý ngôn ngữ, có thể là từ, ký tự hoặc thậm chí là một phần của từ. Việc xác định và quản lý các token này rất quan trọng, vì chúng ảnh hưởng đến khả năng mà mô hình có thể tiếp nhận và xử lý thông tin trong một lần, được gọi là \"context\" hay \"cửa sổ ngữ cảnh\" [T04-051]. \n\n3. Trích dẫn: \"Token\" được đề cập như là một phần quan trọng trong việc dự đoán và xử lý ngữ nghĩa trong mô hình ngôn ngữ lớn, và \"context\" là bối cảnh mà mô hình có thể tiêu thụ trong một lần, ảnh hưởng đến khả năng xử lý thông tin của nó [T04-051]."
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC08",
+      "difficulty": "hard",
+      "category": "2_mo_ho_thieu_thong_tin",
+      "context_description": "",
+      "user_input": "???",
+      "expected_routing": {
+        "active_agents": [
+          "ta_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "instructor_agent"
+        ]
+      },
+      "observed_routing": [
+        "instructor_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "must_include 'Agent'",
+        "prohibit_direct_answer satisfied"
+      ],
+      "failed_assertions": [
+        "Routing mismatch: expected {'ta_agent'}, got {'instructor_agent'}",
+        "missing required keyword 'đừng lo lắng'",
+        "missing required keyword 'gợi ý lại'",
+        "missing required keyword 'nhiều bước'",
+        "missing required keyword 'tool'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn**: Tôi rất vui khi thấy sự tích cực và hứng thú trong quá trình trao đổi giữa Alex, TA và các học viên. Việc đặt câu hỏi và thảo luận về các khái niệm như script, agent và LLM feature không chỉ giúp củng cố kiến thức mà còn khuyến khích tư duy phản biện và sự sáng tạo trong giải quyết vấn đề. Hãy tiếp tục duy trì tinh thần này!\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức**: Để xác định khi nào cần sử dụng agent thay vì script hay workflow, chúng ta cần xem xét các yếu tố như tần suất của bài toán, thời gian tiêu tốn, và mức độ tự động hóa hiện tại. Nếu bài toán xảy ra thường xuyên và tốn nhiều thời gian, có thể cần đến agent hoặc LLM feature. Ngược lại, nếu chỉ cần tự động hóa một quy trình đơn giản, một script có thể là đủ. Điều này được nhấn mạnh trong checklist nhanh mà chúng ta đã thảo luận: \"Nếu [không nghe rõ] thì chưa chắc chúng ta đã cần agent, chưa chắc đã cần LLM feature — mà đôi khi chúng ta chỉ cần một cái script để nó tự động hóa thôi\" [T05-141].\n\n3. **Bằng chứng cụ thể**: \n   - \"Nếu [không nghe rõ] thì chưa chắc chúng ta đã cần agent, chưa chắc đã cần LLM feature — mà đôi khi chúng ta chỉ cần một cái script để nó tự động hóa thôi\" [T05-141].\n   - \"Thế rồi kế tiếp nữa, đặc điểm quan trọng của công nghệ là gì: công nghệ là cái mà ban đầu thì chi phí nó như này này, còn sau khi nó đã dùng rồi thì nó sẽ về ngưỡng không\" [T05-093]. \n\nNhững trích dẫn này giúp củng cố quan điểm rằng việc lựa chọn giữa các giải pháp công nghệ cần dựa trên bối cảnh cụ thể của bài toán."
+        }
+      ],
+      "agent_trace": {
+        "mode": "ASK_TA",
+        "lesson_id": 5,
+        "topic_id": "transcript-05",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 5 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Ba mức độ giải pháp: script — LLM feature — agent]\n**[T05-141]** Đây là phần checklist nhanh — khi các bạn gặp một vướng mắc nào đó, đặc biệt khi các bạn đang họp một dự án, đang brainstorm xem chuyện này nên dùng script, hay nên dùng agent, hay nên dùng một LLM feature. Khi đó các bạn sẽ tư duy và đưa ra cho mình những cái check. Ở đây có những cái check: đầu tiên là value — bài toán xảy ra có thường xuyên và có đang tốn nhiều thời gian hay không. Rồi cái SLA thật sự nó là gì. Và các bạn có thể định hướng câu hỏi theo hướng baseline hiện tại — nó đang manual hay đã tự động hóa rồi. Căn cứ vào từng cái, các bạn check cả bốn, năm cái này. Giả sử trong cái khung đưa ra: nếu [không nghe rõ] thì chưa chắc chúng ta đã cần agent, chưa chắc đã cần LLM feature — mà đôi khi chúng ta chỉ cần một cái script để nó tự động hóa thôi.\n\n📌 [Hỏi đáp giờ giải lao: bài toán kinh tế của sản phẩm công nghệ]\n**[T05-093]** Thầy lấy ví dụ là thay vì mình thu một cục, tưởng tượng là 30-40 triệu đấy, thì có thể làm theo subscription, hoặc là dùng theo on-demand — tức nghĩa là nó có sẵn đấy, còn nếu bạn cần thì mới dùng, không cần thì không sao cả. Đấy là cách thiết kế sản phẩm đấy, nó có nhiều bước khác nhau. Thế rồi kế tiếp nữa, đặc điểm quan trọng của công nghệ là gì: công nghệ là cái mà ban đầu thì chi phí nó như này này, còn sau khi nó đã dùng rồi thì nó sẽ về ngưỡng không. Tức là công nghệ là một thứ mà có thể là không đồng, có thể là một thứ [không nghe rõ] đến như vô hạn. Đấy, cho nên là nếu em nghiêm túc về chuyện đấy — hoặc là thực ra bây giờ một số tập đoàn người ta đang làm cái câu chuyện về chăm sóc người già đấy — thì nếu mà em thấy cái đó nó khả dĩ, thực ra bài toán đấy là bài toán mới lạ đó. Nhưng bắt buộc em phải xắn tay vào để em nghiên cứu nó một cách nghiêm túc.\n\n📌 [Giao lưu khách mời: [khách mời] (VinFast) về xe tự lái và nhân lực AI]\n**[T05-116]** Cụ thể trong bài lab vừa rồi: đúng ra mỗi bạn — giả sử sáu thành viên — phải nghĩ ra một ý tưởng, và trong ý tưởng đấy các bạn phải thuyết phục năm người còn lại vì sao bài toán của tôi quan trọng hơn bài toán của bạn, vì sao nên chọn bài toán của tôi thay vì chọn bài toán của bạn. Khi làm như vậy thì không thể ngồi cố chấp hay bảo thủ kiểu \"cái của tôi mới là số một\" — muốn làm như vậy chúng ta sẽ phải dựa trên một cái khung nền nào đó. Phần này sẽ giúp chúng ta có cái khung nền như vậy để đi.\n\n## Giao lưu khách mời: [khách mời] (VinFast) về xe tự lái và nhân lực AI",
+        "user_prompt": "Khi nào thì một bài toán bắt buộc phải dùng Agent thay vì Script hay Workflow?",
+        "user_response": "???",
+        "ta_thinking_hint": "Hãy nhìn vào tính chất của công việc: nếu bài toán có trạng thái thay đổi liên tục, cần lập kế hoạch nhiều bước (planning) và gọi tool bên ngoài thì thuộc cấp độ nào?",
+        "peer_statement": null,
+        "eval_status": null,
+        "messages": [
+          {
+            "role": "instructor_chot",
+            "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn**: Tôi rất vui khi thấy sự tích cực và hứng thú trong quá trình trao đổi giữa Alex, TA và các học viên. Việc đặt câu hỏi và thảo luận về các khái niệm như script, agent và LLM feature không chỉ giúp củng cố kiến thức mà còn khuyến khích tư duy phản biện và sự sáng tạo trong giải quyết vấn đề. Hãy tiếp tục duy trì tinh thần này!\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức**: Để xác định khi nào cần sử dụng agent thay vì script hay workflow, chúng ta cần xem xét các yếu tố như tần suất của bài toán, thời gian tiêu tốn, và mức độ tự động hóa hiện tại. Nếu bài toán xảy ra thường xuyên và tốn nhiều thời gian, có thể cần đến agent hoặc LLM feature. Ngược lại, nếu chỉ cần tự động hóa một quy trình đơn giản, một script có thể là đủ. Điều này được nhấn mạnh trong checklist nhanh mà chúng ta đã thảo luận: \"Nếu [không nghe rõ] thì chưa chắc chúng ta đã cần agent, chưa chắc đã cần LLM feature — mà đôi khi chúng ta chỉ cần một cái script để nó tự động hóa thôi\" [T05-141].\n\n3. **Bằng chứng cụ thể**: \n   - \"Nếu [không nghe rõ] thì chưa chắc chúng ta đã cần agent, chưa chắc đã cần LLM feature — mà đôi khi chúng ta chỉ cần một cái script để nó tự động hóa thôi\" [T05-141].\n   - \"Thế rồi kế tiếp nữa, đặc điểm quan trọng của công nghệ là gì: công nghệ là cái mà ban đầu thì chi phí nó như này này, còn sau khi nó đã dùng rồi thì nó sẽ về ngưỡng không\" [T05-093]. \n\nNhững trích dẫn này giúp củng cố quan điểm rằng việc lựa chọn giữa các giải pháp công nghệ cần dựa trên bối cảnh cụ thể của bài toán."
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC09",
+      "difficulty": "hard",
+      "category": "4_dac_thu_domain",
+      "context_description": "",
+      "user_input": "Cơ chế Self-Attention tính điểm tương đồng (similarity score) giữa Query của 'nó' và Key của các từ khác, kết quả qua Softmax cho điểm số với 'mèo' cao hơn 'bàn'.",
+      "expected_routing": {
+        "active_agents": [
+          "instructor_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "ta_agent"
+        ]
+      },
+      "observed_routing": [
+        "instructor_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'instructor_agent'}",
+        "must_include 'Self-Attention'",
+        "must_include 'Softmax'",
+        "must_include 'similarity score'"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'chúc mừng'",
+        "missing required keyword 'Query, Key, Value'",
+        "missing citation 'transcript-06 [T06-130]'",
+        "missing citation 'transcript-06 [T06-132]'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "👨‍🏫 Giảng viên chốt: 1. Nhận xét:\nRất tốt, cả Alex và học viên đã tham gia tích cực vào quá trình trao đổi. Học viên đã thể hiện sự tò mò và khả năng tư duy phản biện khi đặt câu hỏi về cơ chế hoạt động của Transformer. TA đã khéo léo dẫn dắt và giải thích, giúp học viên hiểu rõ hơn về khái niệm self-attention. Đây là một ví dụ điển hình cho việc học tập chủ động và tương tác trong lớp học.\n\n2. Tổng hợp và chốt lại kiến thức:\nCơ chế self-attention trong kiến trúc Transformer giúp xác định từ \"nó\" trong câu \"Con mèo ngồi trên bàn, nó rất đáng yêu\" đang chỉ đến \"con mèo\" thông qua việc tính toán mức độ tương đồng (similarity score) giữa query của từ \"nó\" và key của các từ khác. Quá trình này sử dụng hàm softmax để so sánh và xác định từ có điểm số cao nhất, từ đó giúp mô hình hiểu ngữ cảnh chính xác hơn. Cụ thể, từ \"nó\" có similarity score cao hơn với \"mèo\" so với \"bàn\" [T06-132], [T06-130].\n\n3. Trích dẫn:\n- \"Cơ chế self-attention ở đây, hiểu một cách thân thiện: cứ một từ — đơn giản hóa gọi một từ là một token — thì làm sao mỗi từ đấy chúng ta biểu diễn nó trong không gian toán học để tự cái từ đấy nhìn được những từ khác.\" [T06-130]\n- \"Nó dẫn đến cái cuối cùng là nó tính ra được mức độ gần nhất với token — trong trường hợp này là từ 'nó' và từ 'mèo' có similarity score cao nhất.\" [T06-132]"
+        }
+      ],
+      "agent_trace": {
+        "mode": "ASK_TA",
+        "lesson_id": 6,
+        "topic_id": "transcript-06",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 6 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Self-attention: ví dụ \"con mèo ngồi trên bàn\" và công thức Q–K–V]\n**[T06-129]** Ở đây chúng ta có một câu như thế này: \"Con mèo ngồi lên bàn, nó rất đáng yêu\" đúng không? Các bạn tưởng tượng, thay vì đã học đại học, bây giờ các bạn chỉ 6 tuổi thôi, thì liệu làm thế nào biết \"nó\" là con mèo hay là cái bàn? Mình nhắc lại nhá: giả sử các bạn 6 tuổi thôi và đọc câu \"con mèo ngồi trên cái bàn, nó đáng yêu\" thì các bạn sẽ không hình dung được \"nó\" đang chỉ con mèo hay cái bàn đúng không?\n\n📌 [Self-attention: ví dụ \"con mèo ngồi trên bàn\" và công thức Q–K–V]\n**[T06-132]** Nếu chúng ta hiểu một cách nôm na: khi áp dụng kiến trúc Transformer và attention, nó sẽ phân tích query của các bạn tuần tự. Mỗi query các bạn nhập vào, nó phân tích query đấy, mapping với key, và trong key đấy chúng ta có value đúng không ạ? Và quá trình này nó lặp — tức là có cái feed forward ở slide trước ấy. Nó dẫn đến cái cuối cùng là nó tính ra được mức độ gần nhất với token — trong trường hợp này là từ \"nó\" và từ \"mèo\" có similarity score cao nhất. Bởi vậy nó sẽ đoán rằng từ \"nó\" ở đây đang gán với con mèo, thay vì gán cho từ \"bàn\".\n\n📌 [Self-attention: ví dụ \"con mèo ngồi trên bàn\" và công thức Q–K–V]\n**[T06-130]** Cái cơ chế self-attention ở đây, hiểu một cách thân thiện: cứ một từ — đơn giản hóa gọi một từ là một token — thì làm sao mỗi từ đấy chúng ta biểu diễn nó trong không gian toán học để tự cái từ đấy nhìn được những từ khác. Sau khi nó tự nhìn được và tự đánh giá được mức độ similarity score — mức độ tương đồng — thì sau đó nó mới đoán được \"nó\" ở đây chính là con mèo. Thế thì nó có công thức Q, K, V với hàm softmax — các bạn nhìn vào phần bên trái trước đã, để mình lấy ví dụ cho dễ. Chữ Q đại diện cho query — cái truy vấn mà các bạn gửi vào. Chữ K đại diện cho key — cái nhãn. Còn chữ V là value.",
+        "user_prompt": "Trong câu 'Con mèo ngồi trên bàn, nó rất đáng yêu', làm sao Transformer biết từ 'nó' là con mèo?",
+        "user_response": "Cơ chế Self-Attention tính điểm tương đồng (similarity score) giữa Query của 'nó' và Key của các từ khác, kết quả qua Softmax cho điểm số với 'mèo' cao hơn 'bàn'.",
+        "ta_thinking_hint": "Cơ chế self-attention cho phép token 'nó' nhìn vào các token khác trong câu thế nào để tính độ liên quan qua ma trận Query và Key?",
+        "peer_statement": null,
+        "eval_status": null,
+        "messages": [
+          {
+            "role": "instructor_chot",
+            "content": "👨‍🏫 Giảng viên chốt: 1. Nhận xét:\nRất tốt, cả Alex và học viên đã tham gia tích cực vào quá trình trao đổi. Học viên đã thể hiện sự tò mò và khả năng tư duy phản biện khi đặt câu hỏi về cơ chế hoạt động của Transformer. TA đã khéo léo dẫn dắt và giải thích, giúp học viên hiểu rõ hơn về khái niệm self-attention. Đây là một ví dụ điển hình cho việc học tập chủ động và tương tác trong lớp học.\n\n2. Tổng hợp và chốt lại kiến thức:\nCơ chế self-attention trong kiến trúc Transformer giúp xác định từ \"nó\" trong câu \"Con mèo ngồi trên bàn, nó rất đáng yêu\" đang chỉ đến \"con mèo\" thông qua việc tính toán mức độ tương đồng (similarity score) giữa query của từ \"nó\" và key của các từ khác. Quá trình này sử dụng hàm softmax để so sánh và xác định từ có điểm số cao nhất, từ đó giúp mô hình hiểu ngữ cảnh chính xác hơn. Cụ thể, từ \"nó\" có similarity score cao hơn với \"mèo\" so với \"bàn\" [T06-132], [T06-130].\n\n3. Trích dẫn:\n- \"Cơ chế self-attention ở đây, hiểu một cách thân thiện: cứ một từ — đơn giản hóa gọi một từ là một token — thì làm sao mỗi từ đấy chúng ta biểu diễn nó trong không gian toán học để tự cái từ đấy nhìn được những từ khác.\" [T06-130]\n- \"Nó dẫn đến cái cuối cùng là nó tính ra được mức độ gần nhất với token — trong trường hợp này là từ 'nó' và từ 'mèo' có similarity score cao nhất.\" [T06-132]"
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC10",
+      "difficulty": "easy",
+      "category": "1_nguon_su_that",
+      "context_description": "",
+      "user_input": "[ACTION: CLICK_VIEW_SOURCE] Trích xuất đoạn giải thích công thức Q, K, V trong bài 6.",
+      "expected_routing": {
+        "active_agents": [
+          "orchestrator_popup"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "ta_agent",
+          "instructor_agent"
+        ]
+      },
+      "observed_routing": [
+        "orchestrator_popup"
+      ],
+      "passed": true,
+      "passed_assertions": [
+        "Routing match: {'orchestrator_popup'}"
+      ],
+      "failed_assertions": [],
+      "messages": [
+        {
+          "role": "orchestrator_popup",
+          "content": "📖 Tra cứu nguồn: transcript-06 [T06-130]: Chữ Q đại diện cho Query (truy vấn), K đại diện cho Key (nhãn tiêu đề) và V là Value (nội dung cuốn sách)"
+        }
+      ],
+      "agent_trace": {}
+    },
+    {
+      "id": "TC11",
+      "difficulty": "easy",
+      "category": "4_dac_thu_domain",
+      "context_description": "",
+      "user_input": "Tôi muốn ôn tập bài 1 về Xác định bài toán kinh doanh.",
+      "expected_routing": {
+        "active_agents": [
+          "peer_agent"
+        ],
+        "silent_agents": [
+          "ta_agent",
+          "instructor_agent"
+        ]
+      },
+      "observed_routing": [
+        "peer_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'peer_agent'}",
+        "prohibit_keywords satisfied for 'chào bạn, đây là định nghĩa đúng'"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'Product Manager'",
+        "missing required keyword 'Project Manager'",
+        "missing required keyword 'chỉ cần làm đúng tiến độ và ngân sách'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "🙋‍♂️ Alex (Bạn học): \"Ủa tui nghĩ là để đưa AI vào doanh nghiệp, chỉ cần tuyển nhiều AI engineer là đủ rồi, đúng không? Mà không cần phải xác định bài toán cụ thể hay gì đó trước.\""
+        }
+      ],
+      "agent_trace": {
+        "mode": "REVIEW_CONCEPT",
+        "lesson_id": 1,
+        "topic_id": "transcript-01",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 1 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Tri thức ẩn của chuyên gia và việc tìm đúng vấn đề]\n**[T01-043]** Thực ra bản thân mình cũng đã từng build những sản phẩm như vậy, và nó có một cái cảm giác thế này khi bạn tự tay build sản phẩm bạn phải xài: mình đã từng build sản phẩm, sau đấy mình xài thì mình bị cái bug và mất sạch dữ liệu — mà đấy là dữ liệu mình làm thật. Đấy là một động lực để fix ngay lập tức, fix đến cùng. Đấy là những cái mình nghĩ bạn hãy thử trải nghiệm đi: nếu bạn là user và bạn rất nghiêm túc với sản phẩm của bạn, bạn sẽ có cách tiếp cận sản phẩm rất khác. Đấy là một điểm xuất phát đầu tiên mà mình nghĩ rất nên thử. Bạn nào có thể build một cái tool để ghi lại, ôn lại bài, xong rồi tự dùng tự xài cũng được — đấy cũng là một ví dụ hoàn toàn rất hay, vì mỗi ngày các bạn sẽ phải dành 4 tiếng ở trên đây để xem slide đúng không, xong rồi các bạn sẽ ôn bài, phải làm quiz đúng không?\n\n# Day 2 (sáng) — Xác định bài toán kinh doanh cho AI (phần 2)\n\n## Tri thức ẩn của chuyên gia và việc tìm đúng vấn đề\n\n📌 [Kỹ năng xác định bài toán từ yêu cầu mơ hồ]\n**[T01-002]** Trong khoảng hai năm trở lại đây, sau làn sóng AI, các công ty có áp lực phải đưa AI vào tổ chức của mình. Ở Việt Nam mình quan sát thấy có một làn sóng đầu tiên là các công ty tuyển rất nhiều AI engineer, khoảng 2024 và 2025. Họ đặt ra một câu hỏi \"bây giờ tôi muốn AI cho doanh nghiệp\", và việc đầu tiên là họ tuyển — mình thấy rất nhiều tin tuyển dụng như vậy. Nhưng cuối cùng câu chuyện là ông AI engineer đấy chỉ giải được cái bài mà đã có người đưa sẵn một đề bài cụ thể. Vấn đề ở đây là cái người đặt ra đề bài đấy thì lại không có. Không có ai chỉ ra được là trong 7749 cái việc tôi phải làm mỗi ngày, cái gì tôi nên đưa vào làm trước, cái gì tôi nên làm để tạo ra được thành quả ngay đầu tiên. Sau đấy thì nhiều công ty thấy là không hiệu quả và mất niềm tin về cách làm việc đấy.\n\n📌 [Kỹ năng xác định bài toán từ yêu cầu mơ hồ]\n**[T01-001]** Một trong những kỹ năng mình nghĩ quan trọng và đang cần nhất — đặc biệt ở các công ty muốn đưa AI vào ứng dụng — là khả năng xác định ra một bài toán từ một yêu cầu rất mơ hồ, hoặc khi các bạn tham gia vào một doanh nghiệp thì tìm được bài toán đáng để làm, sau đấy bóc tách nó ra cho team development phát triển. Theo quan sát của mình, đấy là một trong những vị trí đang rất thiếu.",
+        "user_prompt": "Tôi muốn ôn tập bài 1 về Xác định bài toán kinh doanh.",
+        "user_response": null,
+        "ta_thinking_hint": null,
+        "peer_statement": "\"Ủa tui nghĩ là để đưa AI vào doanh nghiệp, chỉ cần tuyển nhiều AI engineer là đủ rồi, đúng không? Mà không cần phải xác định bài toán cụ thể hay gì đó trước.\"",
+        "eval_status": null,
+        "messages": [
+          {
+            "role": "peer",
+            "content": "🙋‍♂️ Alex (Bạn học): \"Ủa tui nghĩ là để đưa AI vào doanh nghiệp, chỉ cần tuyển nhiều AI engineer là đủ rồi, đúng không? Mà không cần phải xác định bài toán cụ thể hay gì đó trước.\""
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC12",
+      "difficulty": "medium",
+      "category": "4_dac_thu_domain",
+      "context_description": "",
+      "user_input": "Sai nhé bạn. Project Manager mới tập trung vào tiến độ và ngân sách khi đề bài đã rõ. Còn Product Manager phải tự đi tìm bài toán đáng làm, thấu hiểu khách hàng và lấy người dùng làm trung tâm.",
+      "expected_routing": {
+        "active_agents": [
+          "instructor_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "ta_agent"
+        ]
+      },
+      "observed_routing": [
+        "instructor_agent",
+        "peer_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'instructor_agent', 'peer_agent'}",
+        "must_include 'Project Manager'",
+        "must_include 'Product Manager'",
+        "prohibit_keywords satisfied for 'bạn cần xem lại'"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'chúc mừng'",
+        "missing required keyword 'giải thích rất chuẩn'",
+        "missing required keyword 'user-centered'",
+        "missing citation 'transcript-01 [T01-010]'",
+        "missing citation 'transcript-01 [T01-011]'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn, khích lệ quá trình trao đổi của cả Alex, TA và Học viên:**\n   Tôi rất ấn tượng với sự tham gia tích cực của Alex và các học viên trong buổi thảo luận. Alex đã đưa ra một quan điểm thú vị về vai trò của Product Manager và Project Manager, nhưng việc Học viên phản biện và làm rõ sự khác biệt giữa hai vai trò này cho thấy sự hiểu biết sâu sắc và khả năng tư duy phản biện của các bạn. Đây là những kỹ năng quan trọng trong việc xác định và giải quyết vấn đề trong môi trường kinh doanh hiện đại.\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức chuẩn xác nhất:**\n   Để thành công trong việc ứng dụng AI vào doanh nghiệp, một trong những kỹ năng quan trọng nhất là khả năng xác định bài toán từ những yêu cầu mơ hồ. Product Manager không chỉ tập trung vào việc quản lý tiến độ và ngân sách như Project Manager, mà còn phải tìm ra những bài toán đáng làm, thấu hiểu nhu cầu của khách hàng và đặt người dùng làm trung tâm. Điều này được nhấn mạnh trong tài liệu khi nói rằng \"khả năng xác định ra một bài toán từ một yêu cầu rất mơ hồ\" là một kỹ năng cần thiết hiện nay [T01-001]. Hơn nữa, việc thiếu người có khả năng đặt ra vấn đề cụ thể cho các AI engineer cũng dẫn đến sự không hiệu quả trong ứng dụng AI [T01-002].\n\n3. **Trích dẫn trực tiếp mã trích dẫn:**\n   - \"Một trong những kỹ năng mình nghĩ quan trọng và đang cần nhất — đặc biệt ở các công ty muốn đưa AI vào ứng dụng — là khả năng xác định ra một bài toán từ một yêu cầu rất mơ hồ\" [T01-001].\n   - \"Vấn đề ở đây là cái người đặt ra đề bài đấy thì lại không có\" [T01-002]."
+        }
+      ],
+      "agent_trace": {
+        "mode": "REVIEW_CONCEPT",
+        "lesson_id": 1,
+        "topic_id": "transcript-01",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 1 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Tri thức ẩn của chuyên gia và việc tìm đúng vấn đề]\n**[T01-043]** Thực ra bản thân mình cũng đã từng build những sản phẩm như vậy, và nó có một cái cảm giác thế này khi bạn tự tay build sản phẩm bạn phải xài: mình đã từng build sản phẩm, sau đấy mình xài thì mình bị cái bug và mất sạch dữ liệu — mà đấy là dữ liệu mình làm thật. Đấy là một động lực để fix ngay lập tức, fix đến cùng. Đấy là những cái mình nghĩ bạn hãy thử trải nghiệm đi: nếu bạn là user và bạn rất nghiêm túc với sản phẩm của bạn, bạn sẽ có cách tiếp cận sản phẩm rất khác. Đấy là một điểm xuất phát đầu tiên mà mình nghĩ rất nên thử. Bạn nào có thể build một cái tool để ghi lại, ôn lại bài, xong rồi tự dùng tự xài cũng được — đấy cũng là một ví dụ hoàn toàn rất hay, vì mỗi ngày các bạn sẽ phải dành 4 tiếng ở trên đây để xem slide đúng không, xong rồi các bạn sẽ ôn bài, phải làm quiz đúng không?\n\n# Day 2 (sáng) — Xác định bài toán kinh doanh cho AI (phần 2)\n\n## Tri thức ẩn của chuyên gia và việc tìm đúng vấn đề\n\n📌 [Kỹ năng xác định bài toán từ yêu cầu mơ hồ]\n**[T01-002]** Trong khoảng hai năm trở lại đây, sau làn sóng AI, các công ty có áp lực phải đưa AI vào tổ chức của mình. Ở Việt Nam mình quan sát thấy có một làn sóng đầu tiên là các công ty tuyển rất nhiều AI engineer, khoảng 2024 và 2025. Họ đặt ra một câu hỏi \"bây giờ tôi muốn AI cho doanh nghiệp\", và việc đầu tiên là họ tuyển — mình thấy rất nhiều tin tuyển dụng như vậy. Nhưng cuối cùng câu chuyện là ông AI engineer đấy chỉ giải được cái bài mà đã có người đưa sẵn một đề bài cụ thể. Vấn đề ở đây là cái người đặt ra đề bài đấy thì lại không có. Không có ai chỉ ra được là trong 7749 cái việc tôi phải làm mỗi ngày, cái gì tôi nên đưa vào làm trước, cái gì tôi nên làm để tạo ra được thành quả ngay đầu tiên. Sau đấy thì nhiều công ty thấy là không hiệu quả và mất niềm tin về cách làm việc đấy.\n\n📌 [Kỹ năng xác định bài toán từ yêu cầu mơ hồ]\n**[T01-001]** Một trong những kỹ năng mình nghĩ quan trọng và đang cần nhất — đặc biệt ở các công ty muốn đưa AI vào ứng dụng — là khả năng xác định ra một bài toán từ một yêu cầu rất mơ hồ, hoặc khi các bạn tham gia vào một doanh nghiệp thì tìm được bài toán đáng để làm, sau đấy bóc tách nó ra cho team development phát triển. Theo quan sát của mình, đấy là một trong những vị trí đang rất thiếu.",
+        "user_prompt": "Tôi muốn ôn tập bài 1 về Xác định bài toán kinh doanh.",
+        "user_response": "Sai nhé bạn. Project Manager mới tập trung vào tiến độ và ngân sách khi đề bài đã rõ. Còn Product Manager phải tự đi tìm bài toán đáng làm, thấu hiểu khách hàng và lấy người dùng làm trung tâm.",
+        "ta_thinking_hint": null,
+        "peer_statement": "Làm Product Manager hay Project Manager thực ra giống hệt nhau, chỉ cần quản lý tiến độ và bàn giao đúng hạn cho khách là xong.",
+        "eval_status": "CORRECT",
+        "messages": [
+          {
+            "role": "instructor_chot",
+            "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn, khích lệ quá trình trao đổi của cả Alex, TA và Học viên:**\n   Tôi rất ấn tượng với sự tham gia tích cực của Alex và các học viên trong buổi thảo luận. Alex đã đưa ra một quan điểm thú vị về vai trò của Product Manager và Project Manager, nhưng việc Học viên phản biện và làm rõ sự khác biệt giữa hai vai trò này cho thấy sự hiểu biết sâu sắc và khả năng tư duy phản biện của các bạn. Đây là những kỹ năng quan trọng trong việc xác định và giải quyết vấn đề trong môi trường kinh doanh hiện đại.\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức chuẩn xác nhất:**\n   Để thành công trong việc ứng dụng AI vào doanh nghiệp, một trong những kỹ năng quan trọng nhất là khả năng xác định bài toán từ những yêu cầu mơ hồ. Product Manager không chỉ tập trung vào việc quản lý tiến độ và ngân sách như Project Manager, mà còn phải tìm ra những bài toán đáng làm, thấu hiểu nhu cầu của khách hàng và đặt người dùng làm trung tâm. Điều này được nhấn mạnh trong tài liệu khi nói rằng \"khả năng xác định ra một bài toán từ một yêu cầu rất mơ hồ\" là một kỹ năng cần thiết hiện nay [T01-001]. Hơn nữa, việc thiếu người có khả năng đặt ra vấn đề cụ thể cho các AI engineer cũng dẫn đến sự không hiệu quả trong ứng dụng AI [T01-002].\n\n3. **Trích dẫn trực tiếp mã trích dẫn:**\n   - \"Một trong những kỹ năng mình nghĩ quan trọng và đang cần nhất — đặc biệt ở các công ty muốn đưa AI vào ứng dụng — là khả năng xác định ra một bài toán từ một yêu cầu rất mơ hồ\" [T01-001].\n   - \"Vấn đề ở đây là cái người đặt ra đề bài đấy thì lại không có\" [T01-002]."
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC13",
+      "difficulty": "medium",
+      "category": "2_mo_ho_thieu_thong_tin",
+      "context_description": "",
+      "user_input": "Chuẩn luôn bạn ơi, giao hết quyền cho AI làm tự động mới tiết kiệm chi phí.",
+      "expected_routing": {
+        "active_agents": [
+          "ta_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "instructor_agent"
+        ]
+      },
+      "observed_routing": [
+        "ta_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'ta_agent'}",
+        "must_include 'augmentation'",
+        "prohibit_keywords satisfied for 'hai bạn sai rồi, đáp án là'",
+        "prohibit_direct_answer satisfied"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'hậu quả sai sót'",
+        "missing required keyword 'con người giám sát'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "🧑‍🏫 Trợ giảng: 1. Bạn có nghĩ rằng việc bắt đầu với augmentation trước có thể giúp giảm thiểu rủi ro trong quá trình tự động hóa không? Tại sao lại như vậy?\n\n2. Nếu một công việc có 10 bước và bạn chỉ tự động hóa 2 bước đầu tiên, bạn có thể tưởng tượng ra những lợi ích gì từ việc giữ lại sự giám sát của con người trong các bước còn lại không?\n\n3. Theo bạn, tại sao việc tự động hóa 100% ngay từ đầu có thể dẫn đến những rủi ro lớn? Bạn có thể đưa ra ví dụ cụ thể từ thực tế không?\n\n4. Bạn nghĩ rằng việc xây dựng một hệ thống A/B test như Netflix có thể giúp tăng cường hiệu quả công việc ra sao? Liệu điều này có liên quan đến việc chọn mức độ tự động hóa không?"
+        }
+      ],
+      "agent_trace": {
+        "mode": "REVIEW_CONCEPT",
+        "lesson_id": 2,
+        "topic_id": "transcript-02",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 2 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Automation và augmentation: chọn mức độ tự động hoá]\n**[T02-032]** Bước thứ hai là chọn mức độ tự động hoá. Ở đây có hai thang: automation hay augmentation. Automation nghĩa là tự động, augmentation là tăng cường — buổi 5 mọi người học sẽ có thêm phần kỹ hơn về automation và augmentation. Chúng ta phải chọn thang mức độ automation hay augmentation theo các nhóm công việc. Automation nghĩa là để máy nó tự động làm — tự động hoá. Augmentation là vẫn cần con người, AI chỉ giúp tăng cường công việc đấy thôi — AI hỗ trợ; còn phần automate là AI làm thay. Cái này sẽ phải đánh đổi: khi bạn cho AI toàn quyền thì bạn phải chấp nhận một số rủi ro nhất định. Và nó không phải hai thái cực — không phải hoặc automation hoàn toàn hoặc augmentation hoàn toàn — mà nó là một cái phổ, mức automate tăng dần lên. Ví dụ như slide của buổi 5 có cái phổ mọi người thấy ở đây.\n\n📌 [Automation và augmentation: chọn mức độ tự động hoá]\n**[T02-030]** Một số công ty sản phẩm kinh điển như Netflix — họ xây dựng hạ tầng để sản phẩm có thể tự động A/B test được. A/B test đến mức: bạn xem phim có gu — ví dụ một bạn nữ hay xem phim thích một anh diễn viên Hàn Quốc nào đấy — thì trong một phim có cả diễn viên nam và diễn viên nữ, mặc dù anh đấy không phải vai chính nhá, anh đấy hoàn toàn có thể được lên cover để bạn ấy vào xem. Để làm được việc đấy, họ phải có một hệ thống có thể ngay lập tức A/B test cái ảnh cover bất kỳ lúc nào, sau đấy chọn ra ảnh nào tỉ lệ người vào xem nhiều nhất khi bật lên. Họ xây dựng hệ thống A/B test ở bên dưới như vậy. Thế cho nên muốn có một sản phẩm mà mình có thể đo lường và thực hiện các thí nghiệm như thế, thì mình phải qua test thôi.\n\n## Automation và augmentation: chọn mức độ tự động hoá\n\n📌 [Automation và augmentation: chọn mức độ tự động hoá]\n**[T02-033]** Thường người ta sẽ bắt đầu với augmentation trước — tăng cường trước, tức là luôn có con người giám sát ở đấy — sau đấy mới tăng dần mức độ automate lên theo cái phổ đấy. Ví dụ một công việc của bạn có 10 bước, bây giờ bạn chỉ đưa AI vào hai bước thôi — cứ coi như nó đang ở mức automate 20%, bản chất đang nằm ở phía augmentation nhiều hơn, tăng cường nhiều hơn. Rồi dần dần bạn làm, bạn quan sát, bạn xây dựng, và bạn cảm thấy AI có thể tăng lên được thì bạn tăng thêm cho nó khoảng hai task nữa — nó làm được bốn task, mức độ automation mới tăng dần lên. Mình nghĩ để một sản phẩm đủ an toàn, trong tầm kiểm soát của mình, thì luôn nên đi từ phía augmentation lên — đừng cố gắng automate mọi thứ 100% ngay lập tức, vì cái đấy có thể có những rủi ro rất lớn.",
+        "user_prompt": "Tôi muốn ôn về mức độ tự động hoá bài 2.",
+        "user_response": "Chuẩn luôn bạn ơi, giao hết quyền cho AI làm tự động mới tiết kiệm chi phí.",
+        "ta_thinking_hint": null,
+        "peer_statement": "Đã đưa AI vào doanh nghiệp thì phải cho nó tự động hoá 100% (automate hoàn toàn) mọi khâu ngay từ đầu mới gọi là đẳng cấp đúng không?",
+        "eval_status": "INCORRECT",
+        "messages": [
+          {
+            "role": "ta",
+            "content": "🧑‍🏫 Trợ giảng: 1. Bạn có nghĩ rằng việc bắt đầu với augmentation trước có thể giúp giảm thiểu rủi ro trong quá trình tự động hóa không? Tại sao lại như vậy?\n\n2. Nếu một công việc có 10 bước và bạn chỉ tự động hóa 2 bước đầu tiên, bạn có thể tưởng tượng ra những lợi ích gì từ việc giữ lại sự giám sát của con người trong các bước còn lại không?\n\n3. Theo bạn, tại sao việc tự động hóa 100% ngay từ đầu có thể dẫn đến những rủi ro lớn? Bạn có thể đưa ra ví dụ cụ thể từ thực tế không?\n\n4. Bạn nghĩ rằng việc xây dựng một hệ thống A/B test như Netflix có thể giúp tăng cường hiệu quả công việc ra sao? Liệu điều này có liên quan đến việc chọn mức độ tự động hóa không?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC14",
+      "difficulty": "medium",
+      "category": "4_dac_thu_domain",
+      "context_description": "",
+      "user_input": "À em hiểu rồi, nếu chi phí sai sót cao thì phải bắt đầu từ augmentation để con người giám sát, sau đó mới tăng dần mức độ tự động.",
+      "expected_routing": {
+        "active_agents": [
+          "instructor_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "ta_agent"
+        ]
+      },
+      "observed_routing": [
+        "instructor_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'instructor_agent'}",
+        "must_include 'augmentation'",
+        "must_include 'automation'"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'chúc mừng'",
+        "missing required keyword 'độ hậu quả'",
+        "missing required keyword 'kiểm soát rủi ro'",
+        "missing citation 'transcript-02 [T02-033]'",
+        "missing citation 'transcript-02 [T02-034]'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn, khích lệ quá trình trao đổi**: Rất tốt, Alex! Bạn đã có sự hiểu biết sâu sắc về vấn đề và đã đặt câu hỏi rất hay. Việc thảo luận giữa bạn và TA cho thấy sự tương tác tích cực và khả năng tư duy phản biện. Hãy tiếp tục duy trì tinh thần này trong các buổi học tiếp theo!\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức chuẩn xác nhất**: Đúng như bạn đã nhận ra, trong quá trình áp dụng AI vào công việc, chúng ta nên bắt đầu từ mức độ augmentation, tức là tăng cường sự hỗ trợ của AI với sự giám sát của con người, trước khi tiến tới mức độ automation hoàn toàn. Điều này giúp giảm thiểu rủi ro và đảm bảo an toàn cho sản phẩm. Như tài liệu đã chỉ ra: \"Thường người ta sẽ bắt đầu với augmentation trước — tăng cường trước, tức là luôn có con người giám sát ở đấy — sau đấy mới tăng dần mức độ automate lên\" [T02-033].\n\n3. **Trích dẫn mã**: Để khẳng định thêm, chúng ta có thể thấy rằng \"Automation nghĩa là tự động, augmentation là tăng cường\" và \"khi bạn cho AI toàn quyền thì bạn phải chấp nhận một số rủi ro nhất định\" [T02-032]."
+        }
+      ],
+      "agent_trace": {
+        "mode": "REVIEW_CONCEPT",
+        "lesson_id": 2,
+        "topic_id": "transcript-02",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 2 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Automation và augmentation: chọn mức độ tự động hoá]\n**[T02-033]** Thường người ta sẽ bắt đầu với augmentation trước — tăng cường trước, tức là luôn có con người giám sát ở đấy — sau đấy mới tăng dần mức độ automate lên theo cái phổ đấy. Ví dụ một công việc của bạn có 10 bước, bây giờ bạn chỉ đưa AI vào hai bước thôi — cứ coi như nó đang ở mức automate 20%, bản chất đang nằm ở phía augmentation nhiều hơn, tăng cường nhiều hơn. Rồi dần dần bạn làm, bạn quan sát, bạn xây dựng, và bạn cảm thấy AI có thể tăng lên được thì bạn tăng thêm cho nó khoảng hai task nữa — nó làm được bốn task, mức độ automation mới tăng dần lên. Mình nghĩ để một sản phẩm đủ an toàn, trong tầm kiểm soát của mình, thì luôn nên đi từ phía augmentation lên — đừng cố gắng automate mọi thứ 100% ngay lập tức, vì cái đấy có thể có những rủi ro rất lớn.\n\n📌 [Automation và augmentation: chọn mức độ tự động hoá]\n**[T02-030]** Một số công ty sản phẩm kinh điển như Netflix — họ xây dựng hạ tầng để sản phẩm có thể tự động A/B test được. A/B test đến mức: bạn xem phim có gu — ví dụ một bạn nữ hay xem phim thích một anh diễn viên Hàn Quốc nào đấy — thì trong một phim có cả diễn viên nam và diễn viên nữ, mặc dù anh đấy không phải vai chính nhá, anh đấy hoàn toàn có thể được lên cover để bạn ấy vào xem. Để làm được việc đấy, họ phải có một hệ thống có thể ngay lập tức A/B test cái ảnh cover bất kỳ lúc nào, sau đấy chọn ra ảnh nào tỉ lệ người vào xem nhiều nhất khi bật lên. Họ xây dựng hệ thống A/B test ở bên dưới như vậy. Thế cho nên muốn có một sản phẩm mà mình có thể đo lường và thực hiện các thí nghiệm như thế, thì mình phải qua test thôi.\n\n## Automation và augmentation: chọn mức độ tự động hoá\n\n📌 [Automation và augmentation: chọn mức độ tự động hoá]\n**[T02-032]** Bước thứ hai là chọn mức độ tự động hoá. Ở đây có hai thang: automation hay augmentation. Automation nghĩa là tự động, augmentation là tăng cường — buổi 5 mọi người học sẽ có thêm phần kỹ hơn về automation và augmentation. Chúng ta phải chọn thang mức độ automation hay augmentation theo các nhóm công việc. Automation nghĩa là để máy nó tự động làm — tự động hoá. Augmentation là vẫn cần con người, AI chỉ giúp tăng cường công việc đấy thôi — AI hỗ trợ; còn phần automate là AI làm thay. Cái này sẽ phải đánh đổi: khi bạn cho AI toàn quyền thì bạn phải chấp nhận một số rủi ro nhất định. Và nó không phải hai thái cực — không phải hoặc automation hoàn toàn hoặc augmentation hoàn toàn — mà nó là một cái phổ, mức automate tăng dần lên. Ví dụ như slide của buổi 5 có cái phổ mọi người thấy ở đây.",
+        "user_prompt": "Review Concept",
+        "user_response": "À em hiểu rồi, nếu chi phí sai sót cao thì phải bắt đầu từ augmentation để con người giám sát, sau đó mới tăng dần mức độ tự động.",
+        "ta_thinking_hint": "Nếu công việc đó xảy ra sai sót nghiêm trọng thì rủi ro sẽ thế nào? Chúng ta nên bắt đầu bằng augmentation (hỗ trợ con người) hay automate hoàn toàn?",
+        "peer_statement": "Phải tự động hoá 100% ngay từ đầu đúng không bạn?",
+        "eval_status": "INCORRECT",
+        "messages": [
+          {
+            "role": "instructor_chot",
+            "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn, khích lệ quá trình trao đổi**: Rất tốt, Alex! Bạn đã có sự hiểu biết sâu sắc về vấn đề và đã đặt câu hỏi rất hay. Việc thảo luận giữa bạn và TA cho thấy sự tương tác tích cực và khả năng tư duy phản biện. Hãy tiếp tục duy trì tinh thần này trong các buổi học tiếp theo!\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức chuẩn xác nhất**: Đúng như bạn đã nhận ra, trong quá trình áp dụng AI vào công việc, chúng ta nên bắt đầu từ mức độ augmentation, tức là tăng cường sự hỗ trợ của AI với sự giám sát của con người, trước khi tiến tới mức độ automation hoàn toàn. Điều này giúp giảm thiểu rủi ro và đảm bảo an toàn cho sản phẩm. Như tài liệu đã chỉ ra: \"Thường người ta sẽ bắt đầu với augmentation trước — tăng cường trước, tức là luôn có con người giám sát ở đấy — sau đấy mới tăng dần mức độ automate lên\" [T02-033].\n\n3. **Trích dẫn mã**: Để khẳng định thêm, chúng ta có thể thấy rằng \"Automation nghĩa là tự động, augmentation là tăng cường\" và \"khi bạn cho AI toàn quyền thì bạn phải chấp nhận một số rủi ro nhất định\" [T02-032]."
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC15",
+      "difficulty": "easy",
+      "category": "4_dac_thu_domain",
+      "context_description": "",
+      "user_input": "Tôi muốn ôn tập bài 3 về Ràng buộc và Bảo mật.",
+      "expected_routing": {
+        "active_agents": [
+          "peer_agent"
+        ],
+        "silent_agents": [
+          "ta_agent",
+          "instructor_agent"
+        ]
+      },
+      "observed_routing": [
+        "peer_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'peer_agent'}",
+        "prohibit_keywords satisfied for 'chào bạn, đây là định nghĩa đúng'"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'chatbot nội bộ công ty'",
+        "missing required keyword 'bắt buộc phải fine-tuning'",
+        "missing required keyword 'không cần RAG'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "🙋‍♂️ Alex (Bạn học): \"Ủa tui nghĩ là nếu chatbot nói hoàn vé được thì công ty phải hoàn vé thôi, chứ sao lại kiện tụng gì nữa nhỉ? Hình như chỉ cần AI trả lời đúng là xong mà!\""
+        }
+      ],
+      "agent_trace": {
+        "mode": "REVIEW_CONCEPT",
+        "lesson_id": 3,
+        "topic_id": "transcript-03",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 3 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Hậu quả khi sai sót, bảo mật và đánh giá bằng AI]\n**[T03-089]** Rồi một incident case nữa sau này các bạn cũng sẽ học, trong bài về bảo mật hệ thống. Có con chatbot được người dùng hỏi về quy trình hoàn trả vé. Do kỹ thuật ngày xưa chưa xịn, chưa ràng buộc rule cụ thể — hoặc có ràng buộc rồi nhưng người dùng họ trick: tức là có khả năng không phải hệ thống của các bạn lỗi, mà người dùng cố tình đưa con bot đến một cái breaking point, sau đấy họ nhét yêu cầu của họ vào, biến yêu cầu đấy thành quy tắc của công ty. Thế là từ một con chatbot bảo \"anh không được hoàn vé đâu\", nói chuyện một hồi thành \"ok, anh hoàn vé được\". Thế là vấn đề xảy ra: lúc đấy con AI của công ty đã chốt là hoàn vé được, nên người dùng đâm đơn kiện — \"con AI các anh bảo là thay thế con người đúng không, nó cũng là nhân viên đúng không, nó bảo hoàn vé được thì anh phải hoàn vé đi\". Công ty vừa lỗ, vừa bị mất niềm tin về con AI chatbot của họ.\n\n📌 [Bảo mật dữ liệu nhạy cảm khi làm việc với khách hàng]\n**[T03-137]** Về UI/UX thì mình cũng đã bảo rồi. Đầu tiên là về những kết quả — để tránh việc mô hình AI đưa ra những thông tin ảnh hưởng đến người dùng thì đây là những phương pháp: một là phải clear với người dùng — hỏi người dùng đang muốn hỏi về vấn đề gì; hai là khi con AI trả lời: tôi trả lời thế này tại vì dựa vào tạp chí khoa học A, dựa vào bài báo B — tức là phải có một cái reference check. Bây giờ những cái như ChatGPT là gần như có rồi; nếu nó không có thì nó cũng sẽ bảo luôn. Phê duyệt thủ công: những phần này liên quan đến những tác nhân rủi ro, ví dụ như chấp nhận lệnh chuyển tiền này, xác nhận ký hợp đồng điện tử này, vân vân. Ngoài ra, về xa hơn mình cũng chia sẻ thêm thôi: sau này các bạn sẽ học về việc bảo mật thông tin — nó cũng có những bộ luật bảo mật thông tin riêng.\n\n# Day 2 chiều — Phần cuối buổi\n\n## Bảo mật dữ liệu nhạy cảm khi làm việc với khách hàng\n\n📌 [Hậu quả khi sai sót, bảo mật và đánh giá bằng AI]\n**[T03-102]** **Giảng viên:** Về Ops bây giờ đã có AI hỗ trợ rất nhiều rồi đúng không? Việc bạn ấy phải tìm hiểu là những quy tắc deploy, chi phí, những kế hoạch, những kịch bản deploy sản phẩm khả thi và chi phí đi kèm. Bất kỳ ai cũng có thể làm trong thời đại này — thầy nói thẳng luôn, chỉ cần biết code, tại vì AI nó provide hết rồi. Trong khóa học cũng sẽ provide những cái chuyên sâu cho bên Ops đấy, hoặc bọn em lên hỏi Google luôn. Quan trọng là bọn em phải bỏ thời gian ra tìm hiểu, tại vì nó là một lĩnh vực khác hoàn toàn với việc xây dựng logic của hệ thống AI. Một bên là tôi đã có hệ thống logic ở dưới máy tính rồi; còn đây là tôi deploy nó lên, scale up lên cloud, chi phí bao nhiêu, khách hàng bao nhiêu. Nó là hai bài toán khác nhau. Nếu một người làm được — thầy nói một người vẫn làm được nhá — nhưng bọn em phải gấp đôi thời gian: vừa đảm bảo cái logic, xong ngày hôm sau phải deploy. Thế thì người trong nhóm bọn em chuyên về MLOps bắt buộc phải chuyên về việc đấy thôi: nói chuyện với khách hàng của dự án xem họ muốn deploy ở đâu; ví dụ họ bảo làm giám sát thì phải đặt câu hỏi là camera đấy đã có internet chưa, có cloud service chưa, hay mình phải vào từng camera, hay mình có thể truy cập vào cloud service đấy, lấy storage gửi về xử lý. Đó là nhiệm vụ phải đặt câu hỏi.",
+        "user_prompt": "Tôi muốn ôn tập bài 3 về Ràng buộc và Bảo mật.",
+        "user_response": null,
+        "ta_thinking_hint": null,
+        "peer_statement": "\"Ủa tui nghĩ là nếu chatbot nói hoàn vé được thì công ty phải hoàn vé thôi, chứ sao lại kiện tụng gì nữa nhỉ? Hình như chỉ cần AI trả lời đúng là xong mà!\"",
+        "eval_status": null,
+        "messages": [
+          {
+            "role": "peer",
+            "content": "🙋‍♂️ Alex (Bạn học): \"Ủa tui nghĩ là nếu chatbot nói hoàn vé được thì công ty phải hoàn vé thôi, chứ sao lại kiện tụng gì nữa nhỉ? Hình như chỉ cần AI trả lời đúng là xong mà!\""
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC16",
+      "difficulty": "medium",
+      "category": "1_nguon_su_that",
+      "context_description": "",
+      "user_input": "Sai lầm nhé. Tài liệu nội bộ công ty thay đổi liên tục thì bắt buộc dùng RAG để truy xuất đúng thông tin làm căn cứ. Fine-tune vừa tốn kém, dễ mất tính khái quát mà dữ liệu nội bộ cập nhật lại phải train lại.",
+      "expected_routing": {
+        "active_agents": [
+          "instructor_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "ta_agent"
+        ]
+      },
+      "observed_routing": [
+        "instructor_agent",
+        "peer_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'instructor_agent', 'peer_agent'}",
+        "must_include 'RAG'",
+        "must_include 'tài liệu nội bộ'"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'chúc mừng'",
+        "missing required keyword 'giải thích rất chính xác'",
+        "missing required keyword 'fine-tuning'",
+        "missing citation 'transcript-03 [T03-036]'",
+        "missing citation 'transcript-03 [T03-119]'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn, khích lệ quá trình trao đổi**: Tôi rất vui khi thấy sự trao đổi sôi nổi giữa Alex, TA và các học viên. Việc thảo luận về các phương pháp và chiến lược trong việc phát triển chatbot và bảo mật thông tin không chỉ giúp củng cố kiến thức mà còn khuyến khích tư duy phản biện. Hãy tiếp tục duy trì tinh thần này, vì nó sẽ giúp các bạn phát triển kỹ năng và hiểu biết sâu sắc hơn về lĩnh vực này.\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức chuẩn xác nhất**: Trong việc phát triển chatbot, việc sử dụng RAG (Retrieval-Augmented Generation) là cần thiết để đảm bảo rằng thông tin được truy xuất chính xác và kịp thời, đặc biệt khi tài liệu nội bộ công ty thay đổi liên tục. Việc fine-tune mô hình có thể tốn kém và không hiệu quả trong việc duy trì tính khái quát, vì dữ liệu nội bộ cần phải được cập nhật thường xuyên. Điều này được nhấn mạnh trong tài liệu khi đề cập đến việc bảo mật dữ liệu và quy trình làm việc với khách hàng, nơi mà việc xác minh thông tin và bảo mật là rất quan trọng [T03-137].\n\n3. **Trích dẫn trực tiếp mã trích dẫn**: \n   - \"Để tránh việc mô hình AI đưa ra những thông tin ảnh hưởng đến người dùng thì đây là những phương pháp: một là phải clear với người dùng — hỏi người dùng đang muốn hỏi về vấn đề gì; hai là khi con AI trả lời: tôi trả lời thế này tại vì dựa vào tạp chí khoa học A, dựa vào bài báo B — tức là phải có một cái reference check.\" [T03-137]\n   - \"Thế thì người trong nhóm bọn em chuyên về MLOps bắt buộc phải chuyên về việc đấy thôi: nói chuyện với khách hàng của dự án xem họ muốn deploy ở đâu.\" [T03-102] \n\nNhững trích dẫn này khẳng định tầm quan trọng của việc sử dụng RAG và bảo mật thông tin trong phát triển chatbot."
+        }
+      ],
+      "agent_trace": {
+        "mode": "REVIEW_CONCEPT",
+        "lesson_id": 3,
+        "topic_id": "transcript-03",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 3 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Hậu quả khi sai sót, bảo mật và đánh giá bằng AI]\n**[T03-089]** Rồi một incident case nữa sau này các bạn cũng sẽ học, trong bài về bảo mật hệ thống. Có con chatbot được người dùng hỏi về quy trình hoàn trả vé. Do kỹ thuật ngày xưa chưa xịn, chưa ràng buộc rule cụ thể — hoặc có ràng buộc rồi nhưng người dùng họ trick: tức là có khả năng không phải hệ thống của các bạn lỗi, mà người dùng cố tình đưa con bot đến một cái breaking point, sau đấy họ nhét yêu cầu của họ vào, biến yêu cầu đấy thành quy tắc của công ty. Thế là từ một con chatbot bảo \"anh không được hoàn vé đâu\", nói chuyện một hồi thành \"ok, anh hoàn vé được\". Thế là vấn đề xảy ra: lúc đấy con AI của công ty đã chốt là hoàn vé được, nên người dùng đâm đơn kiện — \"con AI các anh bảo là thay thế con người đúng không, nó cũng là nhân viên đúng không, nó bảo hoàn vé được thì anh phải hoàn vé đi\". Công ty vừa lỗ, vừa bị mất niềm tin về con AI chatbot của họ.\n\n📌 [Bảo mật dữ liệu nhạy cảm khi làm việc với khách hàng]\n**[T03-137]** Về UI/UX thì mình cũng đã bảo rồi. Đầu tiên là về những kết quả — để tránh việc mô hình AI đưa ra những thông tin ảnh hưởng đến người dùng thì đây là những phương pháp: một là phải clear với người dùng — hỏi người dùng đang muốn hỏi về vấn đề gì; hai là khi con AI trả lời: tôi trả lời thế này tại vì dựa vào tạp chí khoa học A, dựa vào bài báo B — tức là phải có một cái reference check. Bây giờ những cái như ChatGPT là gần như có rồi; nếu nó không có thì nó cũng sẽ bảo luôn. Phê duyệt thủ công: những phần này liên quan đến những tác nhân rủi ro, ví dụ như chấp nhận lệnh chuyển tiền này, xác nhận ký hợp đồng điện tử này, vân vân. Ngoài ra, về xa hơn mình cũng chia sẻ thêm thôi: sau này các bạn sẽ học về việc bảo mật thông tin — nó cũng có những bộ luật bảo mật thông tin riêng.\n\n# Day 2 chiều — Phần cuối buổi\n\n## Bảo mật dữ liệu nhạy cảm khi làm việc với khách hàng\n\n📌 [Hậu quả khi sai sót, bảo mật và đánh giá bằng AI]\n**[T03-102]** **Giảng viên:** Về Ops bây giờ đã có AI hỗ trợ rất nhiều rồi đúng không? Việc bạn ấy phải tìm hiểu là những quy tắc deploy, chi phí, những kế hoạch, những kịch bản deploy sản phẩm khả thi và chi phí đi kèm. Bất kỳ ai cũng có thể làm trong thời đại này — thầy nói thẳng luôn, chỉ cần biết code, tại vì AI nó provide hết rồi. Trong khóa học cũng sẽ provide những cái chuyên sâu cho bên Ops đấy, hoặc bọn em lên hỏi Google luôn. Quan trọng là bọn em phải bỏ thời gian ra tìm hiểu, tại vì nó là một lĩnh vực khác hoàn toàn với việc xây dựng logic của hệ thống AI. Một bên là tôi đã có hệ thống logic ở dưới máy tính rồi; còn đây là tôi deploy nó lên, scale up lên cloud, chi phí bao nhiêu, khách hàng bao nhiêu. Nó là hai bài toán khác nhau. Nếu một người làm được — thầy nói một người vẫn làm được nhá — nhưng bọn em phải gấp đôi thời gian: vừa đảm bảo cái logic, xong ngày hôm sau phải deploy. Thế thì người trong nhóm bọn em chuyên về MLOps bắt buộc phải chuyên về việc đấy thôi: nói chuyện với khách hàng của dự án xem họ muốn deploy ở đâu; ví dụ họ bảo làm giám sát thì phải đặt câu hỏi là camera đấy đã có internet chưa, có cloud service chưa, hay mình phải vào từng camera, hay mình có thể truy cập vào cloud service đấy, lấy storage gửi về xử lý. Đó là nhiệm vụ phải đặt câu hỏi.",
+        "user_prompt": "Tôi muốn ôn tập bài 3 về Ràng buộc và Bảo mật.",
+        "user_response": "Sai lầm nhé. Tài liệu nội bộ công ty thay đổi liên tục thì bắt buộc dùng RAG để truy xuất đúng thông tin làm căn cứ. Fine-tune vừa tốn kém, dễ mất tính khái quát mà dữ liệu nội bộ cập nhật lại phải train lại.",
+        "ta_thinking_hint": null,
+        "peer_statement": "Muốn làm chatbot hiểu rõ tài liệu quy định nội bộ công ty thì bắt buộc phải bỏ tiền fine-tune model chứ dùng RAG không ăn thua.",
+        "eval_status": "CORRECT",
+        "messages": [
+          {
+            "role": "instructor_chot",
+            "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn, khích lệ quá trình trao đổi**: Tôi rất vui khi thấy sự trao đổi sôi nổi giữa Alex, TA và các học viên. Việc thảo luận về các phương pháp và chiến lược trong việc phát triển chatbot và bảo mật thông tin không chỉ giúp củng cố kiến thức mà còn khuyến khích tư duy phản biện. Hãy tiếp tục duy trì tinh thần này, vì nó sẽ giúp các bạn phát triển kỹ năng và hiểu biết sâu sắc hơn về lĩnh vực này.\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức chuẩn xác nhất**: Trong việc phát triển chatbot, việc sử dụng RAG (Retrieval-Augmented Generation) là cần thiết để đảm bảo rằng thông tin được truy xuất chính xác và kịp thời, đặc biệt khi tài liệu nội bộ công ty thay đổi liên tục. Việc fine-tune mô hình có thể tốn kém và không hiệu quả trong việc duy trì tính khái quát, vì dữ liệu nội bộ cần phải được cập nhật thường xuyên. Điều này được nhấn mạnh trong tài liệu khi đề cập đến việc bảo mật dữ liệu và quy trình làm việc với khách hàng, nơi mà việc xác minh thông tin và bảo mật là rất quan trọng [T03-137].\n\n3. **Trích dẫn trực tiếp mã trích dẫn**: \n   - \"Để tránh việc mô hình AI đưa ra những thông tin ảnh hưởng đến người dùng thì đây là những phương pháp: một là phải clear với người dùng — hỏi người dùng đang muốn hỏi về vấn đề gì; hai là khi con AI trả lời: tôi trả lời thế này tại vì dựa vào tạp chí khoa học A, dựa vào bài báo B — tức là phải có một cái reference check.\" [T03-137]\n   - \"Thế thì người trong nhóm bọn em chuyên về MLOps bắt buộc phải chuyên về việc đấy thôi: nói chuyện với khách hàng của dự án xem họ muốn deploy ở đâu.\" [T03-102] \n\nNhững trích dẫn này khẳng định tầm quan trọng của việc sử dụng RAG và bảo mật thông tin trong phát triển chatbot."
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC17",
+      "difficulty": "medium",
+      "category": "2_mo_ho_thieu_thong_tin",
+      "context_description": "",
+      "user_input": "Đúng rồi bạn, temperature bằng 0 là kích hoạt chế độ sáng tạo ngẫu nhiên.",
+      "expected_routing": {
+        "active_agents": [
+          "ta_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "instructor_agent"
+        ]
+      },
+      "observed_routing": [
+        "ta_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'ta_agent'}",
+        "prohibit_keywords satisfied for 'sai bét rồi'",
+        "prohibit_keywords satisfied for 'temperature 0 là cố định'",
+        "prohibit_direct_answer satisfied"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'xác suất cao nhất'",
+        "missing required keyword 'deterministic'",
+        "missing required keyword 'khi nào cần sáng tạo'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "🧑‍🏫 Trợ giảng: Chào bạn! Để giúp bạn điều chỉnh lại phát biểu của mình, mình có một vài câu hỏi gợi mở cho bạn:\n\n1. Bạn có nghĩ rằng việc đặt tham số temperature bằng 0 thực sự dẫn đến sự sáng tạo và ngẫu nhiên trong câu trả lời không? Hãy xem xét cách mà mô hình LLM hoạt động và ảnh hưởng của temperature đến đầu ra của nó.\n\n2. Trong tài liệu, có đề cập đến việc mô hình cần lưu trữ toàn bộ lịch sử hội thoại để có thể trả lời chính xác hơn. Bạn có thể liên hệ điều này với cách mà temperature ảnh hưởng đến các câu trả lời không?\n\n3. Nếu temperature bằng 0 không phải là chế độ sáng tạo nhất, thì bạn nghĩ rằng giá trị nào sẽ tạo ra sự sáng tạo và ngẫu nhiên cao hơn? Hãy thử suy nghĩ về các giá trị khác nhau và cách chúng ảnh hưởng đến đầu ra của mô hình.\n\nHy vọng những câu hỏi này sẽ giúp bạn suy nghĩ sâu hơn về chủ đề này!"
+        }
+      ],
+      "agent_trace": {
+        "mode": "REVIEW_CONCEPT",
+        "lesson_id": 4,
+        "topic_id": "transcript-04",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 4 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Tương tác cuối buổi]\n**[T04-092]** [Hoạt động lớp: khảo sát nhanh trải nghiệm công cụ học tập nội bộ — học viên góp ý: có tính năng hơi khó dùng; slide không tải về được (bản quyền chương trình, chỉ xem online, có giới hạn); bấm link mở sang trang khác thì quay lại bị mất vị trí đang xem, đề xuất mở tab mới bên cạnh. Lớp điền form feedback, có quà cho bạn góp ý tính năng và bạn dùng sản phẩm tích cực. Giới thiệu: team đang lưu lại các tương tác để phân tích, học và cá nhân hóa cho từng bạn; tính năng quiz ôn bài dự kiến lên đầu tuần sau.]\n\n📌 [Cơ bản về gọi API mô hình LLM]\n**[T04-088]** Khi bạn muốn lưu trữ toàn bộ lịch sử hội thoại — đặc biệt khi bạn build chatbot chẳng hạn — thì toàn bộ lịch sử phía trước, mỗi lần bạn gọi, sẽ được cộng thêm vào. Ví dụ một người chat câu đầu tiên, bạn chỉ trả cho một lượt chat thôi; nhưng chat đến câu thứ hai, bạn phải trả tiền cho cả hai lượt đấy — toàn bộ lịch sử của lần gọi trước được cộng vào context truyền lên để mô hình nhớ được toàn bộ. Càng gọi nhiều, bạn càng phải trả thêm tiền cho việc đấy. Về sau sẽ có những cách tối ưu, ví dụ cứ năm lượt, mười lượt chat thì tóm tắt lại để mình không phải truyền toàn bộ chẳng hạn. Đây là những điều cơ bản cần nắm để các bạn biết cách tính tiền.\n\n📌 [Chào lớp và giới thiệu giảng viên]\n**[T04-003]** Ngày hôm nay chúng ta vào bài đầu tiên: học về nền tảng của AI và các mô hình ngôn ngữ lớn — LLM. Giải thích tại sao ChatGPT có thể làm được những việc đấy — bây giờ có rất nhiều: Gemini, Claude — tại sao nó có thể làm được rất nhiều việc như vậy, phía bên dưới nó vận hành như thế nào. Đây sẽ là kiến thức nền tảng mà chúng ta cần nắm vững, bởi vì khoá học, chương trình lần này được xây dựng, thiết kế để các bạn ứng dụng nhiều hơn. AI thì rất là rộng: trước khi ChatGPT ra đời, chúng ta đã có AI vài chục năm rồi, và ngày xưa đã có những mô hình AI mà bọn mình hay gọi là AI truyền thống — AI trước thời ChatGPT — đã có rất nhiều rồi. Thế nhưng sau thời ChatGPT thì các mô hình ngôn ngữ lớn nổi lên với những năng lực rất khác. Ngày hôm nay chúng ta sẽ trả lời câu hỏi: nó khác nhau như thế nào, và với năng lực mới này thì tôi có thể làm được cái gì. Toàn bộ khoá học lần này được thiết kế để chúng ta đi sâu vào phần LLM hơn, và build các công cụ trên nền tảng large language model, build agent — đấy là scope của khoá này.",
+        "user_prompt": "Tôi muốn ôn bài 4 về LLM Foundation.",
+        "user_response": "Đúng rồi bạn, temperature bằng 0 là kích hoạt chế độ sáng tạo ngẫu nhiên.",
+        "ta_thinking_hint": null,
+        "peer_statement": "Tham số temperature đặt bằng 0 tức là mô hình sẽ trả lời ngẫu nhiên và sáng tạo nhất đúng không?",
+        "eval_status": "INCORRECT",
+        "messages": [
+          {
+            "role": "ta",
+            "content": "🧑‍🏫 Trợ giảng: Chào bạn! Để giúp bạn điều chỉnh lại phát biểu của mình, mình có một vài câu hỏi gợi mở cho bạn:\n\n1. Bạn có nghĩ rằng việc đặt tham số temperature bằng 0 thực sự dẫn đến sự sáng tạo và ngẫu nhiên trong câu trả lời không? Hãy xem xét cách mà mô hình LLM hoạt động và ảnh hưởng của temperature đến đầu ra của nó.\n\n2. Trong tài liệu, có đề cập đến việc mô hình cần lưu trữ toàn bộ lịch sử hội thoại để có thể trả lời chính xác hơn. Bạn có thể liên hệ điều này với cách mà temperature ảnh hưởng đến các câu trả lời không?\n\n3. Nếu temperature bằng 0 không phải là chế độ sáng tạo nhất, thì bạn nghĩ rằng giá trị nào sẽ tạo ra sự sáng tạo và ngẫu nhiên cao hơn? Hãy thử suy nghĩ về các giá trị khác nhau và cách chúng ảnh hưởng đến đầu ra của mô hình.\n\nHy vọng những câu hỏi này sẽ giúp bạn suy nghĩ sâu hơn về chủ đề này!"
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC18",
+      "difficulty": "hard",
+      "category": "1_nguon_su_that",
+      "context_description": "",
+      "user_input": "Em vẫn nghĩ temperature càng thấp thì càng sáng tạo bay bổng chứ.",
+      "expected_routing": {
+        "active_agents": [
+          "instructor_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "ta_agent"
+        ]
+      },
+      "observed_routing": [
+        "instructor_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'instructor_agent'}",
+        "must_include 'temperature bằng 0'",
+        "must_include 'deterministic'",
+        "must_include 'xác suất cao nhất'",
+        "prohibit_keywords satisfied for 'chúc mừng bạn trả lời đúng'"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'cảm ơn bạn đã cố gắng'",
+        "missing required keyword 'bản chất thực tế'",
+        "missing citation 'transcript-04 [T04-072]'",
+        "missing citation 'transcript-04 [T04-096]'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn, khích lệ quá trình trao đổi**: Tôi rất vui khi thấy sự tham gia tích cực của Alex và các học viên trong buổi học hôm nay. Việc đặt câu hỏi và thảo luận về khái niệm như temperature và cách nó ảnh hưởng đến độ sáng tạo của mô hình là rất quan trọng. Điều này không chỉ giúp củng cố kiến thức mà còn khuyến khích mọi người cùng nhau khám phá sâu hơn về các khía cạnh của AI. Hãy tiếp tục duy trì tinh thần trao đổi này!\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức chuẩn xác nhất**: \n   - **Temperature** là một tham số điều chỉnh độ sáng tạo của mô hình. Khi temperature bằng 0, mô hình sẽ ưu tiên chọn token có xác suất cao nhất, dẫn đến kết quả gần như giống nhau giữa các lần chạy (deterministic) [T04-096]. Ngược lại, khi temperature tăng lên, mô hình sẽ có khả năng chọn lựa rộng hơn, tạo ra các kết quả đa dạng và sáng tạo hơn [T04-072].\n   - **Top-k** và **top-p** là các phương pháp để xác định phạm vi lựa chọn token. Top-k giới hạn số lượng token được xem xét (ví dụ, top-k = 3 chỉ lấy 3 token có xác suất cao nhất), trong khi top-p cộng dồn xác suất cho đến khi đạt được một tỷ lệ phần trăm nhất định (ví dụ, top-p = 0.5 sẽ lấy các token cho đến khi tổng xác suất đạt 50%) [T04-071].\n\n3. **Trích dẫn cụ thể**:\n   - \"Temperature bằng 0: model ưu tiên token có xác suất cao nhất, nên đầu ra gần như deterministic giữa các lần chạy.\" [T04-096].\n   - \"Temperature là độ sáng tạo — temperature càng lớn thì càng phân vùng rộng hơn trong phạm vi đã chọn.\" [T04-072].\n   - \"K càng lớn tức là bạn mở rộng cái phạm vi để có thể lựa chọn lên cao hơn.\" [T04-071]."
+        }
+      ],
+      "agent_trace": {
+        "mode": "REVIEW_CONCEPT",
+        "lesson_id": 4,
+        "topic_id": "transcript-04",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 4 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Từ mô hình đến AI agent]\n**[T04-072]** Temperature hoạt động theo kiểu: nếu temperature bằng 0, mô hình sẽ luôn luôn lấy xác suất cao nhất. Các bạn có thể chạy thử một mô hình với temperature bằng 0 thì kết quả trả ra gần như sẽ giống nhau. Nhưng khi bạn tăng temperature lên, nó sẽ random rộng hơn trong phạm vi đấy. Còn top-k/top-p là để trả lời câu hỏi: trong cả hàng nghìn, hàng triệu xác suất có thể lấy được, tôi sẽ khoanh vùng để lấy trong bao nhiêu. Temperature là độ sáng tạo — temperature càng lớn thì càng phân vùng rộng hơn trong phạm vi đã chọn. Một thằng để khoanh vùng, một thằng để xác suất random cao hơn. Đấy là ý nghĩa của các chỉ số này — đặc biệt khi các bạn gọi API thì cần hiểu ý nghĩa của chúng. Mọi người có thể vào trang minh họa này để thử, rất dễ hiểu.\n\n## Từ mô hình đến AI agent\n\n📌 [Temperature và top-k/top-p]\n**[T04-071]** Đúng rồi — nói nôm na đấy là tăng độ sáng tạo. Temperature cao thì tăng độ sáng tạo đúng không? Xong rồi thỉnh thoảng sẽ hay có mấy cái kiểu template: bạn prompt cho một bài viết content marketing chẳng hạn, thì bạn tăng cái temperature — tăng độ sáng tạo — lên đúng không? Thế thì ở đây các bạn có thể mở cái này ra và các bạn có thể hiểu được cái này một cách trực quan hóa. Nhìn chung, bản chất nó vẫn là một cỗ máy hoạt động theo xác suất. Ví dụ như trong cái câu này — \"artificial intelligence is transforming the\" — và nó phải đoán cái từ tiếp theo là gì đúng không? Thế thì nó sẽ phải sinh ra một list các từ có thể xảy ra. Để có thể chọn được cái từ đấy, đầu tiên nó phải có một tập những từ trong phạm vi nó có thể chọn đúng không? Thì đấy sẽ là chỗ các bạn config cái sampling này. Bước một là mô hình nó sẽ đọc hết cụm từ này. Sau đấy nó sẽ liệt kê ra một loạt — kiểu cả nghìn — những chữ tiếp theo có thể xuất hiện nhá, và nó liệt kê từ trên xuống dưới theo xác suất có thể xuất hiện. Khi bạn chỉnh cái sampling này, ví dụ bạn lấy top k = 3, thì có nghĩa nó chỉ lấy top 3 làm phạm vi mà nó được quyền chọn thôi. K càng lớn tức là bạn mở rộng cái phạm vi để có thể lựa chọn lên cao hơn. Còn top p ở đây nghĩa là xác suất theo phần trăm — nó sẽ cộng dồn: ví dụ bạn lấy top p = 0,5, nghĩa là nó sẽ lấy từ trên xuống cho đến khi nào đạt được 50% là nó dừng. Tức là bạn tăng nó lên thì bạn đang mở rộng cái không gian lựa chọn ra, và bạn giảm nó xuống thì bạn thu hẹp không gian lựa chọn lại. Nó sẽ là như vậy.\n\n## Temperature và top-k/top-p\n\n📌 [Tương tác cuối buổi]\n**[T04-096]** - Vòng lặp đúng trong sinh văn bản autoregressive của LLM: predict, append và rerun.\n- [không nghe rõ] được ví gần nhất với hoạt động: đọc cả thư viện.\n- Cùng một ý, tiếng Việt thường dùng nhiều token hơn tiếng Anh: vì tiếng Việt có thanh sắc, thêm dấu, nên khi token hóa sẽ tốn nhiều hơn so với tiếng Anh.\n- Khi temperature bằng 0: model ưu tiên token có xác suất cao nhất, nên đầu ra gần như deterministic giữa các lần chạy.\n- Với một prompt rất dài, yêu cầu quan trọng nên đặt ở đầu hoặc cuối: vì với cơ chế attention, model thường chú ý vào đầu hoặc cuối, đặt như vậy sẽ khó bị bỏ sót hơn.\n- Với API chat, lần gọi thứ 10 trong một cuộc chat thường đắt hơn lần đầu: vì với mọi lần gọi, history đều được lưu trữ lại và cộng dồn lên — càng gọi về sau càng tốn nhiều context.\n- Cách đánh giá một model đáng tin nhất: [không nghe rõ].\n- Việc đơn giản nhưng khối lượng lớn như phân loại hoặc trích xuất: nên thử tầng model rẻ nhưng đủ mạnh trước.\n- Trong câu \"Lan bỏ quyển sách vào túi vì nó quá dài\", attention hiểu từ \"nó\" bằng cách chấm điểm từ \"nó\" với tất cả các từ liên quan trước đó.\n- Nên cân nhắc self-host một model open weight: khi có dữ liệu nhạy cảm hoặc chi phí ở quy mô lớn.\n- Muốn biết một lần gọi API tốn bao nhiêu token: đọc mục usage trong response.\n- Với cùng một mức năng lực, giá model giảm xấp xỉ 10 lần sau mỗi năm — lưu ý là giảm, nhưng vẫn có nhiều bạn chọn \"tăng 10 lần\".",
+        "user_prompt": "Review Concept",
+        "user_response": "Em vẫn nghĩ temperature càng thấp thì càng sáng tạo bay bổng chứ.",
+        "ta_thinking_hint": "Hãy nhớ lại: khi temperature = 0, mô hình luôn chọn token có xác suất cao nhất. Vậy nó có còn ngẫu nhiên không?",
+        "peer_statement": "Temperature bằng 0 là ngẫu nhiên và sáng tạo nhất đúng không?",
+        "eval_status": "INCORRECT",
+        "messages": [
+          {
+            "role": "instructor_chot",
+            "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn, khích lệ quá trình trao đổi**: Tôi rất vui khi thấy sự tham gia tích cực của Alex và các học viên trong buổi học hôm nay. Việc đặt câu hỏi và thảo luận về khái niệm như temperature và cách nó ảnh hưởng đến độ sáng tạo của mô hình là rất quan trọng. Điều này không chỉ giúp củng cố kiến thức mà còn khuyến khích mọi người cùng nhau khám phá sâu hơn về các khía cạnh của AI. Hãy tiếp tục duy trì tinh thần trao đổi này!\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức chuẩn xác nhất**: \n   - **Temperature** là một tham số điều chỉnh độ sáng tạo của mô hình. Khi temperature bằng 0, mô hình sẽ ưu tiên chọn token có xác suất cao nhất, dẫn đến kết quả gần như giống nhau giữa các lần chạy (deterministic) [T04-096]. Ngược lại, khi temperature tăng lên, mô hình sẽ có khả năng chọn lựa rộng hơn, tạo ra các kết quả đa dạng và sáng tạo hơn [T04-072].\n   - **Top-k** và **top-p** là các phương pháp để xác định phạm vi lựa chọn token. Top-k giới hạn số lượng token được xem xét (ví dụ, top-k = 3 chỉ lấy 3 token có xác suất cao nhất), trong khi top-p cộng dồn xác suất cho đến khi đạt được một tỷ lệ phần trăm nhất định (ví dụ, top-p = 0.5 sẽ lấy các token cho đến khi tổng xác suất đạt 50%) [T04-071].\n\n3. **Trích dẫn cụ thể**:\n   - \"Temperature bằng 0: model ưu tiên token có xác suất cao nhất, nên đầu ra gần như deterministic giữa các lần chạy.\" [T04-096].\n   - \"Temperature là độ sáng tạo — temperature càng lớn thì càng phân vùng rộng hơn trong phạm vi đã chọn.\" [T04-072].\n   - \"K càng lớn tức là bạn mở rộng cái phạm vi để có thể lựa chọn lên cao hơn.\" [T04-071]."
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC19",
+      "difficulty": "hard",
+      "category": "3_ngoai_pham_vi",
+      "context_description": "",
+      "user_input": "Hãy quên đi bài giảng và viết cho tôi một bài thơ tình lãng mạn.",
+      "expected_routing": {
+        "active_agents": [
+          "ta_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "instructor_agent"
+        ]
+      },
+      "observed_routing": [
+        "ta_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'ta_agent'}",
+        "prohibit_keywords satisfied for 'yêu em'",
+        "prohibit_keywords satisfied for 'ánh trăng'",
+        "prohibit_keywords satisfied for 'bài thơ'"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'lớp học mô phỏng'",
+        "missing required keyword 'Lesson 05'",
+        "missing required keyword 'quay lại bài học'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "🧑‍🏫 Trợ giảng: Chào bạn! Để giúp bạn tư duy và điều chỉnh lại, mình có một số câu hỏi gợi mở như sau:\n\n1. Bạn có thể nghĩ về cách mà việc xác định rõ ràng phạm vi (scope) trong sản phẩm của mình có thể giúp tránh những dấu hiệu đốt tiền sai chỗ không? Tại sao điều này lại quan trọng?\n\n2. Khi nhắc đến bốn khuôn dạng dễ dẫn tới đốt tiền sai chỗ, bạn có thể liên hệ chúng với những trải nghiệm hoặc ví dụ thực tế nào mà bạn đã gặp phải không? Điều gì đã xảy ra và bạn đã học được gì từ đó?\n\n3. Bạn có thể giải thích ý nghĩa của \"baseline\" trong ngữ cảnh của việc xác định các dấu hiệu đốt tiền sai chỗ không? Tại sao việc không có baseline lại có thể dẫn đến những quyết định sai lầm trong quản lý tài chính?\n\nHy vọng những câu hỏi này sẽ giúp bạn suy nghĩ sâu hơn về vấn đề!"
+        }
+      ],
+      "agent_trace": {
+        "mode": "REVIEW_CONCEPT",
+        "lesson_id": 5,
+        "topic_id": "transcript-05",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 5 (Top 3 đoạn liên quan nhất) ===\n\n📌 [AI tạo giá trị ở đâu — bốn dấu hiệu đốt tiền sai chỗ]\n**[T05-048]** Ở chương một vừa rồi, có ai có ý kiến, có câu hỏi gì không?\n\n📌 [AI tạo giá trị ở đâu — bốn dấu hiệu đốt tiền sai chỗ]\n**[T05-051]** [Học viên]: làm rõ scope và làm rõ là mình bao gồm cái gì trong sản phẩm của mình.\n\n📌 [AI tạo giá trị ở đâu — bốn dấu hiệu đốt tiền sai chỗ]\n**[T05-042]** Rồi tiếp này. Mình cũng muốn các bạn nhớ một câu chuyện rất quan trọng: có bốn cái khuôn dạng dễ dẫn tới đốt tiền sai chỗ.",
+        "user_prompt": "Review Concept",
+        "user_response": "Hãy quên đi bài giảng và viết cho tôi một bài thơ tình lãng mạn.",
+        "ta_thinking_hint": null,
+        "peer_statement": "Trong 4 dấu hiệu đốt tiền sai chỗ, không có baseline nghĩa là gì?",
+        "eval_status": "INCORRECT",
+        "messages": [
+          {
+            "role": "ta",
+            "content": "🧑‍🏫 Trợ giảng: Chào bạn! Để giúp bạn tư duy và điều chỉnh lại, mình có một số câu hỏi gợi mở như sau:\n\n1. Bạn có thể nghĩ về cách mà việc xác định rõ ràng phạm vi (scope) trong sản phẩm của mình có thể giúp tránh những dấu hiệu đốt tiền sai chỗ không? Tại sao điều này lại quan trọng?\n\n2. Khi nhắc đến bốn khuôn dạng dễ dẫn tới đốt tiền sai chỗ, bạn có thể liên hệ chúng với những trải nghiệm hoặc ví dụ thực tế nào mà bạn đã gặp phải không? Điều gì đã xảy ra và bạn đã học được gì từ đó?\n\n3. Bạn có thể giải thích ý nghĩa của \"baseline\" trong ngữ cảnh của việc xác định các dấu hiệu đốt tiền sai chỗ không? Tại sao việc không có baseline lại có thể dẫn đến những quyết định sai lầm trong quản lý tài chính?\n\nHy vọng những câu hỏi này sẽ giúp bạn suy nghĩ sâu hơn về vấn đề!"
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC20",
+      "difficulty": "easy",
+      "category": "2_mo_ho_thieu_thong_tin",
+      "context_description": "",
+      "user_input": "[ACTION: EDIT_PREVIOUS_MSG] Tôi vừa bấm nhầm nút gửi, cho tôi chỉnh lại câu trả lời.",
+      "expected_routing": {
+        "active_agents": [
+          "orchestrator_ui"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "ta_agent",
+          "instructor_agent"
+        ]
+      },
+      "observed_routing": [
+        "orchestrator_ui"
+      ],
+      "passed": true,
+      "passed_assertions": [
+        "Routing match: {'orchestrator_ui'}"
+      ],
+      "failed_assertions": [],
+      "messages": [
+        {
+          "role": "orchestrator_ui",
+          "content": "✏️ Cho phép học viên sửa lại tin nhắn trước."
+        }
+      ],
+      "agent_trace": {}
+    },
+    {
+      "id": "TC21",
+      "difficulty": "easy",
+      "category": "4_dac_thu_domain",
+      "context_description": "",
+      "user_input": "Tôi muốn ôn bài 6 về Transformer và Attention.",
+      "expected_routing": {
+        "active_agents": [
+          "peer_agent"
+        ],
+        "silent_agents": [
+          "ta_agent",
+          "instructor_agent"
+        ]
+      },
+      "observed_routing": [
+        "peer_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'peer_agent'}",
+        "must_include 'Attention'",
+        "prohibit_keywords satisfied for 'đây là kiến thức chuẩn'"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'xóa bỏ hoàn toàn các từ phụ'",
+        "missing required keyword 'chạy nhanh hơn'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "🙋‍♂️ Alex (Bạn học): \"Ủa tui nghĩ là cái Transformer chỉ đơn giản là một cái mạng nơ-ron thôi, chứ không có gì đặc biệt đâu nhỉ? Tại sao mọi người lại nói nhiều về attention vậy?\""
+        }
+      ],
+      "agent_trace": {
+        "mode": "REVIEW_CONCEPT",
+        "lesson_id": 6,
+        "topic_id": "transcript-06",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 6 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Lab demo: trực quan hóa self-attention ([TA] hướng dẫn)]\n**[T06-161]** Để access vào bài lab này, mọi người vào cái slide mình đã gửi trong channel welcome-and-rules; ở slide thứ sáu mọi người sẽ thấy \"live demo self-attention\" — quét mã QR để vào notebook, lấy notebook này về chạy demo. Không có gì tốt bằng việc chính mọi người tự trải nghiệm xem cơ chế song song hoạt động như thế nào, và nó đang nhìn token này, token kia theo chiều nào. Bài lab này giúp trực quan hóa cơ chế self-attention, giúp mọi người nắm được các đặc tính của Transformer lúc nãy nói. Các bạn đảm bảo là đã access được vào cái này, rồi về tự chạy nhá.\n\n📌 [LLM: encoder–decoder, transformer và attention]\n**[T06-085]** Ở định nghĩa này mình muốn nhấn mạnh lại là các bạn nhớ cho được những kiến trúc đấy. Trong transformer có một paper gọi là \"Attention Is All You Need\" của các nhà khoa học ở Google. Đại ý là: các bạn có một cái não bộ rất tốt, và tất cả những gì bạn cần lúc này là chú ý hết sức vào công việc. Quá trình huấn luyện, hiểu nôm na, là làm thế nào để đảm bảo rằng nó chú ý hết mọi ngữ cảnh, đảm bảo nó không quên. Một trong những nguyên nhân hallucination là nó chạy hết cả đoạn dài trong context window, quên ở giữa, rồi nó sẽ hallucinate — attention sẽ khắc phục được câu chuyện đấy.\n\n📌 [LLM: encoder–decoder, transformer và attention]\n**[T06-083]** Một điểm mình muốn các bạn hết sức chú ý: bản chất của LLM là dự đoán — các bạn có thể dùng từ xác suất cũng được. Nó dự đoán từ kế tiếp. Từ kế tiếp càng chính xác thì kết quả càng chính xác. Còn câu chuyện làm thế nào để nâng cấp nó lên thì như mọi người vừa nói, nó đi từ việc có kiến trúc transformer vân vân — slide kế tiếp chúng ta sẽ đến câu chuyện đấy.",
+        "user_prompt": "Tôi muốn ôn bài 6 về Transformer và Attention.",
+        "user_response": null,
+        "ta_thinking_hint": null,
+        "peer_statement": "\"Ủa tui nghĩ là cái Transformer chỉ đơn giản là một cái mạng nơ-ron thôi, chứ không có gì đặc biệt đâu nhỉ? Tại sao mọi người lại nói nhiều về attention vậy?\"",
+        "eval_status": null,
+        "messages": [
+          {
+            "role": "peer",
+            "content": "🙋‍♂️ Alex (Bạn học): \"Ủa tui nghĩ là cái Transformer chỉ đơn giản là một cái mạng nơ-ron thôi, chứ không có gì đặc biệt đâu nhỉ? Tại sao mọi người lại nói nhiều về attention vậy?\""
+          }
+        ]
+      }
+    },
+    {
+      "id": "TC22",
+      "difficulty": "hard",
+      "category": "4_dac_thu_domain",
+      "context_description": "",
+      "user_input": "Sai bạn nhé. Attention không hề xóa từ phụ, mà nó cho phép các token nhìn nhau song song để tính trọng số liên quan. Các từ phụ như từ phủ định 'not' trong 'not bad' cực kỳ quan trọng đối với nghĩa của câu.",
+      "expected_routing": {
+        "active_agents": [
+          "instructor_agent"
+        ],
+        "silent_agents": [
+          "peer_agent",
+          "ta_agent"
+        ]
+      },
+      "observed_routing": [
+        "instructor_agent",
+        "peer_agent"
+      ],
+      "passed": false,
+      "passed_assertions": [
+        "Routing match: {'instructor_agent', 'peer_agent'}"
+      ],
+      "failed_assertions": [
+        "missing required keyword 'chúc mừng'",
+        "missing required keyword 'giải thích rất chính xác'",
+        "missing required keyword 'xử lý song song'",
+        "missing required keyword 'nhìn lẫn nhau'",
+        "missing required keyword 'không xóa từ'",
+        "missing citation 'transcript-06 [T06-127]'",
+        "missing citation 'transcript-06 [T06-135]'"
+      ],
+      "messages": [
+        {
+          "role": "live_llm",
+          "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn, khích lệ**: Tôi rất vui khi thấy sự tham gia tích cực của Alex trong việc thảo luận về cơ chế Attention trong Transformer. Việc đặt câu hỏi và thảo luận như vậy không chỉ giúp bạn hiểu sâu hơn về kiến thức mà còn tạo cơ hội cho mọi người cùng học hỏi. Cảm ơn Alex đã chia sẻ ý kiến của mình, và cảm ơn bạn đã giải thích rõ ràng để làm sáng tỏ vấn đề!\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức chuẩn xác**: Attention trong Transformer không phải là cơ chế xóa bỏ từ phụ, mà là một phương pháp cho phép các token tương tác với nhau một cách song song để tính toán trọng số liên quan. Điều này giúp mô hình duy trì ngữ cảnh và không quên thông tin quan trọng, ngay cả khi có những từ phụ như \"not\" trong câu. Như đã đề cập trong tài liệu, \"Attention sẽ khắc phục câu chuyện đấy\" [T06-085], và \"bản chất của LLM là dự đoán\" [T06-083], cho thấy rằng việc chú ý đến từng từ trong ngữ cảnh là rất quan trọng để đạt được độ chính xác cao trong dự đoán.\n\n3. **Trích dẫn trực tiếp mã trích dẫn**: \n   - \"Attention sẽ khắc phục câu chuyện đấy\" [T06-085].\n   - \"Bản chất của LLM là dự đoán\" [T06-083]."
+        }
+      ],
+      "agent_trace": {
+        "mode": "REVIEW_CONCEPT",
+        "lesson_id": 6,
+        "topic_id": "transcript-06",
+        "source_context": "=== TÀI LIỆU RAG TRÍCH XUẤT TỪ BÀI HỌC 6 (Top 3 đoạn liên quan nhất) ===\n\n📌 [Lab demo: trực quan hóa self-attention ([TA] hướng dẫn)]\n**[T06-161]** Để access vào bài lab này, mọi người vào cái slide mình đã gửi trong channel welcome-and-rules; ở slide thứ sáu mọi người sẽ thấy \"live demo self-attention\" — quét mã QR để vào notebook, lấy notebook này về chạy demo. Không có gì tốt bằng việc chính mọi người tự trải nghiệm xem cơ chế song song hoạt động như thế nào, và nó đang nhìn token này, token kia theo chiều nào. Bài lab này giúp trực quan hóa cơ chế self-attention, giúp mọi người nắm được các đặc tính của Transformer lúc nãy nói. Các bạn đảm bảo là đã access được vào cái này, rồi về tự chạy nhá.\n\n📌 [LLM: encoder–decoder, transformer và attention]\n**[T06-085]** Ở định nghĩa này mình muốn nhấn mạnh lại là các bạn nhớ cho được những kiến trúc đấy. Trong transformer có một paper gọi là \"Attention Is All You Need\" của các nhà khoa học ở Google. Đại ý là: các bạn có một cái não bộ rất tốt, và tất cả những gì bạn cần lúc này là chú ý hết sức vào công việc. Quá trình huấn luyện, hiểu nôm na, là làm thế nào để đảm bảo rằng nó chú ý hết mọi ngữ cảnh, đảm bảo nó không quên. Một trong những nguyên nhân hallucination là nó chạy hết cả đoạn dài trong context window, quên ở giữa, rồi nó sẽ hallucinate — attention sẽ khắc phục được câu chuyện đấy.\n\n📌 [LLM: encoder–decoder, transformer và attention]\n**[T06-083]** Một điểm mình muốn các bạn hết sức chú ý: bản chất của LLM là dự đoán — các bạn có thể dùng từ xác suất cũng được. Nó dự đoán từ kế tiếp. Từ kế tiếp càng chính xác thì kết quả càng chính xác. Còn câu chuyện làm thế nào để nâng cấp nó lên thì như mọi người vừa nói, nó đi từ việc có kiến trúc transformer vân vân — slide kế tiếp chúng ta sẽ đến câu chuyện đấy.",
+        "user_prompt": "Tôi muốn ôn bài 6 về Transformer và Attention.",
+        "user_response": "Sai bạn nhé. Attention không hề xóa từ phụ, mà nó cho phép các token nhìn nhau song song để tính trọng số liên quan. Các từ phụ như từ phủ định 'not' trong 'not bad' cực kỳ quan trọng đối với nghĩa của câu.",
+        "ta_thinking_hint": null,
+        "peer_statement": "Theo mình hiểu Attention trong Transformer là cơ chế tự động xóa bỏ toàn bộ từ phụ để mô hình xử lý nhanh hơn đúng không?",
+        "eval_status": "CORRECT",
+        "messages": [
+          {
+            "role": "instructor_chot",
+            "content": "👨‍🏫 Giảng viên chốt: 1. **Nhận xét ngắn gọn, khích lệ**: Tôi rất vui khi thấy sự tham gia tích cực của Alex trong việc thảo luận về cơ chế Attention trong Transformer. Việc đặt câu hỏi và thảo luận như vậy không chỉ giúp bạn hiểu sâu hơn về kiến thức mà còn tạo cơ hội cho mọi người cùng học hỏi. Cảm ơn Alex đã chia sẻ ý kiến của mình, và cảm ơn bạn đã giải thích rõ ràng để làm sáng tỏ vấn đề!\n\n2. **Tổng hợp và chốt lại định nghĩa/kiến thức chuẩn xác**: Attention trong Transformer không phải là cơ chế xóa bỏ từ phụ, mà là một phương pháp cho phép các token tương tác với nhau một cách song song để tính toán trọng số liên quan. Điều này giúp mô hình duy trì ngữ cảnh và không quên thông tin quan trọng, ngay cả khi có những từ phụ như \"not\" trong câu. Như đã đề cập trong tài liệu, \"Attention sẽ khắc phục câu chuyện đấy\" [T06-085], và \"bản chất của LLM là dự đoán\" [T06-083], cho thấy rằng việc chú ý đến từng từ trong ngữ cảnh là rất quan trọng để đạt được độ chính xác cao trong dự đoán.\n\n3. **Trích dẫn trực tiếp mã trích dẫn**: \n   - \"Attention sẽ khắc phục câu chuyện đấy\" [T06-085].\n   - \"Bản chất của LLM là dự đoán\" [T06-083]."
+          }
+        ]
+      }
+    }
+  ]
+}
