@@ -216,21 +216,31 @@ export default function LessonsPage() {
                 Grounding bắt buộc: <span className="text-neutral-700 font-semibold">[transcript-06, lines X-Y]</span>
               </div>
 
-              <button
-                type="button"
-                onClick={() => handleStartSession()}
-                disabled={loading}
-                className="w-full sm:w-auto bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-mono font-bold px-8 py-3.5 rounded-2xl transition-all flex items-center justify-center space-x-2.5 disabled:opacity-50 cursor-pointer shadow-md hover:shadow-lg"
-              >
-                {loading ? (
-                  <>
-                    <span className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>Đang khởi tạo phòng học...</span>
-                  </>
-                ) : (
-                  <span>VÀO PHÒNG HỌC (START CLASSROOM) →</span>
-                )}
-              </button>
+              <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full sm:w-auto">
+                <Link
+                  href="/slide-ai"
+                  className="w-full sm:w-auto border border-neutral-300 hover:border-neutral-900 bg-white hover:bg-neutral-50 text-neutral-900 text-xs font-mono font-bold px-5 py-3.5 rounded-2xl transition-all flex items-center justify-center space-x-2 shadow-2xs cursor-pointer"
+                  title="Học bài tương tác bằng slide kết hợp chatbot AI"
+                >
+                  <span>📚 HỌC VỚI SLIDE AI</span>
+                </Link>
+
+                <button
+                  type="button"
+                  onClick={() => handleStartSession()}
+                  disabled={loading}
+                  className="w-full sm:w-auto bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-mono font-bold px-7 py-3.5 rounded-2xl transition-all flex items-center justify-center space-x-2.5 disabled:opacity-50 cursor-pointer shadow-md hover:shadow-lg"
+                >
+                  {loading ? (
+                    <>
+                      <span className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <span>Đang khởi tạo phòng học...</span>
+                    </>
+                  ) : (
+                    <span>VÀO PHÒNG HỌC (START CLASSROOM) →</span>
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { handleLocalStudentMessage } from "@/lib/orchestrator";
 
 const FASTAPI_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://127.0.0.1:8000";
 
@@ -14,13 +15,26 @@ export async function POST(
       return NextResponse.json({ detail: "Thiếu session ID" }, { status: 400 });
     }
 
-    const res = await fetch(`${FASTAPI_URL}/api/session/${sessionId}/message`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-      signal: AbortSignal.timeout(30000),
+    try {
+      const res = await fetch(`${FASTAPI_URL}/api/session/${sessionId}/message`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        signal: AbortSignal.timeout(1500),
+      });
+      if (res.ok) {
+        return NextResponse.json(await res.json());
+      }
+    } catch {}
+
+    const updated = handleLocalStudentMessage(sessionId, body.content || "", {
+      lesson_id: body.lesson_id,
+      slide_id: body.slide_id,
+      slide_title: body.slide_title,
+      slide_content: body.slide_content,
+      user_message: body.user_message || body.content,
     });
-    return NextResponse.json(await res.json(), { status: res.status });
+    return NextResponse.json(updated);
   } catch (err: any) {
     return NextResponse.json({ detail: err.message }, { status: 400 });
   }

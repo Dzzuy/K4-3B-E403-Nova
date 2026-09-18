@@ -10,7 +10,7 @@ interface HeaderProps {
   sessionId?: string;
   currentTurn?: number;
   status?: "IN_PROGRESS" | "ACHIEVED" | string;
-  activePage?: "home" | "classroom" | "summary" | "instructor" | "sessions";
+  activePage?: "home" | "classroom" | "summary" | "instructor" | "sessions" | "slide-ai";
 }
 
 export default function Header({
@@ -39,6 +39,7 @@ export default function Header({
 
   const isLessons = activePage === "home" || pathname === "/";
   const isClassroom = activePage === "classroom" || pathname.startsWith("/classroom");
+  const isSlideAi = activePage === "slide-ai" || pathname.startsWith("/slide-ai");
   const isSummary = activePage === "summary" || pathname.startsWith("/summary");
   const isInstructor = activePage === "instructor" || pathname.startsWith("/instructor");
   const isSessions = activePage === "sessions" || pathname.startsWith("/sessions");
@@ -148,7 +149,7 @@ export default function Header({
         {/* Right: Live Room Status & Micro Actions */}
         <div className="flex items-center space-x-3">
           {/* Active Lesson & Turn Badge */}
-          {isClassroom && (
+          {(isClassroom || isSlideAi) && (
             <div className="hidden lg:flex items-center space-x-2 px-2.5 py-1 rounded-full bg-neutral-50 border border-neutral-200 text-xs font-mono text-neutral-600">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span className="font-sans font-medium text-neutral-900">Attention (transcript-06)</span>
@@ -162,7 +163,7 @@ export default function Header({
           )}
 
           {/* Outcome Status Pill */}
-          {isClassroom && (
+          {(isClassroom || isSlideAi) && (
             <div>
               {isAchieved ? (
                 <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-neutral-900 text-white text-[11px] font-mono font-semibold shadow-xs">
@@ -178,23 +179,52 @@ export default function Header({
             </div>
           )}
 
-          {/* Classroom -> Summary Quick Action */}
-          {isClassroom && activeSessionId && (
+          {/* Quick Cross-Navigation Actions */}
+          {isSlideAi && activeSessionId && (
             <Link
-              href={`/summary/${activeSessionId}`}
-              className="text-xs font-medium px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-white transition-all shadow-xs"
+              href={`/classroom/${activeSessionId}`}
+              className="text-xs font-medium px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50 text-neutral-800 transition-all shadow-xs hidden sm:inline-block"
             >
-              Xem Tóm tắt →
+              🏛️ Vào lớp học →
             </Link>
           )}
 
+          {isClassroom && activeSessionId && (
+            <div className="flex items-center space-x-1.5">
+              <Link
+                href="/slide-ai"
+                className="text-xs font-medium px-2.5 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50 text-neutral-700 transition-all shadow-xs hidden sm:inline-flex items-center space-x-1"
+                title="Học bài tương tác bằng Slide AI"
+              >
+                <span>📚</span>
+                <span>Slide AI</span>
+              </Link>
+              <Link
+                href={`/summary/${activeSessionId}`}
+                className="text-xs font-medium px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-white transition-all shadow-xs"
+              >
+                Xem Tóm tắt →
+              </Link>
+            </div>
+          )}
+
           {isSummary && activeSessionId && (
-            <Link
-              href={`/classroom/${activeSessionId}`}
-              className="text-xs font-medium px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50 text-neutral-800 transition-all shadow-xs"
-            >
-              ← Vào lại lớp
-            </Link>
+            <div className="flex items-center space-x-1.5">
+              <Link
+                href="/slide-ai"
+                className="text-xs font-medium px-2.5 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50 text-neutral-700 transition-all shadow-xs hidden sm:inline-flex items-center space-x-1"
+                title="Mở xem Slide AI bài học"
+              >
+                <span>📚</span>
+                <span>Slide AI</span>
+              </Link>
+              <Link
+                href={`/classroom/${activeSessionId}`}
+                className="text-xs font-medium px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50 text-neutral-800 transition-all shadow-xs"
+              >
+                ← Vào lại lớp
+              </Link>
+            </div>
           )}
 
           {/* Settings Button */}

@@ -1,0 +1,372 @@
+{
+  "metadata": {
+    "evaluated_at": "2026-09-18T15:20:06.373266Z",
+    "evaluator": "CP3 Automated Test Runner",
+    "model_tested": "FastAPI Orchestrator + LLM Agents",
+    "total_cases": 22,
+    "passed": 22,
+    "failed": 0,
+    "pass_rate_pct": 100.0
+  },
+  "tier_summary": {
+    "Tier 1: Nguồn sự thật": {
+      "total": 6,
+      "passed": 6,
+      "failed": 0
+    },
+    "Tier 2: Mơ hồ / thiếu thông tin": {
+      "total": 4,
+      "passed": 4,
+      "failed": 0
+    },
+    "Tier 3: Ngoài phạm vi / thẩm quyền": {
+      "total": 4,
+      "passed": 4,
+      "failed": 0
+    },
+    "Tier 4: Đặc thù domain": {
+      "total": 8,
+      "passed": 8,
+      "failed": 0
+    }
+  },
+  "category_summary": {
+    "citation/grounding": {
+      "total": 6,
+      "passed": 6,
+      "failed": 0
+    },
+    "Student trả lời một chữ": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "thiếu thông tin": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "câu hỏi ngoài bài": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "Student yêu cầu \"cho đáp án\"": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "misconception": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "Instructor intervention": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "final learning outcome": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "turn-taking": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "agent phải im lặng": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "TA intervention": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    }
+  },
+  "results": [
+    {
+      "id": "TC01",
+      "name": "Grounding - Scaled Dot-Product formula",
+      "category": "citation/grounding",
+      "tier": "Tier 1: Nguồn sự thật",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "TA",
+        "content": "Gợi ý cho bạn: Bạn hãy đọc kỹ [transcript-06, lines 13-16]. Tài liệu chỉ rõ Attention KHÔNG phụ thuộc vào khoảng cách vật lý hay từ ngữ liền kề. Hãy thử phân tích xem cơ chế này khác với mô hình tuần tự RNN ở điểm nào nhé!",
+        "citation": "transcript-06, lines 13-16"
+      }
+    },
+    {
+      "id": "TC02",
+      "name": "Grounding - Self-attention all-to-all",
+      "category": "citation/grounding",
+      "tier": "Tier 1: Nguồn sự thật",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "TA",
+        "content": "Gợi ý cho bạn: Bạn hãy đọc kỹ [transcript-06, lines 13-16]. Tài liệu chỉ rõ Attention KHÔNG phụ thuộc vào khoảng cách vật lý hay từ ngữ liền kề. Hãy thử phân tích xem cơ chế này khác với mô hình tuần tự RNN ở điểm nào nhé!",
+        "citation": "transcript-06, lines 13-16"
+      }
+    },
+    {
+      "id": "TC03",
+      "name": "Grounding - QKV components",
+      "category": "citation/grounding",
+      "tier": "Tier 1: Nguồn sự thật",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "TA",
+        "content": "Rất tốt! Bạn đã chạm đúng vào bản chất: Self-Attention tạo kết nối all-to-all và tính tương quan ngữ nghĩa [transcript-06, lines 12-16]. Bạn có thể giải thích rõ hơn cho bạn Minh về cách bộ ba vector Q, K, V [transcript-06, lines 17-20] phối hợp để tính ra điểm chú ý không?",
+        "citation": "transcript-06, lines 12-16"
+      }
+    },
+    {
+      "id": "TC04",
+      "name": "Grounding - RNN Bottleneck limitation",
+      "category": "citation/grounding",
+      "tier": "Tier 1: Nguồn sự thật",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "TA",
+        "content": "Gợi ý cho bạn: Bạn hãy đọc kỹ [transcript-06, lines 13-16]. Tài liệu chỉ rõ Attention KHÔNG phụ thuộc vào khoảng cách vật lý hay từ ngữ liền kề. Hãy thử phân tích xem cơ chế này khác với mô hình tuần tự RNN ở điểm nào nhé!",
+        "citation": "transcript-06, lines 13-16"
+      }
+    },
+    {
+      "id": "TC05",
+      "name": "Ambiguity - Student replies one word 'đúng'",
+      "category": "Student trả lời một chữ",
+      "tier": "Tier 2: Mơ hồ / thiếu thông tin",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "TA",
+        "content": "Gợi ý cho bạn: Bạn hãy đọc kỹ [transcript-06, lines 13-16]. Tài liệu chỉ rõ Attention KHÔNG phụ thuộc vào khoảng cách vật lý hay từ ngữ liền kề. Hãy thử phân tích xem cơ chế này khác với mô hình tuần tự RNN ở điểm nào nhé!",
+        "citation": "transcript-06, lines 13-16"
+      }
+    },
+    {
+      "id": "TC06",
+      "name": "Ambiguity - Student replies one word 'sai'",
+      "category": "Student trả lời một chữ",
+      "tier": "Tier 2: Mơ hồ / thiếu thông tin",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "TA",
+        "content": "Gợi ý cho bạn: Bạn hãy đọc kỹ [transcript-06, lines 13-16]. Tài liệu chỉ rõ Attention KHÔNG phụ thuộc vào khoảng cách vật lý hay từ ngữ liền kề. Hãy thử phân tích xem cơ chế này khác với mô hình tuần tự RNN ở điểm nào nhé!",
+        "citation": "transcript-06, lines 13-16"
+      }
+    },
+    {
+      "id": "TC07",
+      "name": "Ambiguity - Student replies 'chịu ko biết'",
+      "category": "thiếu thông tin",
+      "tier": "Tier 2: Mơ hồ / thiếu thông tin",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "TA",
+        "content": "Gợi ý cho bạn: Bạn hãy đọc kỹ [transcript-06, lines 13-16]. Tài liệu chỉ rõ Attention KHÔNG phụ thuộc vào khoảng cách vật lý hay từ ngữ liền kề. Hãy thử phân tích xem cơ chế này khác với mô hình tuần tự RNN ở điểm nào nhé!",
+        "citation": "transcript-06, lines 13-16"
+      }
+    },
+    {
+      "id": "TC08",
+      "name": "Ambiguity - Student vướng mắc một phần",
+      "category": "thiếu thông tin",
+      "tier": "Tier 2: Mơ hồ / thiếu thông tin",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "TA",
+        "content": "Gợi ý cho bạn: Bạn hãy đọc kỹ [transcript-06, lines 13-16]. Tài liệu chỉ rõ Attention KHÔNG phụ thuộc vào khoảng cách vật lý hay từ ngữ liền kề. Hãy thử phân tích xem cơ chế này khác với mô hình tuần tự RNN ở điểm nào nhé!",
+        "citation": "transcript-06, lines 13-16"
+      }
+    },
+    {
+      "id": "TC09",
+      "name": "Out of scope - Weather query",
+      "category": "câu hỏi ngoài bài",
+      "tier": "Tier 3: Ngoài phạm vi / thẩm quyền",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "TA",
+        "content": "Nội dung này không được đề cập trong tài liệu hiện tại.",
+        "citation": null
+      }
+    },
+    {
+      "id": "TC10",
+      "name": "Out of scope - Sports query",
+      "category": "câu hỏi ngoài bài",
+      "tier": "Tier 3: Ngoài phạm vi / thẩm quyền",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "TA",
+        "content": "Nội dung này không được đề cập trong tài liệu hiện tại.",
+        "citation": null
+      }
+    },
+    {
+      "id": "TC11",
+      "name": "Demand answer - 'cho đáp án luôn đi'",
+      "category": "Student yêu cầu \"cho đáp án\"",
+      "tier": "Tier 3: Ngoài phạm vi / thẩm quyền",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "TA",
+        "content": "Mình không thể đưa ra đáp án trực tiếp được vì đây là buổi thảo luận để bạn tự khám phá. Bạn hãy đọc lại [transcript-06, lines 11-16], cơ chế Attention tính toán mối tương quan giữa các từ dựa vào điểm số nào thay vì vị trí đứng gần?",
+        "citation": "transcript-06, lines 11-16"
+      }
+    },
+    {
+      "id": "TC12",
+      "name": "Demand answer - 'nói luôn đáp án đi'",
+      "category": "Student yêu cầu \"cho đáp án\"",
+      "tier": "Tier 3: Ngoài phạm vi / thẩm quyền",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "TA",
+        "content": "Theo phương pháp thảo luận Socratic, mình sẽ gợi mở thay vì cho đáp án ngay nhé. Hãy xem [transcript-06, lines 13-16], tại sao hai từ cách nhau rất xa vẫn có thể chú ý mạnh đến nhau?",
+        "citation": "transcript-06, lines 13-16"
+      }
+    },
+    {
+      "id": "TC13",
+      "name": "Misconception - Peer introduces misconception initially",
+      "category": "misconception",
+      "tier": "Tier 4: Đặc thù domain",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "PEER",
+        "content": "Chào cả lớp và thầy cô, mình vừa đọc phần Attention xong. Theo mình hiểu thì Attention chỉ đơn giản là một cơ chế hard-coding gán trọng số cố định theo khoảng cách vị trí: từ nào đứng gần nhau ngay sát nhau thì luôn có attention cao nhất, còn từ ở xa thì bỏ qua không chú ý đến [transcript-06, lines 13-16]. Có đúng không mọi người?",
+        "citation": "transcript-06, lines 13-16"
+      }
+    },
+    {
+      "id": "TC14",
+      "name": "Accurate student refutation triggers Instructor intervention",
+      "category": "Instructor intervention",
+      "tier": "Tier 4: Đặc thù domain",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "INSTRUCTOR",
+        "content": "Chính xác! Giảng viên xác nhận: Attention giải quyết triệt để điểm nghẽn biểu diễn của RNN bằng cách tính toán tương quan động all-to-all giữa Query và Key, không phụ thuộc khoảng cách từ [transcript-06, lines 12-16, lines 21-27]. Bạn Minh đã hiểu rõ chưa? Bây giờ, mời học viên hãy tổng kết lại bằng 2 câu: Attention là gì và vì sao misconception của bạn Minh bị bác bỏ hoàn toàn?",
+        "citation": "transcript-06, lines 12-16"
+      }
+    },
+    {
+      "id": "TC15",
+      "name": "Final learning outcome - Successful explanation achieved",
+      "category": "final learning outcome",
+      "tier": "Tier 4: Đặc thù domain",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "status": "ACHIEVED",
+        "learning_outcome": "ACHIEVED",
+        "last_message": "Xuất sắc! Giảng viên công nhận: Bạn đã hiểu đúng và giải thích chuẩn xác bản chất của Attention Mechanism theo [transcript-06, lines 12-16, lines 21-27]. Cơ chế tính tương quan all-to-all không phụ thuộc vào khoảng cách từ đã hoàn toàn bác bỏ hiểu lầm ban đầu của bạn học. Phiên học chính thức hoàn thành ĐẠT MỤC TIÊU (ACHIEVED)!"
+      }
+    },
+    {
+      "id": "TC16",
+      "name": "Final learning outcome - Incomplete explanation rejected",
+      "category": "final learning outcome",
+      "tier": "Tier 4: Đặc thù domain",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "status": "IN_PROGRESS",
+        "learning_outcome": "PENDING"
+      }
+    },
+    {
+      "id": "TC17",
+      "name": "Turn-taking - Exactly one agent speaks per turn",
+      "category": "turn-taking",
+      "tier": "Tier 4: Đặc thù domain",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "agent_message_count": 1,
+        "speaking_agent": "TA"
+      }
+    },
+    {
+      "id": "TC18",
+      "name": "Agent silencing - Other agents must remain silent",
+      "category": "agent phải im lặng",
+      "tier": "Tier 4: Đặc thù domain",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "agent_message_count": 1,
+        "speaking_agent": "PEER"
+      }
+    },
+    {
+      "id": "TC19",
+      "name": "No citation hallucination - Lines within bounds 1-32",
+      "category": "citation/grounding",
+      "tier": "Tier 1: Nguồn sự thật",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "citation": "transcript-06, lines 13-16"
+      }
+    },
+    {
+      "id": "TC20",
+      "name": "TA intervention - Triggered on student struggle",
+      "category": "TA intervention",
+      "tier": "Tier 4: Đặc thù domain",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "TA",
+        "content": "Gợi ý cho bạn: Bạn hãy đọc kỹ [transcript-06, lines 13-16]. Tài liệu chỉ rõ Attention KHÔNG phụ thuộc vào khoảng cách vật lý hay từ ngữ liền kề. Hãy thử phân tích xem cơ chế này khác với mô hình tuần tự RNN ở điểm nào nhé!",
+        "citation": "transcript-06, lines 13-16"
+      }
+    },
+    {
+      "id": "TC21",
+      "name": "Multi-Head Attention grounding",
+      "category": "citation/grounding",
+      "tier": "Tier 1: Nguồn sự thật",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "speaker": "TA",
+        "content": "Gợi ý cho bạn: Bạn hãy đọc kỹ [transcript-06, lines 13-16]. Tài liệu chỉ rõ Attention KHÔNG phụ thuộc vào khoảng cách vật lý hay từ ngữ liền kề. Hãy thử phân tích xem cơ chế này khác với mô hình tuần tự RNN ở điểm nào nhé!",
+        "citation": "transcript-06, lines 13-16"
+      }
+    },
+    {
+      "id": "TC22",
+      "name": "Session persistence - Session cannot close early",
+      "category": "misconception",
+      "tier": "Tier 4: Đặc thù domain",
+      "passed": true,
+      "failure_reasons": [],
+      "actual_output": {
+        "initial_status": "IN_PROGRESS",
+        "misconception_resolved": false
+      }
+    }
+  ]
+}

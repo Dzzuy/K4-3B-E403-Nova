@@ -1,3 +1,50 @@
+export interface SlideCodeSnippet {
+  language: string;
+  code: string;
+}
+
+export interface SlideDiagram {
+  type: string;
+  title: string;
+  description: string;
+}
+
+export interface Slide {
+  id: number;
+  slide_number: number;
+  title: string;
+  subtitle?: string;
+  concept: string;
+  content: string;
+  bullet_points: string[];
+  key_takeaway: string;
+  source_lines: [number, number];
+  source_citation: string;
+  source_excerpt: string;
+  code_snippet?: SlideCodeSnippet;
+  diagram?: SlideDiagram;
+  sample_questions?: string[];
+}
+
+export interface LessonSlidesResponse {
+  lesson_id: string;
+  lesson_title: string;
+  source_file?: string;
+  total_lines?: number;
+  mode?: string;
+  total_slides: number;
+  estimated_reading_time?: string;
+  slides: Slide[];
+}
+
+export interface SlideContextPayload {
+  lesson_id?: string;
+  slide_id?: number | string;
+  slide_title?: string;
+  slide_content?: string;
+  user_message?: string;
+}
+
 export interface Message {
   id: string;
   turn: number;
@@ -115,10 +162,19 @@ export const api = {
       body: JSON.stringify({ student_name: studentName, lesson_id: lessonId, peer_id: peerId }),
     }),
 
-  sendMessage: (sessionId: string, content: string) =>
+  sendMessage: (sessionId: string, content: string, slideContext?: SlideContextPayload) =>
     apiFetch<SessionData>(`/api/session/${sessionId}/message`, {
       method: "POST",
-      body: JSON.stringify({ content }),
+      body: JSON.stringify({ content, ...(slideContext || {}) }),
+    }),
+
+  getLessonSlides: (lessonId: string = "transcript-06", mode: string = "detailed") =>
+    apiFetch<LessonSlidesResponse>(`/api/lesson/${lessonId}/slides?mode=${mode}`),
+
+  parseSlidesFromFile: (text: string, filename: string = "custom.txt") =>
+    apiFetch<LessonSlidesResponse>("/api/slides/parse-file", {
+      method: "POST",
+      body: JSON.stringify({ text, filename }),
     }),
 
   getSession: (sessionId: string) =>

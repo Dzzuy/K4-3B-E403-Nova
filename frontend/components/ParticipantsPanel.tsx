@@ -389,13 +389,20 @@ export default function ParticipantsPanel({
       </div>
 
       {/* Footer Navigation */}
-      <div className="p-2.5 border-t border-neutral-100 bg-neutral-50/60 grid grid-cols-3 gap-1 text-[10px] font-mono text-center text-neutral-600 shrink-0">
+      <div className="p-2.5 border-t border-neutral-100 bg-neutral-50/60 grid grid-cols-4 gap-1 text-[10px] font-mono text-center text-neutral-600 shrink-0">
         <Link
           href="/"
           className="p-1 rounded hover:bg-neutral-200 transition"
           title="Về danh sách bài học"
         >
           📖 Lessons
+        </Link>
+        <Link
+          href="/slide-ai"
+          className="p-1 rounded hover:bg-neutral-200 transition font-semibold text-neutral-900"
+          title="Học tương tác với Slide AI"
+        >
+          📚 Slides
         </Link>
         <Link
           href="/sessions"

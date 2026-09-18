@@ -54,12 +54,20 @@ export default function SessionsPage() {
               </p>
             </div>
 
-            <Link
-              href="/"
-              className="bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold px-5 py-2.5 rounded-xl transition inline-flex items-center space-x-1.5 shrink-0 shadow-xs"
-            >
-              <span>+ Bắt đầu phiên mới</span>
-            </Link>
+            <div className="flex items-center space-x-2 shrink-0">
+              <Link
+                href="/slide-ai"
+                className="bg-white hover:bg-neutral-50 text-neutral-900 border border-neutral-300 text-xs font-semibold px-4 py-2.5 rounded-xl transition inline-flex items-center space-x-1.5 shadow-2xs"
+              >
+                <span>📚 Học với Slide AI</span>
+              </Link>
+              <Link
+                href="/"
+                className="bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold px-5 py-2.5 rounded-xl transition inline-flex items-center space-x-1.5 shadow-xs"
+              >
+                <span>+ Bắt đầu phiên mới</span>
+              </Link>
+            </div>
           </div>
 
           {loading ? (
@@ -123,6 +131,13 @@ export default function SessionsPage() {
                     </div>
 
                     <div className="flex items-center space-x-2 shrink-0">
+                      <Link
+                        href="/slide-ai"
+                        className="text-xs font-medium bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 text-neutral-700 px-3 py-2 rounded-xl transition flex items-center space-x-1"
+                        title="Học bài giảng tương tác với Slide AI"
+                      >
+                        <span>📚 Slide</span>
+                      </Link>
                       <Link
                         href={`/classroom/${s.session_id}`}
                         className="text-xs font-medium bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 text-neutral-800 px-3.5 py-2 rounded-xl transition"

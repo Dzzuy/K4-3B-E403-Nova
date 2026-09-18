@@ -1,3 +1,49 @@
+
+export const SLIDE_FALLBACK_KNOWLEDGE: Record<number, { title: string; citation: string; explain: string; summary: string; example: string }> = {
+  1: {
+    title: "Tổng quan Bài học & Bước ngoặt Attention Mechanism",
+    citation: "transcript-06, lines 1-2",
+    explain: "Attention Mechanism là bước ngoặt then chốt trong NLP, mở ra kỷ nguyên kiến trúc Transformer [transcript-06, lines 1-2].",
+    summary: "• Attention là bước ngoặt then chốt trong NLP [transcript-06, lines 1-2].",
+    example: "Attention đặt nền tảng cho mọi mô hình LLM hiện đại [transcript-06, line 2].",
+  },
+  2: {
+    title: "Mô hình Tuần tự Truyền thống (RNN/LSTM)",
+    citation: "transcript-06, lines 3-4",
+    explain: "RNN xử lý tuần tự từng từ một qua t = 1..T, gây độ trễ lớn [transcript-06, lines 3-4].",
+    summary: "• Xử lý tuần tự từng bước thời gian t = 1..T [transcript-06, line 4].",
+    example: "Từng từ phải đợi từ trước xử lý xong mới được tính [transcript-06, line 4].",
+  },
+  3: {
+    title: "Điểm nghẽn Biểu diễn (Information Bottleneck)",
+    citation: "transcript-06, lines 3-7",
+    explain: "Mô hình cố nén toàn bộ câu vào một vector ẩn kích thước cố định, gây ra điểm nghẽn thông tin khi câu dài trên 20-30 từ [transcript-06, lines 5-6].",
+    summary: "• Vector ẩn cố định tạo điểm nghẽn thông tin [transcript-06, lines 5-6].",
+    example: "Giống như trò chơi truyền tin qua 30 người nhưng chỉ được nhớ 3 từ [transcript-06, lines 5-7].",
+  },
+  8: {
+    title: "Bác bỏ Hiểu lầm về Khoảng cách Vị trí",
+    citation: "transcript-06, lines 12-16",
+    explain: "Attention KHÔNG phụ thuộc vào khoảng cách vật lý hay từ ngữ liền kề [transcript-06, lines 13-14]. Hai từ cách nhau 50 từ vẫn có thể có attention cực cao nếu tương quan ngữ nghĩa mạnh [transcript-06, lines 14-16].",
+    summary: "• Attention độc lập hoàn toàn với khoảng cách vị trí [transcript-06, lines 13-14].",
+    example: "Hai từ cách nhau 50 từ vẫn chú ý mạnh đến nhau [transcript-06, line 15].",
+  },
+  9: {
+    title: "Phân tích Ví dụ Thực tế: 'Con mèo ... xuất hiện'",
+    citation: "transcript-06, line 16",
+    explain: "Trong câu 'Con mèo mà tôi nhìn thấy tuần trước ở công viên hôm nay lại xuất hiện', từ 'xuất hiện' liên kết attention cao nhất tới 'Con mèo' dù cách nhau hơn chục từ [transcript-06, line 16].",
+    summary: "• 'xuất hiện' chú ý cao tới 'Con mèo' [transcript-06, line 16].",
+    example: "Ví dụ 'Con mèo... xuất hiện' chứng minh ngữ nghĩa vượt qua khoảng cách vị trí [transcript-06, line 16].",
+  },
+  13: {
+    title: "Hệ số Co giãn √d_k & Phòng ngừa Bão hòa Gradient",
+    citation: "transcript-06, lines 24-25",
+    explain: "Chia cho sqrt(d_k) để tránh việc tích vô hướng quá lớn làm bão hòa đạo hàm (gradient saturation) trong hàm softmax [transcript-06, lines 24-25].",
+    summary: "• Hệ số sqrt(d_k) bảo vệ mô hình khỏi bão hòa gradient [transcript-06, lines 24-25].",
+    example: "Khi d_k=64, chia cho 8 giúp điểm số không quá lớn để Softmax có gradient mượt mà [transcript-06, lines 24-25].",
+  },
+};
+
 import fs from "fs";
 import path from "path";
 
@@ -249,7 +295,8 @@ export function createLocalSession(
 
 export function handleLocalStudentMessage(
   sessionId: string,
-  studentContent: string
+  studentContent: string,
+  slideContext?: { lesson_id?: string; slide_id?: number | string; slide_title?: string; slide_content?: string; user_message?: string }
 ): SessionData {
   const session = getSessionLocal(sessionId);
   const scenario = getScenario();
@@ -323,6 +370,42 @@ export function handleLocalStudentMessage(
     session.current_turn += 1;
     session.phase = "WAITING_STUDENT_AFTER_TA";
     return session;
+  }
+
+  // Slide AI Contextual Interactions
+  let slideNum: number | null = null;
+  if (slideContext?.slide_id) {
+    slideNum = Number(slideContext.slide_id);
+  } else {
+    const m = lower.match(/slide\s+(\d+)/);
+    if (m) slideNum = parseInt(m[1], 10);
+  }
+
+  if (slideNum && SLIDE_FALLBACK_KNOWLEDGE[slideNum]) {
+    const info = SLIDE_FALLBACK_KNOWLEDGE[slideNum];
+    let resp = info.explain;
+    if (["tóm tắt", "summary", "tóm lược", "ngắn gọn"].some((k) => lower.includes(k))) {
+      resp = info.summary;
+    } else if (["ví dụ", "thực tế", "minh họa"].some((k) => lower.includes(k))) {
+      resp = info.example;
+    }
+
+    if (
+      ["giải thích", "tóm tắt", "ví dụ", "hoạt động", "như thế nào", "tại sao", "slide", "công thức"].some((k) => lower.includes(k)) ||
+      (slideContext && content.split(/\s+/).length >= 2)
+    ) {
+      session.messages.push({
+        id: `msg_${session.messages.length}`,
+        turn: currentTurn,
+        sender: "TA",
+        sender_name: scenario.ta_name,
+        content: resp,
+        citation: info.citation,
+        timestamp: new Date().toISOString(),
+      });
+      session.current_turn += 1;
+      return session;
+    }
   }
 
   // One-word response

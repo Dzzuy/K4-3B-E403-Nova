@@ -15,3 +15,6 @@ codebase/logs/
 demo/
 frontend/.next/
 frontend/public/local-slides/
+
+frontend/node_modules/
+logs/sessions/

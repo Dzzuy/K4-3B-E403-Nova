@@ -218,6 +218,15 @@ export default function ClassroomPage() {
             </div>
 
             <div className="flex items-center space-x-2">
+              <Link
+                href="/slide-ai"
+                className="text-[11px] font-mono text-neutral-700 hover:text-neutral-950 px-2.5 py-1 rounded-lg border border-neutral-200 hover:bg-neutral-100 transition flex items-center space-x-1 font-semibold"
+                title="Chuyển sang học tương tác với Slide AI"
+              >
+                <span>📚</span>
+                <span>Slide AI</span>
+              </Link>
+              <span className="text-neutral-300">|</span>
               <button
                 onClick={() => setShowRightPanel(!showRightPanel)}
                 className="text-[11px] font-mono text-neutral-600 hover:text-neutral-900 px-1.5 py-0.5 rounded border border-neutral-200 hover:bg-neutral-100 transition cursor-pointer"
